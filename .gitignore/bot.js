@@ -412,6 +412,7 @@ client.on('message', function (message) {
 
 client.on('message', function(message){
     if(!message.author.id === "434061967951659019") {
+        if(!message.content === "dév")
         message.channel.send(":white_check_mark:")
     } else {
         message.channel.send(":x:")
