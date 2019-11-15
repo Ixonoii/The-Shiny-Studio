@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client;
-var prefix = process.env.PREFIX;
 var credits = "P4W - Tous Droits Réservés";
 var embedcolor = "#049ef3"
 var versionBOT = "0.0.1"
@@ -12,7 +11,7 @@ var prefix = "-"
 
                                                                  // BOT TOKEN //
 
-client.login(TOKEN)
+client.login(process.env.TOKEN)
 
                                                                  // BOT STATUS //
 
