@@ -449,7 +449,6 @@ client.on('message', function (message) {
         let question = args.slice(1).join(" ")
         message.channel.guild.setName(question)
         message.channel.send("***Nom du serveur modifié : " + question + "***")
-    message.delete();
 }
 })
 
@@ -462,6 +461,6 @@ client.on('message', function (message) {
         if (!args[1]) return message.channel.send("***Veuillez entrer un sujet.***")
         let question = args.slice(1).join(" ")
         message.channel.setTopic(question)
-        message.channel.send("Sujet modifié : " + question + "***")
+        message.channel.send("***Sujet modifié : " + question + "***")
 }
 })
