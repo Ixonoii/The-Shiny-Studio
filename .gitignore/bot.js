@@ -411,8 +411,9 @@ client.on('message', function (message) {
 })
 
 client.on('message', function(message){
-    if(message.content === "dév"){
-        if(!message.author.id === "434061967951659019") return message.channel.send("***Vous ne pouvez pas utiliser cette commande, vous n'êtes pas un développeur.***")
-        message.channel.send("***<@" + message.author.id + "> :white_check_mark:***")
+    if(!message.author.id === "434061967951659019") {
+        message.channel.send(":white_check_mark:")
+    } else {
+        message.channel.send(":x:")
     }
 })
