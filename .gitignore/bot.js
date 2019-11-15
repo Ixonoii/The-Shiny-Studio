@@ -50,7 +50,7 @@ client.on('message', function(message){
         var pong_enbed = new Discord.RichEmbed()
         .setTitle('__Voici toutes les commandes disponibles __')
         .setColor(embedcolor)
-        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. (INDISPONIBLE ACTUELLEMENT) \n ``-idée`` Vous permet de partager une de vos idées.")
+        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-idée`` Vous permet de partager une de vos idées.")
         .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-softban`` Ban puis unban unmembre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Sipprime un grand nombre de messages.")
         .addField("__Commandes de gestion (BIENTÔT)__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'une chaîne. \n ``-renomme`` Change le nom d'un channel.")
         message.channel.send(pong_enbed)
@@ -62,7 +62,7 @@ client.on('message', function(message){
         var pong_enbed = new Discord.RichEmbed()
         .setTitle('__Voici toutes les commandes disponibles __')
         .setColor(embedcolor)
-        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. (INDISPONIBLE ACTUELLEMENT) \n ``-idée`` Vous permet de partager une de vos idées.")
+        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-idée`` Vous permet de partager une de vos idées.")
         .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-softban`` Ban puis unban unmembre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau.")
         .addField("__Commandes de gestion (BIENTÔT)__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'une chaîne. \n ``-renomme`` Change le nom d'un channel.")
         message.channel.send(pong_enbed)
@@ -171,14 +171,18 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "BROKEN"){
+    if (args[0].toLocaleLowerCase()=== prefix + "signal"){
         let memberMEN = message.mentions.members.first()
         let question = args.slice(2).join(" ")
         if(!memberMEN) return message.channel.send("***Vous devez mentionner quelqu'un.***")
         if(!question) return message.channel.send("***Vous devez entrer une raison.***")
         let embed = new Discord.RichEmbed()
-        .setTitle("Fiche de rapport n°" + message.author.id + "\n \n Membre: ``" + message.author.username + "``\n Membre signalé: ``" + memberMEN.joinedAt + "``\n Raison du signalement: ``" + question + "``\n Signalement envoyé depuis le channel: ``" + message.channel.name + "``")
+        .setTitle("Fiche de rapport n°" + message.author.id)
         .setColor(embedcolor)
+        .addField("Membre :", message.author.username + "(" + message.author.id + ")")
+        .addField("Membre signalé :", memberMEN + "(" + memberMEN.id + ")")
+        .addField("Raison :", question)
+        .addField("Channel :", message.channel.name)
         let cChannel = message.guild.channels.find(c => c.name === "signalements")
         if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires ou le channel ``reports`` n'existe pas sur ce serveur.***")
     cChannel.send(embed);
