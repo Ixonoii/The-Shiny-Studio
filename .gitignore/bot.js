@@ -432,17 +432,36 @@ client.on('message', function (message) {
     }
 })
 
+client.on('message', function(message){
+    if(message.content === prefix + "supprimechannel"){
+        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        message.channel.delete()
+    }
+})
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "newchannel"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        if (!args[1]) return message.channel.send("***Vous devez entrer un nom.***")
+    if (args[0].toLocaleLowerCase()=== prefix + "nomduserveur"){
+    if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if (!args[1]) return message.channel.send("***Veuillez entrer un nom.***")
         let question = args.slice(1).join(" ")
-        message.guild.createChannel(question).then(channel =>{
-    })
+        message.channel.guild.setName(question)
+        message.channel.send("***Nom du serveur modifié : " + question + "***")
     message.delete();
-    message.channel.send("***Nouveau channel : " + question + "***")
-    }
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "sujet"){
+        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if (!args[1]) return message.channel.send("***Veuillez entrer un sujet.***")
+        let question = args.slice(1).join(" ")
+        message.channel.setTopic(question)
+        message.channel.send("Sujet modifié : " + question + "***")
+}
 })
