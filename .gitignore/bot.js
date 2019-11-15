@@ -431,3 +431,18 @@ client.on('message', function (message) {
         message.channel.send("***Rôle ajouté à la liste : " + question + "***")
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "newchannel"){
+        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if (!args[1]) return message.channel.send("***Vous devez entrer un nom.***")
+        let question = args.slice(1).join(" ")
+        message.guild.createChannel(question).then(channel =>{
+    })
+    message.delete();
+    message.channel.send("***Nouveau channel : " + question + "***")
+    }
+})
