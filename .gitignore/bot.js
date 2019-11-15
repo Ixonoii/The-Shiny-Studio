@@ -409,12 +409,3 @@ client.on('message', function (message) {
     message.channel.send("***Le nouveau pseudo du membre " + membER + " est maintenant : " + question + "***")
 }
 })
-
-client.on('message', function(message){
-    if(!message.author.id === "434061967951659019") {
-        if(!message.content === "dév")
-        message.channel.send(":white_check_mark:")
-    } else {
-        message.channel.send(":x:")
-    }
-})
