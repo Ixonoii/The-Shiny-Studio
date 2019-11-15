@@ -1,0 +1,15 @@
+{
+  "name": "bot-p4w",
+  "version": "0.0.1",
+  "description": "Le bot officiel P4W !",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ixonoii",
+  "license": "ISC"
+}
