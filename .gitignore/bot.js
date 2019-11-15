@@ -409,3 +409,10 @@ client.on('message', function (message) {
     message.channel.send("***Le nouveau pseudo du membre " + membER + " est maintenant : " + question + "***")
 }
 })
+
+client.on('message', function(message){
+    if(message.content === "dév"){
+        if(!message.author.id === "434061967951659019") return message.channel.send("***Vous ne pouvez pas utiliser cette commande, vous n'êtes pas un développeur.***")
+        message.channel.send("***<@" + message.author.id + "> :white_check_mark:***")
+    }
+})
