@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client;
-var prefix = process.env.PREFIX;
 var credits = "P4W - Tous Droits Réservés";
 var embedcolor = "#049ef3"
 var versionBOT = "0.0.1"
@@ -17,7 +16,7 @@ client.login(process.env.TOKEN)
                                                                  // BOT STATUS //
 
 client.on('ready', function(){
-    client.user.setActivity("Mentionne moi !", {type: "PLAYING"})
+    client.user.setActivity("C'est un test mdr", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
