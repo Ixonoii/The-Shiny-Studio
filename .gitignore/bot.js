@@ -12,7 +12,7 @@ var prefix = "-"
 
                                                                  // BOT TOKEN //
 
-client.login("NjQzMTUyMjU3ODIyNjIxNjk2.Xc7seQ.8hZGiK_zwzuaMz0q8Wndl05iQEY")
+client.login(TOKEN)
 
                                                                  // BOT STATUS //
 
