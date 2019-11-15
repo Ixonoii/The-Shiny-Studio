@@ -409,22 +409,3 @@ client.on('message', function (message) {
     message.channel.send("***Le nouveau pseudo du membre " + membER + " est maintenant : " + question + "***")
 }
 })
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "pm2"){
-        if(!message.author.id === "434061967951659019") return message.channel.send("Vous n'êtes pas Ixonoii!")
-        let membER = message.mentions.members.first()
-        let question = args.slice(2).join(" ")
-        if (!membER) return message.channel.send("***Vous devez mentionner quelqu'un.***")
-        if (!question) return message.channel.send("***Vous devez entrer votre message.***")
-        let embed = new Discord.RichEmbed()
-        .setTitle("Vous avez reçu un message de la part de " + message.author.username + " :")
-        .setColor(embedcolor)
-        .setDescription(question)
-        membER.send(embed)
-    message.delete();
-}
-})
