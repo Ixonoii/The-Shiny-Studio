@@ -16,19 +16,13 @@ client.login(process.env.TOKEN)
                                                                  // BOT STATUS //
 
 client.on('ready', function(){
-    client.user.setActivity("C'est un test mdr", {type: "PLAYING"})
+    client.user.setActivity("Mentionne moi !", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
 
 client.on('message', function(message){
     if(message.content === "<@643152257822621696>"){
-        message.channel.send("***<@" + message.author.id + "> Besoin d'aide ? Utilise -cmds ou -commandes !***")
-    }
-})
-
-client.on('message', function(message){
-    if(message.content === "Test"){
         message.channel.send("***<@" + message.author.id + "> Besoin d'aide ? Utilise -cmds ou -commandes !***")
     }
 })
