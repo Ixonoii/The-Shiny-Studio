@@ -27,6 +27,12 @@ client.on('message', function(message){
     }
 })
 
+client.on('message', function(message){
+    if(message.content === "Test"){
+        message.channel.send("***<@" + message.author.id + "> Besoin d'aide ? Utilise -cmds ou -commandes !***")
+    }
+})
+
                                                                  // INFO COMMAND //
 
 client.on('message', message =>{
