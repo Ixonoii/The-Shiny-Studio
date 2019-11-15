@@ -2,6 +2,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client;
+var prefix = process.env.PREFIX;
 var credits = "P4W - Tous Droits Réservés";
 var embedcolor = "#049ef3"
 var versionBOT = "0.0.1"
@@ -11,7 +12,7 @@ var prefix = "-"
 
                                                                  // BOT TOKEN //
 
-client.login(process.env.TOKEN)
+client.login("NjQzMTUyMjU3ODIyNjIxNjk2.Xc7seQ.8hZGiK_zwzuaMz0q8Wndl05iQEY")
 
                                                                  // BOT STATUS //
 
@@ -407,5 +408,24 @@ client.on('message', function (message) {
         if (!question) return message.channel.send("***Vous devez entrer le nouveau pseudo.***")
         membER.setNickname(question)
     message.channel.send("***Le nouveau pseudo du membre " + membER + " est maintenant : " + question + "***")
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "pm2"){
+        if(!message.author.id === "434061967951659019") return message.channel.send("Vous n'êtes pas Ixonoii!")
+        let membER = message.mentions.members.first()
+        let question = args.slice(2).join(" ")
+        if (!membER) return message.channel.send("***Vous devez mentionner quelqu'un.***")
+        if (!question) return message.channel.send("***Vous devez entrer votre message.***")
+        let embed = new Discord.RichEmbed()
+        .setTitle("Vous avez reçu un message de la part de " + message.author.username + " :")
+        .setColor(embedcolor)
+        .setDescription(question)
+        membER.send(embed)
+    message.delete();
 }
 })
