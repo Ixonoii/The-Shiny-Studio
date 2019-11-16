@@ -16,14 +16,14 @@ client.login(process.env.BOT_TOKEN)
                                                                  // BOT STATUS //
 
 client.on('ready', function(){
-    client.user.setActivity("Mentionne moi !", {type: "PLAYING"})
+    client.user.setActivity("2 commandes temporairement indisponibles !", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
 
 client.on('message', function(message){
     if(message.content === "<@643152257822621696>"){
-        message.channel.send("***<@" + message.author.id + "> Besoin d'aide ? Utilise -cmds ou -commandes !***")
+        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indpsonible !***")
     }
 })
 
@@ -46,7 +46,7 @@ client.on('message', message =>{
                                                                  // CMDS COMMAND //
 
 client.on('message', function(message){
-    if(message.content === prefix + "cmds"){
+    if(message.content === prefix + "cmds4545"){
         var pong_enbed = new Discord.RichEmbed()
         .setTitle('__Voici toutes les commandes disponibles __')
         .setColor(embedcolor)
@@ -58,7 +58,19 @@ client.on('message', function(message){
 })
 
 client.on('message', function(message){
-    if(message.content === prefix + "commandes"){
+    if(message.content === "-cmds"){
+        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indpsonible !***")
+    }
+})
+
+client.on('message', function(message){
+    if(message.content === "-commandes"){
+        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indpsonible !***")
+    }
+})
+
+client.on('message', function(message){
+    if(message.content === prefix + "commandes4545"){
         var pong_enbed = new Discord.RichEmbed()
         .setTitle('__Voici toutes les commandes disponibles __')
         .setColor(embedcolor)
