@@ -16,7 +16,7 @@ client.login(process.env.BOT_TOKEN)
                                                                  // BOT STATUS //
 
 client.on('ready', function(){
-    client.user.setActivity("2 commandes temporairement indisponibles !", {type: "PLAYING"})
+    client.user.setActivity("Mentionne moi !", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
