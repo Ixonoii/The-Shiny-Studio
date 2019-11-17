@@ -23,7 +23,7 @@ client.on('ready', function(){
 
 client.on('message', function(message){
     if(message.content === "<@643152257822621696>"){
-        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indpsonible !***")
+        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indisponible !***")
     }
 })
 
@@ -59,13 +59,13 @@ client.on('message', function(message){
 
 client.on('message', function(message){
     if(message.content === "-cmds"){
-        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indpsonible !***")
+        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indisponible !***")
     }
 })
 
 client.on('message', function(message){
     if(message.content === "-commandes"){
-        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indpsonible !***")
+        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indisponible !***")
     }
 })
 
