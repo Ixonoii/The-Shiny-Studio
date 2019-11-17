@@ -476,3 +476,23 @@ client.on('message', function (message) {
         message.channel.send("***Sujet modifié : " + question + "***")
 }
 })
+
+client.on('message', message =>{
+    if(message.content === prefix + "armix"){
+        let embed = new Discord.RichEmbed()
+        .setTitle("Cliquez ici pour voir la dernière vidéo Youtube d'Armix !")
+        .setColor(embedcolor)
+        .setURL("https://latest.yt/c:Armix_Wk_Officiel")
+        message.channel.send(embed)
+    }
+})
+
+client.on('message', message =>{
+    if(message.content === prefix + "raizz"){
+        let embed = new Discord.RichEmbed()
+        .setTitle("Cliquez ici pour voir la dernière vidéo Youtube de Armix !")
+        .setColor(embedcolor)
+        .setURL("https://latest.yt/c:RaizZ")
+        message.channel.send(embed)
+    }
+})
