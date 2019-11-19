@@ -129,7 +129,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLocaleLowerCase()=== prefix + "8ball"){
-    if (!args[1]) return message.channel.send("***Quelle est ta question?***")
+    if (!args[1]) return message.channel.send("***What is your question?***")
         let answers = ["Yes.", "No.", "Of course.", "Maybe.", "I don't know.","Never.","Impossible.","No idea.","ANo chance."]
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
