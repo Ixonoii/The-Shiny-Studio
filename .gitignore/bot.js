@@ -306,26 +306,10 @@ client.on("message", function (message) {
                                                                  // INVITATION COMMAND //
 
 client.on('message', function(message){
-    if(message.content === prefix + "invitation"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🎖️] MODÉRATEUR","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+    if(message.content === prefix + "invite"){
         message.channel.createInvite()
-        .then(invite => message.channel.send(`***Invitation créée : discord.gg/${invite.code}***`))
+        .then(invite => message.channel.send(`***Invite created : discord.gg/${invite.code}***`))
     }
-})
-
-                                                                 // RENOMME COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "renomme"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        let question = args.slice(1).join(" ")
-        if (!question) return message.channel.send("***Vous devez entrer le nouveau nom du channel.***")
-        message.channel.setName(question)
-        message.channel.send("***Channel renommé : " + question + "***")
-}
 })
 
                                                                  // IDEE COMMAND //
@@ -334,128 +318,19 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "idée"){
-        if (!args[1]) return message.channel.send("***Vous devez entrer une idée.***")
+    if (args[0].toLocaleLowerCase()=== prefix + "suggest"){
+        if (!args[1]) return message.channel.send("***You have to enter your suggestion***")
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
-        .setTitle("Une nouvelle idée a étais envoyée :")
+        .setTitle("New suggestion:")
         .setColor(embedcolor)
         .setDescription(question)
-        .setFooter("Idée envoyée par " + message.author.tag)
-        let cChannel = message.guild.channels.find(c => c.name === "idées")
-        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre idée. Je n'ai peut-être pas les autorisations nécessaires ou le channel ``idées`` n'existe pas sur ce serveur.***")
+        .setFooter("Suggested by " + message.author.tag)
+        let cChannel = message.guild.channels.find(c => c.name === "🤔-game-suggestions")
+        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> I can't send your suggestion. I maybe don't have the ``ADMINISTRATOR`` permissions or the channel ``🤔-game-suggestions`` doesn't exist on this server.***")
     cChannel.send(embed)
     cChannel.send("<@!434061967951659019>")
-    message.channel.send("***Idée envoyée.***")
+    message.channel.send("***Suggestion sent.***")
     message.delete();
 }
-})
-
-                                                                 // PM COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "pm"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        let membER = message.mentions.members.first()
-        let question = args.slice(2).join(" ")
-        if (!membER) return message.channel.send("***Vous devez mentionner quelqu'un.***")
-        if (!question) return message.channel.send("***Vous devez entrer votre message.***")
-        let embed = new Discord.RichEmbed()
-        .setTitle("Vous avez reçu un message de la part de " + message.author.username + " :")
-        .setColor(embedcolor)
-        .setDescription(question)
-        membER.send(embed)
-    message.delete();
-}
-})
-
-                                                                 // PSEUDO COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "pseudo"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        let membER = message.mentions.members.first()
-        let question = args.slice(2).join(" ")
-        if (!membER) return message.channel.send("***Vous devez mentionner quelqu'un.***")
-        if (!question) return message.channel.send("***Vous devez entrer le nouveau pseudo.***")
-        membER.setNickname(question)
-    message.channel.send("***Le nouveau pseudo du membre " + membER + " est maintenant : " + question + "***")
-}
-})
-
-                                                                 // NOUVEAUROLE COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLocaleLowerCase()=== prefix + "nouveaurole"){
-    if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-    if (!args[1]) return message.channel.send("***Vous devez entrer un nom.***")
-        let question = args.slice(1).join(" ")
-        message.guild.createRole({
-            name: question,
-            color: "#000000"
-        })
-        message.channel.send("***Rôle ajouté à la liste : " + question + "***")
-    }
-})
-
-client.on('message', function(message){
-    if(message.content === prefix + "supprimechannel"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        message.channel.delete()
-    }
-})
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "nomduserveur"){
-    if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        if (!args[1]) return message.channel.send("***Veuillez entrer un nom.***")
-        let question = args.slice(1).join(" ")
-        message.channel.guild.setName(question)
-        message.channel.send("***Nom du serveur modifié : " + question + "***")
-}
-})
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "sujet"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        if (!args[1]) return message.channel.send("***Veuillez entrer un sujet.***")
-        let question = args.slice(1).join(" ")
-        message.channel.setTopic(question)
-        message.channel.send("***Sujet modifié : " + question + "***")
-}
-})
-
-client.on('message', message =>{
-    if(message.content === prefix + "armix"){
-        let embed = new Discord.RichEmbed()
-        .setTitle("Cliquez ici pour voir la dernière vidéo Youtube d'Armix !")
-        .setColor(embedcolor)
-        .setURL("https://latest.yt/c:Armix_Wk_Officiel")
-        message.channel.send(embed)
-    }
-})
-
-client.on('message', message =>{
-    if(message.content === prefix + "raizz"){
-        let embed = new Discord.RichEmbed()
-        .setTitle("Cliquez ici pour voir la dernière vidéo Youtube de Armix !")
-        .setColor(embedcolor)
-        .setURL("https://latest.yt/c:RaizZ")
-        message.channel.send(embed)
-    }
 })
