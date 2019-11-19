@@ -37,7 +37,7 @@ client.on('message', message =>{
         .addField("Prfix:", prefix)
         .addField("Version:", versionBOT)
         .addField("Commands:", nbcommandes)
-        .addField("last update:",MAJ)
+        .addField("Last update:",MAJ)
         .addField("Developer:","Ixonoii#1111")
         message.channel.send(embed)
     }
@@ -64,7 +64,7 @@ client.on('message', function(message){
 })
 
 client.on('message', function(message){
-    if(message.content === "-commandes"){
+    if(message.content === "-commands"){
         message.channel.send("***<@" + message.author.id + "> You can't use this feature for the moment. Please try again later.***")
     }
 })
@@ -84,17 +84,17 @@ client.on('message', function(message){
                                                                  // SERVEUR COMMAND //
 
 client.on('message', message =>{
-    if(message.content === prefix + "serveur"){
+    if(message.content === prefix + "server"){
         let embed = new Discord.RichEmbed()
-        .setTitle("__Informations à propos du serveur " + message.guild.name + "__")
+        .setTitle("__Information about the server " + message.guild.name + "__")
         .setColor(embedcolor)
-        .addField("Propriétaire du serveur:", message.guild.owner)
-        .addField("Nombre de membres:", message.guild.memberCount + " membres")
-        .addField("Région:", message.guild.region)
-        .addField("Nom du serveur:", message.guild.name)
-        .addField("ID du serveur:", message.guild.id)
-        .addField("Icône du serveur:", message.guild.iconURL)
-        .addField("Création du serveur:", message.guild.createdAt)
+        .addField("Owner:", message.guild.owner)
+        .addField("Members:", message.guild.memberCount + " membres")
+        .addField("Rgion:", message.guild.region)
+        .addField("Name:", message.guild.name)
+        .addField("ID:", message.guild.id)
+        .addField("Server Logo:", message.guild.iconURL)
+        .addField("Server created at:", message.guild.createdAt)
         message.channel.send(embed)
     }
 })
@@ -104,7 +104,7 @@ client.on('message', message =>{
 client.on('message', function(message){
     if(message.content === prefix + "avatar"){
         var pong_enbed = new Discord.RichEmbed()
-        .setTitle("Voici votre avatar, " + message.author.username + ".")
+        .setTitle("Here is your avatar, " + message.author.username + ".")
         .setColor(embedcolor)
         .setImage(message.author.displayAvatarURL)
         .setURL(message.author.displayAvatarURL)
@@ -112,29 +112,13 @@ client.on('message', function(message){
         message.channel.send(pong_enbed)
     }
 })
-
-                                                                 // OBJECTIFS COMMAND //
-
-client.on('message', function(message){
-    if(message.content === prefix + "objectifs"){
-        var pong_enbed = new Discord.RichEmbed()
-        .setTitle("L'objectif P4W:fire:")
-        .setColor(embedcolor)
-        .setDescription("\n\n Bonjour / Bonsoir à tous. \n La P4W reprend les recrutements dans son équipe eSportive.c \n\n Nos projets ? \n \n")
-        .addField("Voici la liste des projets payants :","\n - Passer sous loi 1901 \n - Avoir des maillots \n - Participer à des lans \n - Offrir des cadeaux à notre communauté \n \n")
-        .addField("Liste des projets gratuits :","\n - Lancer notre WebTv \n - Ce faire connaître \n - Trouver de très bon joueurs \n - Être connus sur les Réseaux \n")
-        .addField("Qu'es que nous recherchons ?","\n - Modérateurs (15 ans minimum) \n - Entraîneur (15 ans minimum) \n - Graphistes et Monteurs vidéos (pas d'âge requis) \n -Joueurs eSport (14 ans minimum) \n \n #Player4Winners :flag_cp: \n")
-        message.channel.send(pong_enbed)
-    }
-})
-
-                                                                 // AVATAR COMMAND //
+                                                                 // PING COMMAND //
 
 client.on('message', message =>{
     if(message.content === prefix + "ping"){
         let début = Date.now();
-        message.channel.send("***Chargement...***")
-        .then((m) => m.edit(`***Votre latence est de: ${Date.now() - début}ms.***`));
+        message.channel.send("***Loading...***")
+        .then((m) => m.edit(`***Your latency is: ${Date.now() - début}ms.***`));
     }
 })
 
@@ -144,37 +128,16 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
-    if (args[0].toLocaleLowerCase()=== prefix + "question"){
+    if (args[0].toLocaleLowerCase()=== prefix + "8ball"){
     if (!args[1]) return message.channel.send("***Quelle est ta question?***")
-        let answers = ["Oui.", "Non.", "Bien sûr.", "Peut être.", "Je ne sais pas.","Jamais.","Impossible.","Aucune idée.","Aucune chance."]
+        let answers = ["Yes.", "No.", "Of course.", "Maybe.", "I don't know.","Never.","Impossible.","No idea.","ANo chance."]
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
             .setColor(embedcolor)
             .addField("Question:", question)
-            .addField("Réponse:", answers[Math.floor(Math.random() * answers.length)])
+            .addField("Answer:", answers[Math.floor(Math.random() * answers.length)])
         message.channel.send(embed)
     }
-})
-
-                                                                 // INVITE COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "invite"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        let memberMEN = message.mentions.members.first()
-        let date1 = args.slice(2).join(" ")
-        if(!memberMEN) return message.channel.send("***Vous devez mentionner quelqu'un.***")
-        if(!date1) return message.channel.send("***Vous devez choisir une date.***")
-        let embed = new Discord.RichEmbed()
-        .setTitle("__Vous êtes invité à participer à un tournoi !__")
-        .setColor(embedcolor)
-        .setDescription("Vous êtes invité à participer à un tournoi organisé par " + message.author.username + " le " + date1 + ". Si vous êtes disponible, merci de prévenir le responsable du tournoi.")
-    message.delete();
-    memberMEN.send(embed)
-}
 })
 
                                                                  // SIGNAL COMMAND //
@@ -183,23 +146,23 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "signal"){
+    if (args[0].toLocaleLowerCase()=== prefix + "report"){
         let memberMEN = message.mentions.members.first()
         let question = args.slice(2).join(" ")
-        if(!memberMEN) return message.channel.send("***Vous devez mentionner quelqu'un.***")
-        if(!question) return message.channel.send("***Vous devez entrer une raison.***")
+        if(!memberMEN) return message.channel.send("***You have to mention someone.***")
+        if(!question) return message.channel.send("***You have to enter a reason.***")
         let embed = new Discord.RichEmbed()
-        .setTitle("Fiche de rapport n°" + message.author.id)
+        .setTitle("Report Information n°" + message.author.id)
         .setColor(embedcolor)
-        .addField("Membre :", message.author.username + " (" + message.author.id + ")")
-        .addField("Membre signalé :", memberMEN + " (" + memberMEN.id + ")")
-        .addField("Raison :", question)
-        .addField("Channel :", message.channel.name)
-        let cChannel = message.guild.channels.find(c => c.name === "signalements")
-        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires ou le channel ``reports`` n'existe pas sur ce serveur.***")
+        .addField("Member:", message.author.username + " (" + message.author.id + ")")
+        .addField("Membre reported:", memberMEN + " (" + memberMEN.id + ")")
+        .addField("Reason:", question)
+        .addField("Channel:", message.channel.name)
+        let cChannel = message.guild.channels.find(c => c.name === "📓-reports")
+        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> I can't send your report. I maybe don't have the ``ADMINISTRATOR`` permissions or the channel ``reports`` doesn't exist on this server.***")
     cChannel.send(embed);
     message.delete();
-    message.channel.send("***Signalement envoyé.***")
+    message.channel.send("***Report sent!***")
 }
 })
 
