@@ -236,12 +236,12 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "annonce"){
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+    if (args[0].toLocaleLowerCase()=== prefix + "announce"){
+        if(!message.member.roles.some(r=>["💳","🔑"].includes(r.name)) ) return message.channel.send("***You can't use this command.***")
         let ENDchannel = message.mentions.channels.first()       
         let question = args.slice(2).join(" ")
-        if(!ENDchannel) return message.channel.send("***Vous devez mentionner un channel.***")
-        if(!question) return message.channel.send("***Vous devez entrer votre message.***")
+        if(!ENDchannel) return message.channel.send("***You have to mention a channel***")
+        if(!question) return message.channel.send("***You have to enter your message.***")
         let annonce = new Discord.RichEmbed()
         .setTitle(question)
         .setColor(embedcolor)
@@ -258,27 +258,27 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLowerCase() === prefix + "mute") {
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🎖️] MODÉRATEUR","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+       if(!message.member.roles.some(r=>["💳","🔑"].includes(r.name)) ) return message.channel.send("***You can't use this command.***")
        let member = message.mentions.members.first()
        let reason = args.slice(2).join(" ")
-        if (!member) return message.channel.send("***Vous devez mentionner quelqu'un.***")
-        if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***Je ne peux pas rendre ce membre muet.***")
-        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***Je ne peux pas rendre ce membre muet.***")
-        let muterole = message.guild.roles.find(role => role.name === 'Muet')
+        if (!member) return message.channel.send("***You have to mention someone.***")
+        if (!reason) return message.channel.send("***You have to enter a reason.***")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***I can't mute this user.***")
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***I can't mute this user.***")
+        let muterole = message.guild.roles.find(role => role.name === 'Muted')
         if (muterole) {
             member.addRole(muterole)
-            message.channel.send("***" + member + ' est maintenant muet pour la raison suivante : ' + reason + "***")
+            message.channel.send("***" + member + ' has been muted for the following reason(s) : ' + reason + "***")
         }
         else {
-            message.guild.createRole({name: 'Muet', permissions: 0}).then(function (role) {
+            message.guild.createRole({name: 'Muted', permissions: 0}).then(function (role) {
                 message.guild.channels.filter(channel => channel.type === 'text').forEach(function (channel) {
                     channel.overwritePermissions(role, {
                         SEND_MESSAGES: false
                     })
                 })
                 member.addRole(role)
-                message.channel.send("***" + member + ' est maintenant muet pour la raison suivante : ' + reason + "***")
+                message.channel.send("***" + member + ' has been muted for the following reason(s) : ' + reason + "***")
             })
         }}
 })
