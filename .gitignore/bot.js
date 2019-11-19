@@ -263,8 +263,8 @@ client.on('message', function (message) {
        let reason = args.slice(2).join(" ")
         if (!member) return message.channel.send("***You have to mention someone.***")
         if (!reason) return message.channel.send("***You have to enter a reason.***")
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***I can't mute this user.***")
-        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***I can't mute this user.***")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***I can't mute this member.***")
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***I can't mute this member.***")
         let muterole = message.guild.roles.find(role => role.name === 'Muted')
         if (muterole) {
             member.addRole(muterole)
@@ -290,16 +290,16 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "unmute") {
-        if(!message.member.roles.some(r=>["[👑] OWNER Rainbow","[👑] OWNER Fortnite","[🎖️] MODÉRATEUR","[🤖] Développeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["💳","🔑"].includes(r.name)) ) return message.channel.send("***You can't use this command.***")
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
-        if(!member) return message.channel.send("***Vous devez mentionner quelqu'un.***")
-        if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***Je ne peux pas permette que ce membre puisse parler à nouveau.***")
-        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***Je ne peux pas permette que ce membre puisse parler à nouveau.***")
-        let muterole = message.guild.roles.find(role => role.name === 'Muet')
+        if(!member) return message.channel.send("***You have to mention someone.***")
+        if (!reason) return message.channel.send("***You have to enter a reason.***")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***I can't unmute this member.***")
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***I can't unmute this member.***")
+        let muterole = message.guild.roles.find(role => role.name === 'Muted')
         if(muterole && member.roles.has(muterole.id)) member.removeRole(muterole)
-        message.channel.send("***" + member + ' peut maintenant parler à nouveau pour la raison suivante : ' + reason + "***")
+        message.channel.send("***" + member + ' has been un,muted for the following reason(s) : ' + reason + "***")
     }
 })
 
