@@ -2,7 +2,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client;
-var credits = "P4W - Tous Droits Réservés";
+var credits = "The Shiny Studio - All Right Reserved";
 var embedcolor = "#049ef3"
 var versionBOT = "0.0.1"
 var nbcommandes = "0"
@@ -16,14 +16,14 @@ client.login(process.env.BOT_TOKEN)
                                                                  // BOT STATUS //
 
 client.on('ready', function(){
-    client.user.setActivity("Mentionne moi !", {type: "PLAYING"})
+    client.user.setActivity("Mention me!", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
 
 client.on('message', function(message){
     if(message.content === "<@643152257822621696>"){
-        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indisponible !***")
+        message.channel.send("***<@" + message.author.id + "> You can't use this feature for the moment. Please try again later.***")
     }
 })
 
@@ -32,13 +32,13 @@ client.on('message', function(message){
 client.on('message', message =>{
     if(message.content === prefix + "info"){
         let embed = new Discord.RichEmbed()
-        .setTitle("__Informations à propos du BOT P4W__")
+        .setTitle("__Information about the bot__")
         .setColor(embedcolor)
-        .addField("Préfix:", prefix)
-        .addField("Version du BOT:", versionBOT)
-        .addField("Commandes disponibles:", nbcommandes)
-        .addField("Dernière mise à jour:",MAJ)
-        .addField("Développeur:","Ixonoii#1111")
+        .addField("Prfix:", prefix)
+        .addField("Version:", versionBOT)
+        .addField("Commands:", nbcommandes)
+        .addField("last update:",MAJ)
+        .addField("Developer:","Ixonoii#1111")
         message.channel.send(embed)
     }
 })
@@ -59,13 +59,13 @@ client.on('message', function(message){
 
 client.on('message', function(message){
     if(message.content === "-cmds"){
-        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indisponible !***")
+        message.channel.send("***<@" + message.author.id + "> You can't use this feature for the moment. Please try again later.***")
     }
 })
 
 client.on('message', function(message){
     if(message.content === "-commandes"){
-        message.channel.send("***<@" + message.author.id + "> Cette fonctionnalité est temporairement indisponible !***")
+        message.channel.send("***<@" + message.author.id + "> You can't use this feature for the moment. Please try again later.***")
     }
 })
 
