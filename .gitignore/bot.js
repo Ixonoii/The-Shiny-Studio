@@ -329,7 +329,6 @@ client.on('message', function (message) {
         let cChannel = message.guild.channels.find(c => c.name === "🤔-game-suggestions")
         if(!cChannel) return message.channel.send("***<@" + message.author.id + "> I can't send your suggestion. I maybe don't have the ``ADMINISTRATOR`` permissions or the channel ``🤔-game-suggestions`` doesn't exist on this server.***")
     cChannel.send(embed)
-    cChannel.send("<@!434061967951659019>")
     message.channel.send("***Suggestion sent.***")
     message.delete();
 }
