@@ -437,14 +437,6 @@ client.on('message', function(message){
         if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         message.channel.createInvite()
         .then(invite => message.channel.send(`***Invitation créée : discord.gg/${invite.code}***`))
-        let infomention = new Discord.RichEmbed()
-        .setTitle("Quelqu'un a utiliser la commande -invitation")
-        .setColor(embedcolor)
-        .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
-        .addField("Lien :",(`***Invitation créée : discord.gg/${invite.code}***`))
-        .setTimestamp(Date.now())
-        client.channels.get("648245694087430167").send(infomention);
     }
 })
 
