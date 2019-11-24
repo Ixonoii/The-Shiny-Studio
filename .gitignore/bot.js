@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client;
-const log1 = <client/bot>.channels.get("639797695661342747");
 var credits = "AXY - Tous Droits Réservés";
 var embedcolor = "#049ef3"
 var versionBOT = "0.0.1"
@@ -42,7 +41,6 @@ client.on('message', message =>{
         .addField("Développeur:","Ixonoii#1111")
         .setTimestamp(Date.now()) 
         message.channel.send(embed)
-        log1.send("Test over!")
     }
 })
 
