@@ -147,20 +147,19 @@ client.on('message', function (message) {
     if (args[0].toLocaleLowerCase()=== prefix + "report"){
         let memberMEN = message.mentions.members.first()
         let question = args.slice(2).join(" ")
-        if(!memberMEN) return message.channel.send("***You have to mention someone.***")
-        if(!question) return message.channel.send("***You have to enter a reason.***")
+        if(!memberMEN) return message.channel.send("***Vous devez mentionner un membre.***")
+        if(!question) return message.channel.send("***Vous devez mentionner une raison.***")
         let embed = new Discord.RichEmbed()
-        .setTitle("Report Information n°" + message.author.id)
-        .setColor(embedcolor)
-        .addField("Member:", message.author.username + " (" + message.author.id + ")")
-        .addField("Membre reported:", memberMEN + " (" + memberMEN.id + ")")
-        .addField("Reason:", question)
-        .addField("Channel:", message.channel.name)
-        let cChannel = message.guild.channels.find(c => c.name === "📓-reports")
-        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> I can't send your report. I maybe don't have the ``ADMINISTRATOR`` permissions or the channel ``reports`` doesn't exist on this server.***")
+        .setTitle('Un report à étais envoyé !')
+        .setColor("#05f516")
+        .addField('Membre : ', message.author + " (ID: " + message.author.id + ")")
+        .addField('Membre signalé : ', memberMEN + " (ID: " + memberMEN.id + ")")
+        .addField('Raison :', question)
+        .addField('Envoyé depuis :',"<#" + message.channel.id + ">")
+        let cChannel = message.guild.channels.find(c => c.name === "reports")
+        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires pour le channel ``reports`` n'existe pas sur ce serveur.***")
     cChannel.send(embed);
     message.delete();
-    message.channel.send("***Report sent!***")
 }
 })
 
