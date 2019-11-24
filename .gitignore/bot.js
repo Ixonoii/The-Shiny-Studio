@@ -170,7 +170,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'kick') {
-       if(!message.member.roles.some(r=>["【:briefcase:】modérateur","【:scorpius:】modérateur","【:earth_africa:】directeur AXY","【:warnings:】fondateur","【:no_entry:】administrateur","【:ribbon:】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+       if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
        let member = message.mentions.members.first()
        let reason = args.slice(2).join(" ")
        if (!member) return message.channel.send("***Vous devez mentionner un membre.***")
@@ -189,7 +189,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLocaleLowerCase() === prefix + 'ban') {
-       if(!message.member.roles.some(r=>["【:briefcase:】modérateur","【:scorpius:】modérateur","【:earth_africa:】directeur AXY","【:warnings:】fondateur","【:no_entry:】administrateur","【:ribbon:】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+       if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
        let member = message.mentions.members.first()
        let reason = args.slice(2).join(" ")
        if (!member) return message.channel.send("***Vous devez mentionner un membre.***")
@@ -210,7 +210,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "purge") {
-        if(!message.member.roles.some(r=>["【:briefcase:】modérateur","【:scorpius:】modérateur","【:earth_africa:】directeur AXY","【:warnings:】fondateur","【:no_entry:】administrateur","【:ribbon:】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let count = parseInt(args[1])
         if (!count) return message.channel.send("***Vous devez entrer un nombre.***")
         if (isNaN(count)) return message.channel.send("***Vous devez entrer un nombre.***")
@@ -234,7 +234,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "announce"){
-        if(!message.member.roles.some(r=>["【:briefcase:】modérateur","【:scorpius:】modérateur","【:earth_africa:】directeur AXY","【:warnings:】fondateur","【:no_entry:】administrateur","【:ribbon:】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let ENDchannel = message.mentions.channels.first()       
         let question = args.slice(2).join(" ")
         if(!ENDchannel) return message.channel.send("***Vous devez mentionner un channel.***")
@@ -255,18 +255,18 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLowerCase() === prefix + "mute") {
-       if(!message.member.roles.some(r=>["【:briefcase:】modérateur","【:scorpius:】modérateur","【:earth_africa:】directeur AXY","【:warnings:】fondateur","【:no_entry:】administrateur","【:ribbon:】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+       if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let ENDchannel = message.mentions.channels.first()
        let member = message.mentions.members.first()
        let reason = args.slice(2).join(" ")
-        if (!member) return message.channel.send("***You have to mention someone.***")
-        if (!reason) return message.channel.send("***You have to enter a reason.***")
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***I can't mute this member.***")
-        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***I can't mute this member.***")
-        let muterole = message.guild.roles.find(role => role.name === 'Muted')
+        if (!member) return message.channel.send("***Vous devez mentionner un membre.***")
+        if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***Je ne peux pas rendre ce membre muet.***")
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***Je ne peux pas rendre ce membre muet.***")
+        let muterole = message.guild.roles.find(role => role.name === 'Muet')
         if (muterole) {
             member.addRole(muterole)
-            message.channel.send("***" + member + ' has been muted for the following reason(s) : ' + reason + "***")
+            message.channel.send("***" + member + ' est maintenant muet pour : ' + reason + "***")
         }
         else {
             message.guild.createRole({name: 'Muted', permissions: 0}).then(function (role) {
@@ -276,7 +276,7 @@ client.on('message', function (message) {
                     })
                 })
                 member.addRole(role)
-                message.channel.send("***" + member + ' has been muted for the following reason(s) : ' + reason + "***")
+                message.channel.send("***" + member + ' est maintenant muet pour : ' + reason + "***")
             })
         }}
 })
@@ -288,16 +288,16 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "unmute") {
-        if(!message.member.roles.some(r=>["💳","🔑"].includes(r.name)) ) return message.channel.send("***You can't use this command.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
-        if(!member) return message.channel.send("***You have to mention someone.***")
-        if (!reason) return message.channel.send("***You have to enter a reason.***")
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***I can't unmute this member.***")
-        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***I can't unmute this member.***")
-        let muterole = message.guild.roles.find(role => role.name === 'Muted')
+        if(!member) return message.channel.send("***Vous devez mentionner un membre.***")
+        if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***Je ne peux pas réactiver les permissions de ce membre.***")
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***Je ne peux pas réactiver les permissions de ce membre.***")
+        let muterole = message.guild.roles.find(role => role.name === 'Muet')
         if(muterole && member.roles.has(muterole.id)) member.removeRole(muterole)
-        message.channel.send("***" + member + ' has been un,muted for the following reason(s) : ' + reason + "***")
+        message.channel.send("***" + member + ' peut maintenant parler à nouveau pour : ' + reason + "***")
     }
 })
 
@@ -306,7 +306,7 @@ client.on("message", function (message) {
 client.on('message', function(message){
     if(message.content === prefix + "invite"){
         message.channel.createInvite()
-        .then(invite => message.channel.send(`***Invite created : discord.gg/${invite.code}***`))
+        .then(invite => message.channel.send(`***Invitation créée : discord.gg/${invite.code}***`))
     }
 })
 
@@ -316,18 +316,18 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "suggest"){
-        if (!args[1]) return message.channel.send("***You have to enter your suggestion***")
+    if (args[0].toLocaleLowerCase()=== prefix + "idée"){
+        if (!args[1]) return message.channel.send("***Vous devez entrer une idée.***")
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
-        .setTitle("New suggestion:")
+        .setTitle("Idée reçue:")
         .setColor(embedcolor)
         .setDescription(question)
-        .setFooter("Suggested by " + message.author.tag)
-        let cChannel = message.guild.channels.find(c => c.name === "🤔-game-suggestions")
-        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> I can't send your suggestion. I maybe don't have the ``ADMINISTRATOR`` permissions or the channel ``🤔-game-suggestions`` doesn't exist on this server.***")
+        .setFooter("Idée envoyée par " + message.author.tag)
+        let cChannel = message.guild.channels.find(c => c.name === "idées")
+        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires pour le channel ``idées`` n'existe pas sur ce serveur.***"")
     cChannel.send(embed)
-    message.channel.send("***Suggestion sent.***")
+    message.channel.send("***Idée envoyée.***")
     message.delete();
 }
 })
