@@ -31,11 +31,10 @@ client.on('message', function(message){
 client.on('message', message =>{
     if(message.content === prefix + "info"){
         let embed = new Discord.RichEmbed()
-        .setTitle("__Informations à propos du BOT__")
+        .setTitle("__Informations à propos du BOT AXY__")
         .setColor(embedcolor)
         .addField("Prefix :", prefix)
         .addField("Version :", versionBOT)
-        .addField("Commandes :", nbcommandes)
         .addField("Dernière mise à jour :", "Non disponible.")
         .addField("Développeur :","Ixonoii#1111")
         message.channel.send(embed)
