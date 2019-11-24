@@ -54,7 +54,7 @@ client.on('message', message =>{
         .addField("Serveur :", message.guild.name)
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
-        client.channels.get("648248797893361691").send(infomention);
+        client.channels.get("648245694087430167").send(infomention);
     }
 })
 
@@ -76,7 +76,7 @@ client.on('message', function(message){
         .addField("Serveur :", message.guild.name)
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
-        client.channels.get("648248712321171476").send(infomention);
+        client.channels.get("648245694087430167").send(infomention);
     }
 })
 
@@ -96,7 +96,7 @@ client.on('message', function(message){
         .addField("Serveur :", message.guild.name)
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
-        client.channels.get("648248712321171476").send(infomention);
+        client.channels.get("648245694087430167").send(infomention);
     }
 })
 
@@ -122,7 +122,7 @@ client.on('message', message =>{
         .addField("Serveur :", message.guild.name)
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
-        client.channels.get("648248797893361691").send(infomention);
+        client.channels.get("648245694087430167").send(infomention);
     }
 })
 
@@ -143,7 +143,7 @@ client.on('message', function(message){
         .addField("Serveur :", message.guild.name)
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
-        client.channels.get("648248863295275008").send(infomention);
+        client.channels.get("648253599146835968").send(infomention);
     }
 })
 
@@ -160,7 +160,7 @@ client.on('message', message =>{
         .addField("Serveur :", message.guild.name)
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
-        client.channels.get("648248913182195744").send(infomention);
+        client.channels.get("648245694087430167").send(infomention);
     }
 })
 
@@ -189,7 +189,7 @@ client.on('message', function (message) {
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Question :", question)
         .setTimestamp(Date.now())
-        client.channels.get("648249063376158750").send(infomention);
+        client.channels.get("648253599146835968").send(infomention);
     }
 })
 
@@ -226,7 +226,7 @@ client.on('message', function (message) {
         .addField("Membre signalé :", memberMEN + " (" + memberMEN.id + ")")
         .addField("Raison :", question)
         .setTimestamp(Date.now())
-        client.channels.get("648249384651456573").send(infomention);
+        client.channels.get("648253599146835968").send(infomention);
 }
 })
 
@@ -254,7 +254,7 @@ client.on('message', function (message) {
         .addField("Membre concerné :", question)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
-        client.channels.get("648250110882611201").send(infomention);
+        client.channels.get("648253704201568256").send(infomention);
     }
 })
 
@@ -284,7 +284,7 @@ client.on('message', function (message) {
         .addField("Membre concerné :", question)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
-        client.channels.get("648250268684648468").send(infomention);
+        client.channels.get("648253704201568256").send(infomention);
     }
 })
 
@@ -316,7 +316,7 @@ client.on('message', function (message) {
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Nombre de messages :", count)
         .setTimestamp(Date.now())
-        client.channels.get("648250468702879775").send(infomention);
+        client.channels.get("648253704201568256").send(infomention);
     }
 })
 
@@ -346,7 +346,7 @@ client.on('message', function (message) {
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Message :", question)
         .setTimestamp(Date.now())
-        client.channels.get("648250513472618506").send(infomention);
+        client.channels.get("648253599146835968").send(infomention);
 }
 })
 
@@ -378,7 +378,7 @@ client.on('message', function (message) {
         .addField("Mebre concerné :", member)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
-        client.channels.get("648250468702879775").send(infomention);
+        client.channels.get("648253704201568256").send(infomention);
         }
         else {
             message.guild.createRole({name: 'Muet', permissions: 0}).then(function (role) {
@@ -397,7 +397,7 @@ client.on('message', function (message) {
         .addField("Mebre concerné :", member)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
-        client.channels.get("648250468702879775").send(infomention);
+        client.channels.get("648253704201568256").send(infomention);
             })
         }}
 })
@@ -419,6 +419,14 @@ client.on("message", function (message) {
         let muterole = message.guild.roles.find(role => role.name === 'Muet')
         if(muterole && member.roles.has(muterole.id)) member.removeRole(muterole)
         message.channel.send("***" + member + ' peut maintenant parler à nouveau pour la raison suivante : ' + reason + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -unùute")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Membre concerné :", member)
+        .setTimestamp(Date.now())
+        client.channels.get("648253704201568256").send(infomention);
     }
 })
 
@@ -429,6 +437,14 @@ client.on('message', function(message){
         if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         message.channel.createInvite()
         .then(invite => message.channel.send(`***Invitation créée : discord.gg/${invite.code}***`))
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -invitation")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Lien :",(`***Invitation créée : discord.gg/${invite.code}***`))
+        .setTimestamp(Date.now())
+        client.channels.get("648245694087430167").send(infomention);
     }
 })
 
@@ -444,6 +460,14 @@ client.on('message', function (message) {
         if (!question) return message.channel.send("***Vous devez entrer le nouveau nom du channel.***")
         message.channel.setName(question)
         message.channel.send("***Channel renommé : " + question + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -renomme")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Nouveau nom :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648253879309303819").send(infomention);
 }
 })
 
