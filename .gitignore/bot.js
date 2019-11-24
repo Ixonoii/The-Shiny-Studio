@@ -52,7 +52,7 @@ client.on('message', message =>{
         .setTitle("Quelqu'un a utiliser la commande -info !")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
         client.channels.get("648248797893361691").send(infomention);
     }
@@ -74,7 +74,7 @@ client.on('message', function(message){
         .setTitle("Quelqu'un a utiliser la commande -cmds !")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
         client.channels.get("648248712321171476").send(infomention);
     }
@@ -94,7 +94,7 @@ client.on('message', function(message){
         .setTitle("Quelqu'un a utiliser la commande -commandes !")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
         client.channels.get("648248712321171476").send(infomention);
     }
@@ -120,7 +120,7 @@ client.on('message', message =>{
         .setTitle("Quelqu'un a utiliser la commande -serveur")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
         client.channels.get("648248797893361691").send(infomention);
     }
@@ -141,7 +141,7 @@ client.on('message', function(message){
         .setTitle("Quelqu'un a utiliser la commande -avatar")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
         client.channels.get("648248863295275008").send(infomention);
     }
@@ -158,7 +158,7 @@ client.on('message', message =>{
         .setTitle("Quelqu'un a utiliser la commande -ping")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setTimestamp(Date.now())
         client.channels.get("648248913182195744").send(infomention);
     }
@@ -186,7 +186,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -question")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Question :", question)
         .setTimestamp(Date.now())
         client.channels.get("648249063376158750").send(infomention);
@@ -222,7 +222,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -signal")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Membre signalé :", memberMEN + " (" + memberMEN.id + ")")
         .addField("Raison :", question)
         .setTimestamp(Date.now())
@@ -250,7 +250,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -kick")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Membre concerné :", question)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
@@ -280,7 +280,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -ban")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Membre concerné :", question)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
@@ -313,7 +313,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -purge")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Nombre de messages :", count)
         .setTimestamp(Date.now())
         client.channels.get("648250468702879775").send(infomention);
@@ -343,7 +343,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -annonce")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Message :", question)
         .setTimestamp(Date.now())
         client.channels.get("648250513472618506").send(infomention);
@@ -374,7 +374,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -mute")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Mebre concerné :", member)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
@@ -393,7 +393,7 @@ client.on('message', function (message) {
         .setTitle("Quelqu'un a utiliser la commande -mute")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .addField("Mebre concerné :", member)
         .addField("Raison :", reason)
         .setTimestamp(Date.now())
