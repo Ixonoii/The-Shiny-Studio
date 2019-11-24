@@ -27,8 +27,8 @@ client.on('message', function(message){
         let notifmention = new Discord.RichEmbed()
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + "(ID : " + message.author.tag)
-        client.channels.get("648129981330751508").send(notifmention);
+        .addField("Utilisateur :", message.author.tag + "(ID : " + message.author.id + ")")
+        client.channels.get("648245694087430167").send(notifmention);
     }
 })
 
