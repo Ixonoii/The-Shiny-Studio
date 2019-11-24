@@ -163,7 +163,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'kick') {
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
        let member = message.mentions.members.first()
        let reason = args.slice(2).join(" ")
        if (!member) return message.channel.send("***Vous devez mentionner quelqu'un.***")
@@ -182,7 +182,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLocaleLowerCase() === prefix + 'ban') {
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
        let member = message.mentions.members.first()
        let reason = args.slice(2).join(" ")
        if (!member) return message.channel.send("***Vous devez mentionner quelqu'un.***")
@@ -203,7 +203,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "purge") {
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let count = parseInt(args[1])
         if (!count) return message.channel.send("***Vous devez entrer un nombre.***")
         if (isNaN(count)) return message.channel.send("***Vous devez entrer un nombre.***")
@@ -227,7 +227,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "annonce"){
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let ENDchannel = message.mentions.channels.first()       
         let question = args.slice(2).join(" ")
         if(!ENDchannel) return message.channel.send("***Vous devez mentionner un channel.***")
@@ -248,7 +248,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLowerCase() === prefix + "mute") {
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
        let member = message.mentions.members.first()
        let reason = args.slice(2).join(" ")
         if (!member) return message.channel.send("***Vous devez mentionner quelqu'un.***")
@@ -280,7 +280,7 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "unmute") {
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
         if(!member) return message.channel.send("***Vous devez mentionner quelqu'un.***")
@@ -297,7 +297,7 @@ client.on("message", function (message) {
 
 client.on('message', function(message){
     if(message.content === prefix + "invitation"){
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         message.channel.createInvite()
         .then(invite => message.channel.send(`***Invitation créée : discord.gg/${invite.code}***`))
     }
@@ -310,7 +310,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "renomme"){
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let question = args.slice(1).join(" ")
         if (!question) return message.channel.send("***Vous devez entrer le nouveau nom du channel.***")
         message.channel.setName(question)
@@ -347,7 +347,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "pseudo"){
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【💼】modérateur","【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let membER = message.mentions.members.first()
         let question = args.slice(2).join(" ")
         if (!membER) return message.channel.send("***Vous devez mentionner quelqu'un.***")
@@ -364,7 +364,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLocaleLowerCase()=== prefix + "nouveaurole"){
-    if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+    if(!message.member.roles.some(r=>["【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
     if (!args[1]) return message.channel.send("***Vous devez entrer un nom.***")
         let question = args.slice(1).join(" ")
         message.guild.createRole({
@@ -377,7 +377,7 @@ client.on('message', function (message) {
 
 client.on('message', function(message){
     if(message.content === prefix + "supprimechannel"){
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         message.channel.delete()
     }
 })
@@ -387,7 +387,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "nomduserveur"){
-    if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+    if(!message.member.roles.some(r=>["【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         if (!args[1]) return message.channel.send("***Veuillez entrer un nom.***")
         let question = args.slice(1).join(" ")
         message.channel.guild.setName(question)
@@ -400,7 +400,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "sujet"){
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         if (!args[1]) return message.channel.send("***Veuillez entrer un sujet.***")
         let question = args.slice(1).join(" ")
         message.channel.setTopic(question)
