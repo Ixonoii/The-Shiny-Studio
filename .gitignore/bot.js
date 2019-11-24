@@ -2,7 +2,6 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client;
-var credits = "The Shiny Studio - All Right Reserved";
 var embedcolor = "#049ef3"
 var versionBOT = "0.0.1"
 var nbcommandes = "0"
@@ -16,14 +15,14 @@ client.login(process.env.BOT_TOKEN)
                                                                  // BOT STATUS //
 
 client.on('ready', function(){
-    client.user.setActivity("Mention me!", {type: "PLAYING"})
+    client.user.setActivity("Mentionne moi !", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
 
 client.on('message', function(message){
     if(message.content === "<@643152257822621696>"){
-        message.channel.send("***<@" + message.author.id + "> You can't use this feature for the moment. Please try again later.***")
+        message.channel.send("***<@" + message.author.id + "> Vous ne pouvez pas utiliser cette fonctionnalité pour le moment. Veuillez réessayer plus tard.***")
     }
 })
 
@@ -32,13 +31,13 @@ client.on('message', function(message){
 client.on('message', message =>{
     if(message.content === prefix + "info"){
         let embed = new Discord.RichEmbed()
-        .setTitle("__Information about the bot__")
+        .setTitle("__Informations à propos du BOT__")
         .setColor(embedcolor)
-        .addField("Prfix:", prefix)
-        .addField("Version:", versionBOT)
-        .addField("Commands:", nbcommandes)
-        .addField("Last update:",MAJ)
-        .addField("Developer:","Ixonoii#1111")
+        .addField("Prefix :", prefix)
+        .addField("Version :", versionBOT)
+        .addField("Commandes :", nbcommandes)
+        .addField("Dernière mise à jour :", "Non disponible.")
+        .addField("Développeur :","Ixonoii#1111")
         message.channel.send(embed)
     }
 })
@@ -59,13 +58,13 @@ client.on('message', function(message){
 
 client.on('message', function(message){
     if(message.content === "-cmds"){
-        message.channel.send("***<@" + message.author.id + "> You can't use this feature for the moment. Please try again later.***")
+        message.channel.send("***<@" + message.author.id + "> Vous ne pouvez pas utiliser cette fonctionnalité pour le moment. Veuillez réessayer plus tard.***")
     }
 })
 
 client.on('message', function(message){
     if(message.content === "-commands"){
-        message.channel.send("***<@" + message.author.id + "> You can't use this feature for the moment. Please try again later.***")
+        message.channel.send("***<@" + message.author.id + "> Vous ne pouvez pas utiliser cette fonctionnalité pour le moment. Veuillez réessayer plus tard.***")
     }
 })
 
@@ -84,17 +83,17 @@ client.on('message', function(message){
                                                                  // SERVEUR COMMAND //
 
 client.on('message', message =>{
-    if(message.content === prefix + "server"){
+    if(message.content === prefix + "serveur"){
         let embed = new Discord.RichEmbed()
-        .setTitle("__Information about the server " + message.guild.name + "__")
+        .setTitle("__Informations  à propos du serveur " + message.guild.name + "__")
         .setColor(embedcolor)
-        .addField("Owner:", message.guild.owner)
-        .addField("Members:", message.guild.memberCount + " membres")
-        .addField("Rgion:", message.guild.region)
-        .addField("Name:", message.guild.name)
-        .addField("ID:", message.guild.id)
-        .addField("Server Logo:", message.guild.iconURL)
-        .addField("Server created at:", message.guild.createdAt)
+        .addField("Propriétaire :", message.guild.owner)
+        .addField("Membres :", message.guild.memberCount + " membres")
+        .addField("Région :", message.guild.region)
+        .addField("Nom :", message.guild.name)
+        .addField("ID :", message.guild.id)
+        .addField("Logo du serveur :", message.guild.iconURL)
+        .addField("Date de création du serveur :", message.guild.createdAt)
         message.channel.send(embed)
     }
 })
@@ -104,7 +103,7 @@ client.on('message', message =>{
 client.on('message', function(message){
     if(message.content === prefix + "avatar"){
         var pong_enbed = new Discord.RichEmbed()
-        .setTitle("Here is your avatar, " + message.author.username + ".")
+        .setTitle("Voici votre avatar, " + message.author.username + ".")
         .setColor(embedcolor)
         .setImage(message.author.displayAvatarURL)
         .setURL(message.author.displayAvatarURL)
@@ -117,8 +116,8 @@ client.on('message', function(message){
 client.on('message', message =>{
     if(message.content === prefix + "ping"){
         let début = Date.now();
-        message.channel.send("***Loading...***")
-        .then((m) => m.edit(`***Your latency is: ${Date.now() - début}ms.***`));
+        message.channel.send("***Chargement..***")
+        .then((m) => m.edit(`***Votre latence est de : ${Date.now() - début}ms.***`));
     }
 })
 
@@ -129,13 +128,13 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLocaleLowerCase()=== prefix + "8ball"){
-    if (!args[1]) return message.channel.send("***What is your question?***")
-        let answers = ["Yes.", "No.", "Of course.", "Maybe.", "I don't know.","Never.","Impossible.","No idea.","ANo chance."]
+    if (!args[1]) return message.channel.send("***Quelle est ta question?***")
+        let answers = ["Oui.", "Non.", "Bien sûr.", "Peut être.", "Je ne sais pas.","Jamais.","Impossible.","Aucune idée.","Aucune chance."]
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
             .setColor(embedcolor)
-            .addField("Question:", question)
-            .addField("Answer:", answers[Math.floor(Math.random() * answers.length)])
+            .addField("Question :", question)
+            .addField("Réponse :", answers[Math.floor(Math.random() * answers.length)])
         message.channel.send(embed)
     }
 })
