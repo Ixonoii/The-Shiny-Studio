@@ -39,6 +39,7 @@ client.on('message', message =>{
         .addField("Commandes disponibles:", nbcommandes)
         .addField("Dernière mise à jour:",MAJ)
         .addField("Développeur:","Ixonoii#1111")
+        .setTimestamp(Date.now()) 
         message.channel.send(embed)
     }
 })
@@ -53,6 +54,7 @@ client.on('message', function(message){
         .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-idée`` Vous permet de partager une de vos idées.")
         .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-softban`` Ban puis unban unmembre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Sipprime un grand nombre de messages.")
         .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
+        .setTimestamp(Date.now()) 
         message.channel.send(pong_enbed)
     }
 })
@@ -65,6 +67,7 @@ client.on('message', function(message){
         .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-idée`` Vous permet de partager une de vos idées.")
         .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-softban`` Ban puis unban unmembre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Sipprime un grand nombre de messages.")
         .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
+        .setTimestamp(Date.now()) 
         message.channel.send(pong_enbed)
     }
 })
@@ -83,6 +86,7 @@ client.on('message', message =>{
         .addField("ID du serveur:", message.guild.id)
         .addField("Icône du serveur:", message.guild.iconURL)
         .addField("Création du serveur:", message.guild.createdAt)
+        .setTimestamp(Date.now()) 
         message.channel.send(embed)
     }
 })
@@ -96,6 +100,7 @@ client.on('message', function(message){
         .setColor(embedcolor)
         .setImage(message.author.displayAvatarURL)
         .setURL(message.author.displayAvatarURL)
+        .setTimestamp(Date.now()) 
 
         message.channel.send(pong_enbed)
     }
@@ -125,6 +130,7 @@ client.on('message', function (message) {
             .setColor(embedcolor)
             .addField("Question:", question)
             .addField("Réponse:", answers[Math.floor(Math.random() * answers.length)])
+            .setTimestamp(Date.now()) 
         message.channel.send(embed)
     }
 })
@@ -148,6 +154,7 @@ client.on('message', function (message) {
         .addField("Membre signalé :", memberMEN + " (" + memberMEN.id + ")")
         .addField("Raison :", question)
         .addField("Channel :", message.channel.name)
+        .setTimestamp(Date.now()) 
         let cChannel = message.guild.channels.find(c => c.name === "signalements")
         if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires ou le channel ``reports`` n'existe pas sur ce serveur.***")
     cChannel.send(embed);
@@ -235,6 +242,7 @@ client.on('message', function (message) {
         let annonce = new Discord.RichEmbed()
         .setTitle(question)
         .setColor(embedcolor)
+        .setTimestamp(Date.now()) 
     message.delete();
     ENDchannel.send(annonce)
     ENDchannel.send("@everyone")
@@ -332,6 +340,7 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         .setDescription(question)
         .setFooter("Idée envoyée par " + message.author.tag)
+        .setTimestamp(Date.now()) 
         let cChannel = message.guild.channels.find(c => c.name === "idées")
         if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre idée. Je n'ai peut-être pas les autorisations nécessaires ou le channel ``idées`` n'existe pas sur ce serveur.***")
     cChannel.send(embed)
