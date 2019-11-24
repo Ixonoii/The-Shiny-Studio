@@ -28,7 +28,7 @@ client.on('message', function(message){
         .setTitle("Quelqu'un a mentionner le bot !")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + "(ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
         client.channels.get("648129981330751508").send("message you want to send");
     }
 })
