@@ -492,6 +492,14 @@ client.on('message', function (message) {
     cChannel.send("<@!434061967951659019>")
     message.channel.send("***Idée envoyée.***")
     message.delete();
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -idée")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Idée :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648253599146835968").send(infomention);
 }
 })
                                                                  // PSEUDO COMMAND //
@@ -508,6 +516,15 @@ client.on('message', function (message) {
         if (!question) return message.channel.send("***Vous devez entrer le nouveau pseudo.***")
         membER.setNickname(question)
     message.channel.send("***Le nouveau pseudo du membre " + membER + " est maintenant : " + question + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -pseudo")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Membre concerné :", membER)
+        .addField("Nouveau pseudo :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648253704201568256").send(infomention);
 }
 })
 
@@ -526,6 +543,14 @@ client.on('message', function (message) {
             color: "#000000"
         })
         message.channel.send("***Rôle ajouté à la liste : " + question + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -nouveaurole")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Rôle :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648253879309303819").send(infomention);
     }
 })
 
@@ -533,6 +558,14 @@ client.on('message', function(message){
     if(message.content === prefix + "supprimechannel"){
         if(!message.member.roles.some(r=>["【♏】développeur","【🌍】directeur AXY","【⚠️】fondateur","【⛔】administrateur","【🎀】Manager"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         message.channel.delete()
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -supprimechannel")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Channel :", message.channel.name)
+        .setTimestamp(Date.now())
+        client.channels.get("648253879309303819").send(infomention);
     }
 })
 
@@ -546,6 +579,14 @@ client.on('message', function (message) {
         let question = args.slice(1).join(" ")
         message.channel.guild.setName(question)
         message.channel.send("***Nom du serveur modifié : " + question + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -nomduserveur")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .addField("Nouveau nom :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648253879309303819").send(infomention);
 }
 })
 
@@ -559,5 +600,13 @@ client.on('message', function (message) {
         let question = args.slice(1).join(" ")
         message.channel.setTopic(question)
         message.channel.send("***Sujet modifié : " + question + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -sujet")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", question)
+        .addField("Nouveau sujet :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648253879309303819").send(infomention);
 }
 })
