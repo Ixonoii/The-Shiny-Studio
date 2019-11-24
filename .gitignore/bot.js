@@ -28,7 +28,8 @@ client.on('message', function(message){
         .setTitle("Quelqu'un a mentionner le bot !")
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
-        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
+        .setTimestamp(Date.now())
         client.channels.get("648245694087430167").send(notifmention);
     }
 })
@@ -47,6 +48,13 @@ client.on('message', message =>{
         .addField("Développeur:","Ixonoii#1111")
         .setTimestamp(Date.now()) 
         message.channel.send(embed)
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -info !")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .setTimestamp(Date.now())
+        client.channels.get("648248797893361691").send(infomention);
     }
 })
 
@@ -62,6 +70,13 @@ client.on('message', function(message){
         .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
         .setTimestamp(Date.now()) 
         message.channel.send(pong_enbed)
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -cmds !")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .setTimestamp(Date.now())
+        client.channels.get("648248712321171476").send(infomention);
     }
 })
 
@@ -75,6 +90,13 @@ client.on('message', function(message){
         .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
         .setTimestamp(Date.now()) 
         message.channel.send(pong_enbed)
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -commandes !")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .setTimestamp(Date.now())
+        client.channels.get("648248712321171476").send(infomention);
     }
 })
 
@@ -94,6 +116,13 @@ client.on('message', message =>{
         .addField("Création du serveur:", message.guild.createdAt)
         .setTimestamp(Date.now()) 
         message.channel.send(embed)
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -serveur")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .setTimestamp(Date.now())
+        client.channels.get("648248797893361691").send(infomention);
     }
 })
 
@@ -107,8 +136,14 @@ client.on('message', function(message){
         .setImage(message.author.displayAvatarURL)
         .setURL(message.author.displayAvatarURL)
         .setTimestamp(Date.now()) 
-
         message.channel.send(pong_enbed)
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -avatar")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .setTimestamp(Date.now())
+        client.channels.get("648248863295275008").send(infomention);
     }
 })
 
@@ -119,8 +154,17 @@ client.on('message', message =>{
         let début = Date.now();
         message.channel.send("***Chargement...***")
         .then((m) => m.edit(`***Votre latence est de: ${Date.now() - début}ms.***`));
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -ping")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .setTimestamp(Date.now())
+        client.channels.get("648248913182195744").send(infomention);
     }
 })
+
+
 
                                                                  // QUESTION COMMAND //
 
@@ -138,6 +182,14 @@ client.on('message', function (message) {
             .addField("Réponse:", answers[Math.floor(Math.random() * answers.length)])
             .setTimestamp(Date.now()) 
         message.channel.send(embed)
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -question")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Question :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648249063376158750").send(infomention);
     }
 })
 
@@ -166,6 +218,15 @@ client.on('message', function (message) {
     cChannel.send(embed);
     message.delete();
     message.channel.send("***Signalement envoyé.***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -signal")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Membre signalé :", memberMEN + " (" + memberMEN.id + ")")
+        .addField("Raison :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648249384651456573").send(infomention);
 }
 })
 
@@ -185,6 +246,15 @@ client.on('message', function (message) {
        if (!member.kickable) return message.channel.send("***Je ne peux pas kick ce membre.***")
        member.kick()
        message.channel.send('***' + member + ' à été kick du serveur pour la raison suivante : ' + reason + "***")
+         let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -kick")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Membre concerné :", question)
+        .addField("Raison :", reason)
+        .setTimestamp(Date.now())
+        client.channels.get("648250110882611201").send(infomention);
     }
 })
 
@@ -206,6 +276,15 @@ client.on('message', function (message) {
        message.channel.send('***' + member + ' à été ban du serveur pour la raison suivante : ' + reason + "***")
        message.delete()
        message.guild.ban(member, {days: 7, reason: question})
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -ban")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Membre concerné :", question)
+        .addField("Raison :", reason)
+        .setTimestamp(Date.now())
+        client.channels.get("648250268684648468").send(infomention);
     }
 })
 
@@ -230,6 +309,14 @@ client.on('message', function (message) {
         .then((m) => m.edit("***" + count + " messages ont été supprimés.***"))
         .then((m) => m.edit("***" + count + " messages ont été supprimés.***"))
         .then((m) => m.delete())
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -purge")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Nombre de messages :", count)
+        .setTimestamp(Date.now())
+        client.channels.get("648250468702879775").send(infomention);
     }
 })
 
@@ -252,8 +339,18 @@ client.on('message', function (message) {
     message.delete();
     ENDchannel.send(annonce)
     ENDchannel.send("@everyone")
+         let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -annonce")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Message :", question)
+        .setTimestamp(Date.now())
+        client.channels.get("648250513472618506").send(infomention);
 }
 })
+
+// 648250513472618506
 
                                                                  // MUTE COMMAND //
 
@@ -273,6 +370,15 @@ client.on('message', function (message) {
         if (muterole) {
             member.addRole(muterole)
             message.channel.send("***" + member + ' est maintenant muet pour la raison suivante : ' + reason + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -mute")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Mebre concerné :", member)
+        .addField("Raison :", reason)
+        .setTimestamp(Date.now())
+        client.channels.get("648250468702879775").send(infomention);
         }
         else {
             message.guild.createRole({name: 'Muet', permissions: 0}).then(function (role) {
@@ -283,6 +389,15 @@ client.on('message', function (message) {
                 })
                 member.addRole(role)
                 message.channel.send("***" + member + ' est maintenant muet pour la raison suivante : ' + reason + "***")
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utiliser la commande -mute")
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
+        .addField("Mebre concerné :", member)
+        .addField("Raison :", reason)
+        .setTimestamp(Date.now())
+        client.channels.get("648250468702879775").send(infomention);
             })
         }}
 })
