@@ -24,7 +24,11 @@ client.on('ready', function(){
 client.on('message', function(message){
     if(message.content === "<@643152257822621696>"){
         message.channel.send("***<@" + message.author.id + "> Besoin d'aide ? Utilise -cmds ou -commandes !***")
-        client.channels.get("648242918368346123").send("L'utilisateur " + message.author.tag + " a mentionner le bot.");
+        let notifmention = new Discord.RichEmbed()
+        .setColor(embedcolor)
+        .addField("Serveur :", message.guild.name)
+        .addField("Utilisateur :", message.author.tag + "(ID : " + message.author.tag)
+        client.channels.get("648129981330751508").send(notifmention);
     }
 })
 
