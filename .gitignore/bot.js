@@ -29,7 +29,7 @@ client.on('message', function(message){
         .setColor(embedcolor)
         .addField("Serveur :", message.guild.name)
         .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag)
-        client.channels.get("648129981330751508").send("message you want to send");
+        client.channels.get("648245694087430167").send("message you want to send");
     }
 })
 
