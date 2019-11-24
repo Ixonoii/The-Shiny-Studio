@@ -213,7 +213,7 @@ client.on('message', function (message) {
         .addField("Raison :", question)
         .addField("Channel :", message.channel.name)
         .setTimestamp(Date.now()) 
-        let cChannel = message.guild.channels.find(c => c.name === "signalements")
+        let cChannel = message.guild.channels.find(c => c.name === "reports")
         if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires ou le channel ``reports`` n'existe pas sur ce serveur.***")
     cChannel.send(embed);
     message.delete();
