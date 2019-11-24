@@ -20,253 +20,225 @@ client.on('ready', function(){
 
                                                                  // BOT MENTION //
 
-client.on('message', function(message){
-    if(message.content === "<@643152257822621696>"){
-        message.channel.send("***<@" + message.author.id + "> Vous ne pouvez pas utiliser cette fonctionnalité pour le moment. Veuillez réessayer plus tard.***")
-    }
-})
-
-                                                                 // INFO COMMAND //
+// Bot pinged //
 
 client.on('message', message =>{
-    if(message.content === prefix + "info"){
+    if(message.content === "<@622793567655428116>"){
         let embed = new Discord.RichEmbed()
-        .setTitle("__Informations à propos du BOT AXY__")
-        .setColor(embedcolor)
-        .addField("Prefix :", prefix)
-        .addField("Version :", versionBOT)
-        .addField("Dernière mise à jour :", "Non disponible.")
-        .addField("Développeur :","Ixonoii#1111")
+        .setTitle("Hello " + message.author.tag + ". I'm Calypso Administration, a bot created and developed by Ixonoii. Want more info about me? Feel free to use my ;info command. To display a list of all the commands, please say ;cmds!")
+        .setColor("#05f516")
+        .setThumbnail("https://cdn.discordapp.com/attachments/613323849832071188/627146756580179978/Senza_titolo-1.png")
+        .setFooter("Credits to FedeIlLeone#2564 for the icon.")
         message.channel.send(embed)
     }
 })
 
-                                                                 // CMDS COMMAND //
-
-client.on('message', function(message){
-    if(message.content === prefix + "cmds4545"){
-        var pong_enbed = new Discord.RichEmbed()
-        .setTitle('__Voici toutes les commandes disponibles __')
-        .setColor(embedcolor)
-        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-idée`` Vous permet de partager une de vos idées.")
-        .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-softban`` Ban puis unban unmembre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Sipprime un grand nombre de messages.")
-        .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
-        message.channel.send(pong_enbed)
-    }
-})
-
-client.on('message', function(message){
-    if(message.content === "-cmds"){
-        message.channel.send("***<@" + message.author.id + "> Vous ne pouvez pas utiliser cette fonctionnalité pour le moment. Veuillez réessayer plus tard.***")
-    }
-})
-
-client.on('message', function(message){
-    if(message.content === "-commands"){
-        message.channel.send("***<@" + message.author.id + "> Vous ne pouvez pas utiliser cette fonctionnalité pour le moment. Veuillez réessayer plus tard.***")
-    }
-})
-
-client.on('message', function(message){
-    if(message.content === prefix + "commandes4545"){
-        var pong_enbed = new Discord.RichEmbed()
-        .setTitle('__Voici toutes les commandes disponibles __')
-        .setColor(embedcolor)
-        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-idée`` Vous permet de partager une de vos idées.")
-        .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-softban`` Ban puis unban unmembre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Sipprime un grand nombre de messages.")
-        .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
-        message.channel.send(pong_enbed)
-    }
-})
-
-                                                                 // SERVEUR COMMAND //
+// Bot ;info //
 
 client.on('message', message =>{
-    if(message.content === prefix + "serveur"){
+    if(message.content === ";info"){
         let embed = new Discord.RichEmbed()
-        .setTitle("__Informations  à propos du serveur " + message.guild.name + "__")
-        .setColor(embedcolor)
-        .addField("Propriétaire :", message.guild.owner)
-        .addField("Membres :", message.guild.memberCount + " membres")
-        .addField("Région :", message.guild.region)
-        .addField("Nom :", message.guild.name)
-        .addField("ID :", message.guild.id)
-        .addField("Logo du serveur :", message.guild.iconURL)
-        .addField("Date de création du serveur :", message.guild.createdAt)
+        .setTitle("__Information about Calypso Administration__")
+        .setColor("#05f516")
+        .addField("Creator:","Ixonoii#7399")
+        .addField("Version:", VERsion)
+        .addField("Users:", message.guild.memberCount)
+        .addField("Commands:","28")
+        .addField("Invite link:","https://discord.gg/ynkpfVB")
         message.channel.send(embed)
+        let success = new Discord.RichEmbed()
+        .setTitle("User Log Entry")
+        .setColor("#05f516")
+        .addField("User:", message.author.tag)
+        .addField("Command used:",";info")
+        let cChannel = message.guild.channels.find(c => c.name === "user-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'user-logs'.")
+        cChannel.send(success)
     }
 })
 
-                                                                 // AVATAR COMMAND //
+// ;cmds //
 
 client.on('message', function(message){
-    if(message.content === prefix + "avatar"){
+    if(message.content === ";cmds"){
         var pong_enbed = new Discord.RichEmbed()
-        .setTitle("Voici votre avatar, " + message.author.username + ".")
-        .setColor(embedcolor)
+        .setTitle('__Calypso Administration | Commands__')
+        .setColor('#05f516')
+        .setDescription("I'm Calypso Administration, a bot created and developed by Calypso Cafe. Please note that I am currently in BETA version. If you find a bug, please report it to our staff members.")
+        .addField("__Basic Commands__","``;cmds`` Display a list of all the commands. \n ``;ping`` Display your ping. \n ``;avatar`` Display your avatar.  \n ``;report`` Report a user. \n ``;suggest`` Suggest your idea.")
+        .addField("__Administration Commands__","``;kick`` Kick a member. \n ``;ban`` Ban a member. \n ``;softban`` Softban a member. \n ``;mute`` Mute a member. \n ``;unmute`` Unmute a member.")
+        .addField("__Managment Command__","``;newrole`` Create a new role. \n ``;newchannel`` Create a new channel. \n ``;deletechannel`` Delete a channel (administrators permissions needed). \n ``;settopic`` Change the topic of a channel. \n ``;notopic`` Reset the topic of a channel. \n ``;setname`` Change the name of a channel. \n ``;hide`` Hide a chanel. \n ``;show`` Unhide a channel. \n ``;lock`` Lock a channel. \n ``;unlock`` Unlock a channel.")
+        message.channel.send(pong_enbed)
+        let success = new Discord.RichEmbed()
+        .setTitle("User Log Entry")
+        .setColor("#05f516")
+        .addField("User:", message.author.tag)
+        .addField("Command used:",";cmds")
+        let cChannel = message.guild.channels.find(c => c.name === "user-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'user-logs'.")
+        cChannel.send(success)
+    }
+})
+
+// Bot pinged //
+
+client.on('message', message =>{
+    if(message.content === ";changelogs"){
+        message.channel.send("No available actually.")
+        let success = new Discord.RichEmbed()
+        .setTitle("User Log Entry")
+        .setColor("#05f516")
+        .addField("User:", message.author.tag)
+        .addField("Command used:",";changelogs")
+        let cChannel = message.guild.channels.find(c => c.name === "user-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'user-logs'.")
+        cChannel.send(success)
+    }
+})
+
+// ;avatar //
+
+client.on('message', function(message){
+    if(message.content === ";avatar"){
+        var pong_enbed = new Discord.RichEmbed()
+        .setTitle("The image does not load correctly? Click here!")
+        .setColor('#05f516')
         .setImage(message.author.displayAvatarURL)
         .setURL(message.author.displayAvatarURL)
-
         message.channel.send(pong_enbed)
+        let success = new Discord.RichEmbed()
+        .setTitle("User Log Entry")
+        .setColor("#05f516")
+        .addField("User:", message.author.tag)
+        .addField("Command used:",";avatar")
+        let cChannel = message.guild.channels.find(c => c.name === "user-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'user-logs'.")
+        cChannel.send(success)
     }
 })
-                                                                 // PING COMMAND //
+
+// ;ping //
 
 client.on('message', message =>{
-    if(message.content === prefix + "ping"){
+    if(message.content === ";ping"){
         let début = Date.now();
-        message.channel.send("***Chargement..***")
-        .then((m) => m.edit(`***Votre latence est de : ${Date.now() - début}ms.***`));
+        message.channel.send("Loading...")
+        .then((m) => m.edit(`Ping: ${Date.now() - début}ms.`));
+        let success = new Discord.RichEmbed()
+        .setTitle("User Log Entry")
+        .setColor("#05f516")
+        .addField("User:", message.author.tag)
+        .addField("Command used:",";ping")
+        let cChannel = message.guild.channels.find(c => c.name === "user-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'user-logs'.")
+        cChannel.send(success)
     }
 })
 
-                                                                 // QUESTION COMMAND //
+// ;8ball //
 
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLocaleLowerCase()=== prefix + "8ball"){
-    if (!args[1]) return message.channel.send("***Quelle est ta question?***")
-        let answers = ["Oui.", "Non.", "Bien sûr.", "Peut être.", "Je ne sais pas.","Jamais.","Impossible.","Aucune idée.","Aucune chance."]
+    if (!args[1]) return message.channel.send("What is your question?")
+        let answers = ["Yes!", "No!", "Of course.", "Maybe.", "I don't know.","Never!","Impossible!","No idea!","No chance."]
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
-            .setColor(embedcolor)
-            .addField("Question :", question)
-            .addField("Réponse :", answers[Math.floor(Math.random() * answers.length)])
+            .setColor("#05f516")
+            .addField(message.author.tag + ": ", question)
+            .addField("Calypso Administration:", answers[Math.floor(Math.random() * answers.length)])
         message.channel.send(embed)
-    }
-})
-
-                                                                 // SIGNAL COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "report"){
-        let memberMEN = message.mentions.members.first()
-        let question = args.slice(2).join(" ")
-        if(!memberMEN) return message.channel.send("***Vous devez mentionner un membre.***")
-        if(!question) return message.channel.send("***Vous devez entrer une raison.***")
-        let embed = new Discord.RichEmbed()
-        .setTitle('Un membre a été signalé !')
+        let success = new Discord.RichEmbed()
+        .setTitle("User Log Entry")
         .setColor("#05f516")
-        .addField('Membre : ', message.author + " (ID: " + message.author.id + ")")
-        .addField('Membre signalé : ', memberMEN + " (ID: " + memberMEN.id + ")")
-        .addField('Raison :', question)
-        .addField('Envoyé depuis :',"<#" + message.channel.id + ">")
-        let cChannel = message.guild.channels.find(c => c.name === "reports")
-        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires pour le channel ``reports`` n'existe pas sur ce serveur.***")
-    cChannel.send(embed);
-    message.delete();
-}
-})
-
-                                                                 // KICK COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + 'kick') {
-       if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-       let member = message.mentions.members.first()
-       let reason = args.slice(2).join(" ")
-       if (!member) return message.channel.send("***Vous devez mentionner un membre.***")
-       if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
-       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("***Je ne peux pas kick ce membre.***")
-       if (!member.kickable) return message.channel.send("***Je ne peux pas kick ce membre.***")
-       member.kick()
-       message.channel.send('***' + member + ' a été kick du serveur pour : ' + reason + "***")
+        .addField("User:", message.author.tag)
+        .addField("Command used:",";8ball")
+        .addField("Question:", question)
+        let cChannel = message.guild.channels.find(c => c.name === "user-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'user-logs'.")
+        cChannel.send(success)
     }
 })
 
-                                                                 // BAN COMMAND //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// ;ban //
 
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLocaleLowerCase() === prefix + 'ban') {
-       if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["Calypso Moderator","Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command!")
        let member = message.mentions.members.first()
-       let reason = args.slice(2).join(" ")
-       if (!member) return message.channel.send("***Vous devez mentionner un membre.***")
-       if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
-       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("***Je ne peux pas ban ce membre.***")
-       if (!member.bannable) return message.channel.send("***Je ne peux pas ban ce membre.***")
+       let question = args.slice(2).join(" ")
+       if (!member) return message.channel.send("Please mention a user.")
+       if(!question) return message.channel.send("Please enter a reason.")
+       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("I can't ban this user!")
+       if (!member.bannable) return message.channel.send("I can't ban this user!")
        member.send(notif)
-       message.channel.send('***' + member + ' a été ban du serveur pour : ' + reason + "***")
+       message.channel.send(member + ' has been banned for: ' + question)
        message.delete()
        message.guild.ban(member, {days: 7, reason: question})
+       let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#ff0000")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","Ban")
+        .addField("User:", member)
+        .addField("Reason:", question)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
     }
 })
 
-                                                                 // PURGE COMMAND //
+// ;purge //
 
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "purge") {
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["Calypso Moderator","Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command!*")
         let count = parseInt(args[1])
-        if (!count) return message.channel.send("***Vous devez entrer un nombre.***")
-        if (isNaN(count)) return message.channel.send("***Vous devez entrer un nombre.***")
-        if (count < 1 || count > 100) return message.channel.send("***Vous devez entrer un nombre compris entre 1 et 99***")
+        if (!count) return message.channel.send("Please enter a valid number.")
+        if (isNaN(count)) return message.channel.send("Please enter a valid number.")
+        if (count < 1 || count > 100) return message.channel.send("Please enter a number between 1 and 99.")
         message.channel.bulkDelete(count + 1)
-        message.channel.send("***" + count + " messages supprimés..***")
-        .then((m) => m.edit("***" + count + " messages supprimés..***"))
-        .then((m) => m.edit("***" + count + " messages supprimés..***"))
-        .then((m) => m.edit("***" + count + " messages supprimés..***"))
-        .then((m) => m.edit("***" + count + " messages supprimés..***"))
-        .then((m) => m.edit("***" + count + " messages supprimés..***"))
-        .then((m) => m.edit("***" + count + " messages supprimés..***"))
-        .then((m) => m.delete())
+        let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#05f516")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","Purge")
+        .addField("Channel:","<#" + message.channel.id + ">")
+        .addField("Number:", count + 1)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
     }
 })
 
-                                                                 // ANNONCE COMMAND //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "announce"){
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        let ENDchannel = message.mentions.channels.first()       
-        let question = args.slice(2).join(" ")
-        if(!ENDchannel) return message.channel.send("***Vous devez mentionner un channel.***")
-        if(!question) return message.channel.send("***Vous devez entrer un message.***")
-        let annonce = new Discord.RichEmbed()
-        .setTitle(question)
-        .setColor(embedcolor)
-    message.delete();
-    ENDchannel.send(annonce)
-    ENDchannel.send("@everyone")
-}
-})
-
-                                                                 // MUTE COMMAND //
+// ;mute //
 
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLowerCase() === prefix + "mute") {
-       if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
-        let ENDchannel = message.mentions.channels.first()
+        if(!message.member.roles.some(r=>["Calypso Moderator","Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command.")
        let member = message.mentions.members.first()
-       let reason = args.slice(2).join(" ")
-        if (!member) return message.channel.send("***Vous devez mentionner un membre.***")
-        if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***Je ne peux pas rendre ce membre muet.***")
-        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***Je ne peux pas rendre ce membre muet.***")
-        let muterole = message.guild.roles.find(role => role.name === 'Muet')
+        if (!member) return message.channel.send("**Please mention a user.**")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("I can't mute this user.")
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("I can't mute this user.")
+        let muterole = message.guild.roles.find(role => role.name === 'Muted')
         if (muterole) {
             member.addRole(muterole)
-            message.channel.send("***" + member + ' est maintenant muet pour : ' + reason + "***")
+            message.channel.send(member + ' has been muted.')
         }
         else {
             message.guild.createRole({name: 'Muted', permissions: 0}).then(function (role) {
@@ -276,58 +248,327 @@ client.on('message', function (message) {
                     })
                 })
                 member.addRole(role)
-                message.channel.send("***" + member + ' est maintenant muet pour : ' + reason + "***")
+                message.channel.send(member + ' has been muted.')
+                let success = new Discord.RichEmbed()
+                .setTitle("Moderator Log Entry")
+                .setColor("#ff0000")
+                .addField("Administrator:", message.author.tag)
+                .addField("Action:","Mute")
+                .addField("User:", member)
+                let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+                if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+                cChannel.send(success)
             })
         }}
 })
 
-                                                                 // UNMUTE COMMAND //
+// ;softban //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLocaleLowerCase() === prefix + 'softban') {
+        if(!message.member.roles.some(r=>["Calypso Moderator","Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+       let member = message.mentions.members.first()
+       if (!member) return message.channel.send('Please mention a user.')
+       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("I can't softban this user.")
+       if (!member.bannable) return message.channel.send("I can't softban this user.")
+       message.guild.ban(member, {days: 7})
+       message.guild.unban(member)
+       message.channel.send(member + ' has been softbanned.')
+       let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#ff0000")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","Softban")
+        .addField("User:", member)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
+    }
+})
+
+// ;unmute //
 
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "unmute") {
-        if(!message.member.roles.some(r=>["【💼】modérateur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
+        if(!message.member.roles.some(r=>["Calypso Moderator","Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command.")
         let member = message.mentions.members.first()
-        let reason = args.slice(2).join(" ")
-        if(!member) return message.channel.send("***Vous devez mentionner un membre.***")
-        if (!reason) return message.channel.send("***Vous devez entrer une raison.***")
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("***Je ne peux pas réactiver les permissions de ce membre.***")
-        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("***Je ne peux pas réactiver les permissions de ce membre.***")
-        let muterole = message.guild.roles.find(role => role.name === 'Muet')
+        if(!member) return message.channel.send("Please mention a user.")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("I can't unmute this user.")
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send("I can't un mute this user.")
+        let muterole = message.guild.roles.find(role => role.name === 'Muted')
         if(muterole && member.roles.has(muterole.id)) member.removeRole(muterole)
-        message.channel.send("***" + member + ' peut maintenant parler à nouveau pour : ' + reason + "***")
+        message.channel.send(member + ' has been unmuted.')
+        let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#05f516")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","Unmute")
+        .addField("User:", member)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
     }
 })
 
-                                                                 // INVITATION COMMAND //
+// ;kick //
 
-client.on('message', function(message){
-    if(message.content === prefix + "invite"){
-        message.channel.createInvite()
-        .then(invite => message.channel.send(`***Invitation créée : discord.gg/${invite.code}***`))
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'kick') {
+        if(!message.member.roles.some(r=>["Calypso Moderator","Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+       let member = message.mentions.members.first()
+       if (!member) return message.channel.send("Please mention a user.")
+       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("I can't kick this user.")
+       if (!member.kickable) return message.channel.send("I can't kick this user.")
+       member.kick()
+       message.channel.send(member + ' has been kicked.')
+       let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#ff0000")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","Kick")
+        .addField("User:", member)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
     }
 })
 
-                                                                 // IDEE COMMAND //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLocaleLowerCase()=== prefix + "newrole"){
+        if(!message.member.roles.some(r=>["Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+    if (!args[1]) return message.channel.send("Please enter a name.")
+        let question = args.slice(1).join(" ")
+        message.guild.createRole({
+            name: question,
+            color: "#000000"
+        })
+        message.channel.send("Role successfuly created: " + question)
+        let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#05f516")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","New Role")
+        .addField("New role:", question)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
+    }
+})
+
+// ;newchannel //
 
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "idée"){
-        if (!args[1]) return message.channel.send("***Vous devez entrer une idée.***")
+    if (args[0].toLocaleLowerCase()=== prefix + "newchannel"){
+        if(!message.member.roles.some(r=>["Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+        if (!args[1]) return message.channel.send("Please enter a name.")
+        let question = args.slice(1).join(" ")
+        message.guild.createChannel(question).then(channel =>{
+    })
+    message.delete();
+    message.channel.send("Channel successfully created: " + question)
+    let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#05f516")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","New Channel")
+        .addField("New channel:", question)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
+    }
+})
+
+// ;deletechannel //
+
+client.on('message', function(message){
+    if(message.content === ";deletechannel"){
+        if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send("You can't use this command.")
+        message.channel.delete()
+        let success = new Discord.RichEmbed()
+        .setTitle("Moderator Log Entry")
+        .setColor("#ff0000")
+        .addField("Administrator:", message.author.tag)
+        .addField("Action:","Delete Channel")
+        .addField("Channel:", message.channel.name)
+        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
+        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
+        cChannel.send(success)
+    }
+})
+
+// ;clone //
+
+// ;rename //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "rename"){
+        let error1 = new Discord.RichEmbed()
+        .setTitle(":x: Please enter the new name.")
+        .setColor("#0a92c5")
+        if (!args[1]) return message.channel.send(error1)
+        let question = args.slice(1).join(" ")
+        message.channel.setName(question)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Channel renamed.")
+        .setColor("#0a92c5")
+        message.channel.send(success)
+}
+})
+
+// ;report //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "report"){
+        let memberMEN = message.mentions.members.first()
+        let question = args.slice(2).join(" ")
+        if(!memberMEN) return message.channel.send("Please enter a user (mention) and a reason.")
+        if(!question) return message.channel.send("Please enter a user (mention) and a reason.")
+        let embed = new Discord.RichEmbed()
+        .setTitle('A report has been received!')
+        .setColor("#05f516")
+        .addField('User: ', message.author + " (ID: " + message.author.id + ")")
+        .addField('User reported: ', memberMEN + " (ID: " + memberMEN.id + ")")
+        .addField('Reason:', question)
+        .addField('Reported in:',"<#" + message.channel.id + ">")
+        let cChannel = message.guild.channels.find(c => c.name === "reports")
+        if(!cChannel) return message.channel.send("I can't find the channel 'reports'.")
+    cChannel.send(embed);
+    message.delete();
+}
+})
+
+// ;report //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "announce"){
+        if(!message.member.roles.some(r=>["Calypso Administrator"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+        let question = args.slice(1).join(" ")
+        if(!question) return message.channel.send("Please enter your announce.")
+        let cChannel = message.guild.channels.find(c => c.name === "announcements")
+        if(!cChannel) return message.channel.send("I can't find the channel 'announcements'.")
+    cChannel.send("@everyone **[Announcement from " + message.author.username + "]** " + question);
+    message.delete();
+}
+})
+
+// ;suggest //
+
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "suggest"){
+        if (!args[1]) return message.channel.send("Please enter your sugesstion.")
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
-        .setTitle("Idée reçue:")
-        .setColor(embedcolor)
-        .setDescription(question)
-        .setFooter("Idée envoyée par " + message.author.tag)
-        let cChannel = message.guild.channels.find(c => c.name === "idées")
-        if(!cChannel) return message.channel.send("***<@" + message.author.id + "> Je ne peux pas envoyer votre report. Je n'ai peut-être pas les autorisations nécessaires pour le channel ``idées`` n'existe pas sur ce serveur.***"")
+        .setTitle("A suggestion has been received!")
+        .setColor("#05f516")
+        .setDescription("Vote for or against this suggestion using reactions.")
+        .addField('Suggestion: ', question)
+        .addField('Suggested by: ', message.author.username)
+        let cChannel = message.guild.channels.find(c => c.name === "suggestions")
+        if(!cChannel) return message.channel.send("I can't find the channel 'suggestions'.")
     cChannel.send(embed)
-    message.channel.send("***Idée envoyée.***")
+    message.delete();
+}
+})
+
+// ;poll //
+
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "poll"){
+        if (!args[1]) return message.channel.send("Please enter your poll.")
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setTitle("A poll has been received!")
+        .setColor("#05f516")
+        .setDescription("Vote for or against this poll using reactions.")
+        .addField('Poll: ', question)
+        .addField('Sent by: ', message.author.username)
+        let cChannel = message.guild.channels.find(c => c.name === "polls")
+        if(!cChannel) return message.channel.send("I can't find the channel 'suggestions'.")
+    cChannel.send(embed)
+    message.delete();
+}
+})
+
+// ;inactivity //
+
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "inactivity"){
+        if(!message.member.roles.some(r=>["STAFF"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+        if (!args[1]) return message.channel.send("Please enter the date and the reason of your inactivity.")
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setTitle("A inactivity notice has been received!")
+        .setColor("#05f516")
+        .addField('User: ', message.author.username)
+        .addField('Reason: ', question)
+        let cChannel = message.guild.channels.find(c => c.name === "inactivity-requests")
+        if(!cChannel) return message.channel.send("I can't find the channel 'inactivity-requests'.")
+    cChannel.send(embed)
+    cChannel.send("<@&622801157772804096>")
+    message.delete();
+}
+})
+
+// ;extend //
+
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "extend"){
+        if(!message.member.roles.some(r=>["Approved Inactivity"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+        if (!args[1]) return message.channel.send("Please enter the date and the reason of your extension request.")
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setTitle("A inactivity extension request has been received!")
+        .setColor("#05f516")
+        .addField('User: ', message.author.username)
+        .addField('Reason: ', question)
+        let cChannel = message.guild.channels.find(c => c.name === "inactivity-requests")
+        if(!cChannel) return message.channel.send("I can't find the channel 'inactivity-requests'.")
+    cChannel.send(embed)
+    cChannel.send("<@&622801157772804096>")
     message.delete();
 }
 })
