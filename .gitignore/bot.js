@@ -24,6 +24,7 @@ client.on('ready', function(){
 client.on('message', function(message){
     if(message.content === "<@643152257822621696>"){
         message.channel.send("***<@" + message.author.id + "> Besoin d'aide ? Utilise -cmds ou -commandes !***")
+        client.channels.get("648129981330751508").send("message you want to send");
     }
 })
 
