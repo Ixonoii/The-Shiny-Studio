@@ -24,8 +24,8 @@ client.on('message', function(message){
         let notifmention = new Discord.RichEmbed()
         .setTitle("Someone mentionned the bot")
         .setColor(embedcolor)
-        .addField("Server:", message.guild.name)
-        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Server:", message.guild.name + " (" + message.guild.id + "))
+        .addField("User:", message.author.tag + " (" + message.author.id + ")")
         .setThumbnail("https://cdn.discordapp.com/attachments/648559285638266880/648560003669557262/Iconsuccess.png")
         .setTimestamp(Date.now())
         client.channels.get("648559285638266880").send(notifmention);
