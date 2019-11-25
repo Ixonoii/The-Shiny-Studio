@@ -16,7 +16,7 @@ client.login(process.env.BOT_TOKEN)
                                                                  // BOT STATUS //
 
 client.on('ready', function(){
-    client.user.setActivity("Mentionne moi !", {type: "PLAYING"})
+    client.user.setActivity("Mise à jour très bientôt !", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
