@@ -32,7 +32,7 @@ client.on('message', function(message){
     }
 })
 
-                                                                 // BOT MENTION //
+                                                                 // BOT INFO //
 
 client.on('message', message =>{
     if(message.content === prefix + "info"){
@@ -48,8 +48,35 @@ client.on('message', message =>{
         let infomention = new Discord.RichEmbed()
         .setTitle("Someone used the -info command")
         .setColor(embedcolor)
-        .addField("Server:", message.guild.name)
+        .addField("Server:", message.guild.name + " (" + message.guild.id + ")")
         .addField("User:", message.author.tag + " (ID : " + message.author.id + ")")
+        .setThumbnail("https://cdn.discordapp.com/attachments/648559285638266880/648560003669557262/Iconsuccess.png")
+        .setTimestamp(Date.now())
+        client.channels.get("648245694087430167").send(infomention);
+    }
+})
+
+                                                                 // BOT SERVER //
+
+client.on('message', message =>{
+    if(message.content === prefix + "server"){
+        let embed = new Discord.RichEmbed()
+        .setTitle("__Information about the server " + message.guild.name + "__")
+        .setColor(embedcolor)
+        .addField("Owner:", message.guild.owner)
+        .addField("Members:", message.guild.memberCount + " members")
+        .addField("Region:", message.guild.region)
+        .addField("Name:", message.guild.name)
+        .addField("ID:", message.guild.id)
+        .addField("Icon:", message.guild.iconURL)
+        .addField("Created at:", message.guild.createdAt)
+        .setTimestamp(Date.now()) 
+        message.channel.send(embed)
+        let infomention = new Discord.RichEmbed()
+        .setTitle("Someone used the -server command")
+        .setColor(embedcolor)
+        .addField("Server:", message.guild.name + " (" + message.guild.id + ")")
+        .addField("Utilisateur :", message.author.tag + " (ID : " + message.author.tag + ")")
         .setThumbnail("https://cdn.discordapp.com/attachments/648559285638266880/648560003669557262/Iconsuccess.png")
         .setTimestamp(Date.now())
         client.channels.get("648245694087430167").send(infomention);
