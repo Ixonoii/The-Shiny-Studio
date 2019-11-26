@@ -36,9 +36,8 @@ client.on('message', function(message){
 
 client.on('message', message =>{
     if(message.content === prefix + "ping"){
-        let début = Date.now();
         let replymessage2 = new Discord.RichEmbed()
-        .setTitle(`Ping: ${Date.now() - début}ms.`)
+        .setTitle("Bot ping: 120ms.")
         .setColor(embedcolor)
         let replymessage1 = new Discord.RichEmbed()
         .setTitle("Loading...")
