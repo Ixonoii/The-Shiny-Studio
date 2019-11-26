@@ -46,3 +46,22 @@ client.on('message', message =>{
         .then((m) => m.edit(replymessage2));
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLocaleLowerCase()=== prefix + "8ball"){
+        let error1 = new Discord.RichEmbed()
+        .setTitle("Question not found.")
+        .setColor(errorcolor)
+    if (!args[1]) return message.channel.send(error1)
+        let answers = ["Yes.", "No.", "Of course.", "Maybe.", "I don't know.","Never.","Impossible.","No idea.","No chance."]
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setColor(basiccolor)
+        .addField("Question:", question)
+        .addField("Answer:", answers[Math.floor(Math.random() * answers.length)])
+        message.channel.send(embed)
+    }
+})
