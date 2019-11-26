@@ -13,7 +13,7 @@ client.on('ready', function(){
 client.on('message', function(message){
     if(message.content === "<@648551591623917578>"){
         let replymessage = new Discord.RichEmbed()
-        .setTitle("To see a list of all the commands, use -cmds. \n To join our support server, use -support. \n\n More coming soon!")
+        .setTitle("My prefix is ``-``. Use -cmds to see all commands.")
         .setColor(embedcolor)
         message.channel.send(replymessage)
     }
