@@ -18,17 +18,3 @@ client.on('message', function(message){
         message.channel.send(replymessage)
     }
 })
-
-client.on('message', message =>{
-    if(message.content === prefix + "info"){
-        let embed = new Discord.RichEmbed()
-        .setTitle("__Information about mBot__")
-        .setColor(embedcolor)
-        .addField("Prefix:", prefix)
-        .addField("Version:", versionBOT)
-        .addField("Commands:", nbcommandes)
-        .addField("Uptime:", client.uptime)
-        .addField("Developer:","Ixonoii#1111")
-        message.channel.send(embed)
-    }
-})
