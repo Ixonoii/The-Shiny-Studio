@@ -64,7 +64,7 @@ client.on('message', function (message) {
         .setColor(successcolor)
         let cChannel = message.guild.channels.find(c => c.name === "reports")
         if(!cChannel) return message.channel.send(error3)
-    cChannel.send(embed);
+    cChannel.send(reportembed);
     message.delete();
     message.channel.send(reportconfirm)
 }
