@@ -33,3 +33,12 @@ client.on('message', function(message){
         message.channel.send(pong_enbed)
     }
 })
+
+client.on('message', message =>{
+    if(message.content === prefix + "ping"){
+        let début = Date.now();
+        let replymessage = new Discord.RichEmbed()
+        .setTitle(`Ping: ${Date.now() - début}ms.`)
+        message.channel.send(replymessage)
+    }
+})
