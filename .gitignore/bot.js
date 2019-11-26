@@ -37,8 +37,13 @@ client.on('message', function(message){
 client.on('message', message =>{
     if(message.content === prefix + "ping"){
         let début = Date.now();
-        let replymessage = new Discord.RichEmbed()
+        let replymessage2 = new Discord.RichEmbed()
         .setTitle(`Ping: ${Date.now() - début}ms.`)
-        message.channel.send(replymessage)
+        .setColor(embedcolor)
+        let replymessage1 = new Discord.RichEmbed()
+        .setTitle("Loading...")
+        .setColor(embedcolor)
+        message.channel.send(replymessage1)
+        .then((m) => m.edit(replymessage2));
     }
 })
