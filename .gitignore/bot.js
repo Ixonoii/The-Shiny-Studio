@@ -13,9 +13,8 @@ client.on('ready', function(){
 client.on('message', function(message){
     if(message.content === "<@648551591623917578>"){
         let replymessage = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Need help? Say -help!")
+        .setTitle(":white_check_mark: Hello " + message.author.username + ". My prefix is ``-``. To see a list of all the commands, use -cmds.")
         .setColor(embedcolor)
-        .setTimestamp(Date.now())
         message.channel.send(replymessage)
     }
 })
