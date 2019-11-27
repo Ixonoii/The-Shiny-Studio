@@ -12,3 +12,18 @@ client.login(process.env.BOT_TOKEN)
 client.on('ready', function(){
     client.user.setActivity("-help | mBot", {type: "PLAYING"})
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "message"){
+        if (message.author.id == "434061967951659019") return message.react(":x:")
+        let memberMEN = args.slice(2).join(" ")
+        let question = args.slice(3).join(" ")
+        if(!memberMEN) return message.channel.send("***Vous devez mentionner l'ID d'un channel.***")
+        if(!question) return message.channel.send("***Vous devez entrer un message.***") 
+        client.channels.get(memberMEN).send(infomention);
+    message.channel.send("***Message envoyé.***")
+}
+})
