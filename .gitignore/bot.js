@@ -33,7 +33,7 @@ client.on("message", function (message) {
             mod: message.author.id
         })
         fs.writeFileSync('./warns.json', JSON.stringify(warns))
-        message.channel.send(member + " a été warn pour " + reason + " :white_check_mark:")
+        message.channel.send(member + " has been warned for: " + reason)
     }
  
     if (args[0].toLowerCase() === prefix + "infractions") {
@@ -42,7 +42,7 @@ client.on("message", function (message) {
         if (!member) return message.channel.send("Veuillez mentionner un membre")
         let embed = new Discord.RichEmbed()
             .setAuthor(member.user.username, member.user.displayAvatarURL)
-            .addField('10 derniers warns', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "Ce membre n'a aucun warns"))
+            .addField('Last 10 warnings:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No warning found!"))
             .setTimestamp()
         message.channel.send(embed)
     }
