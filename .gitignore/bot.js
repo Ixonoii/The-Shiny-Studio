@@ -18,6 +18,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "message"){
+        if(!message.member.roles.some(r=>["Testeur"].includes(r.name)) ) return message.channel.send("***Vous ne pouvez pas utiliser cette commande.***")
         let messageTEXT = args.slice(1).join(" ")
         if(!messageTEXT) return message.channel.send("***Vous devez entrer un message.***") 
         client.channels.get("642478316627951666").send(messageTEXT)
