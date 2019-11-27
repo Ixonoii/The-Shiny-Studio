@@ -23,7 +23,7 @@ client.on('message', function (message) {
         let question = args.slice(3).join(" ")
         if(!memberMEN) return message.channel.send("***Vous devez mentionner l'ID d'un channel.***")
         if(!question) return message.channel.send("***Vous devez entrer un message.***") 
-        client.channels.get(memberMEN).send(infomention);
+        client.channels.get(memberMEN).send(question);
     message.channel.send("***Message envoyé.***")
 }
 })
