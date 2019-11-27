@@ -18,10 +18,8 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "message"){
-        let IDduchannel = args.slice(1).join(" ")
-        let messageTEXT = args.slice(2).join(" ")
-        if(!IDduchannel) return message.channel.send("***Vous devez entrer l'ID d'un channel.***")
+        let messageTEXT = args.slice(1).join(" ")
         if(!messageTEXT) return message.channel.send("***Vous devez entrer un message.***") 
-        client.channels.get(IDduchannel).send(messageTEXT);
+        client.channels.get("642478316627951666").send(messageTEXT);
 }
 })
