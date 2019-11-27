@@ -18,8 +18,8 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "message"){
-        let memberMEN = args.slice(2).join(" ")
-        let question = args.slice(3).join(" ")
+        let memberMEN = args.slice(1).join(" ")
+        let question = args.slice(2).join(" ")
         if(!memberMEN) return message.channel.send("***Vous devez mentionner l'ID d'un channel.***")
         if(!question) return message.channel.send("***Vous devez entrer un message.***") 
         client.channels.get(memberMEN).send(question);
