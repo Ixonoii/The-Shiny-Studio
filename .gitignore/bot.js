@@ -20,6 +20,7 @@ client.on('message', function (message) {
     if (args[0].toLocaleLowerCase()=== prefix + "message"){
         let messageTEXT = args.slice(1).join(" ")
         if(!messageTEXT) return message.channel.send("***Vous devez entrer un message.***") 
-        client.channels.get("642478316627951666").send(messageTEXT);
+        client.channels.get("642478316627951666").send(messageTEXT)
+        message.react("✅")
 }
 })
