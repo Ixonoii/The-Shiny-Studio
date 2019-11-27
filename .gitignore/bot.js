@@ -18,7 +18,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "message"){
-        if (message.author.id == "434061967951659019") return message.react(":x:")
         let memberMEN = args.slice(2).join(" ")
         let question = args.slice(3).join(" ")
         if(!memberMEN) return message.channel.send("***Vous devez mentionner l'ID d'un channel.***")
