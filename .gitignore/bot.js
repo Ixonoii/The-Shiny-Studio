@@ -396,7 +396,6 @@ client.on('message', function(message){
         .setURL('https://discordapp.com/oauth2/authorize?client_id=648551591623917578&scope=bot&permissions=8')
         .setColor(embedcolor)
         message.channel.send(inviteurl)
-        message.channel.send(embed)
         let notifmention = new Discord.RichEmbed()
         .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -invite dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")``.")
         .setColor(embedcolor)
