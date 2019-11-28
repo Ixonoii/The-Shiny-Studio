@@ -284,7 +284,7 @@ client.on('message', function(message){
         .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -invitation dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")``.")
         .setDescription(`***Lien de l'nvitation créée : discord.gg/${invite.code}***`)
         .setColor(embedcolor)
-        client.channels.get("649666046810128405").send(notifmention);
+        client.channels.get("648559285638266880").send(notifmention);
     }
 })
 
