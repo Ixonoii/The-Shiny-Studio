@@ -31,7 +31,7 @@ client.on('message', function(message){
         var pong_enbed = new Discord.RichEmbed()
         .setTitle('__Voici toutes les commandes disponibles __')
         .setColor(embedcolor)
-        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-invite`` Envoie un lien pour inviter le BOT sur un autre serveur. \n ``-invitation`` Envoie un lien pour inviter un utilisateur sur ce serveur.")
+        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-invite`` Envoie un lien pour inviter le BOT sur un autre serveur.")
         .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Supprime un grand nombre de messages.")
         .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
         .setTimestamp(Date.now()) 
@@ -306,19 +306,6 @@ client.on("message", function (message) {
         .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -unmute dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")`` en permettant que l'utilisateur ``" + member + "`` puisse parler à nouveau pour la raison " + reason + ".")
         .setColor(embedcolor)
         client.channels.get("649666046810128405").send(notifmention);
-    }
-})
-
-client.on('message', function(message){
-    if(message.content === prefix + "invitation"){
-        if(!message.member.roles.some(r=>["Modérateur","Administrateur"].includes(r.name)) ) return message.channel.send("**Vous ne pouvez pas utiliser cette commande.**")
-        message.channel.createInvite()
-        .then(invite => message.channel.send(`***Invitation créée : discord.gg/${invite.code}***`))
-        let notifmention = new Discord.RichEmbed()
-        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -invitation dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")``.")
-        .setDescription(`***Lien de l'nvitation créée : discord.gg/${invite.code}***`)
-        .setColor(embedcolor)
-        client.channels.get("648559285638266880").send(notifmention);
     }
 })
 
