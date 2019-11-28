@@ -11,7 +11,7 @@ const warns = JSON.parse(fs.readFileSync('./warns.json'))
 client.login(process.env.BOT_TOKEN)
 
 client.on('ready', function(){
-    client.user.setActivity("-help | mBot", {type: "PLAYING"})
+    client.user.setActivity("Mentionne moi | mBot", {type: "PLAYING"})
 })
 
                                                                  // BOT MENTION //
@@ -21,6 +21,40 @@ client.on('message', function(message){
         message.channel.send("**<@" + message.author.id + "> Besoin d'aide ? Utilise -cmds ou -commandes !**")
         let notifmention = new Discord.RichEmbed()
         .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a mentionné le BOT dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")``.")
+        .setColor(embedcolor)
+        client.channels.get("648559285638266880").send(notifmention);
+    }
+})
+
+client.on('message', function(message){
+    if(message.content === prefix + "cmds"){
+        var pong_enbed = new Discord.RichEmbed()
+        .setTitle('__Voici toutes les commandes disponibles __')
+        .setColor(embedcolor)
+        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-invite`` Envoie un lien pour inviter le BOT sur un autre serveur. \n ``-invitation`` Envoie un lien pour inviter un utilisateur sur ce serveur.")
+        .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Supprime un grand nombre de messages.")
+        .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
+        .setTimestamp(Date.now()) 
+        message.channel.send(pong_enbed)
+        let notifmention = new Discord.RichEmbed()
+        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -cmds dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")``.")
+        .setColor(embedcolor)
+        client.channels.get("648559285638266880").send(notifmention);
+    }
+})
+
+client.on('message', function(message){
+    if(message.content === prefix + "commandes"){
+        var pong_enbed = new Discord.RichEmbed()
+        .setTitle('__Voici toutes les commandes disponibles __')
+        .setColor(embedcolor)
+        .addField("__Commandes de base__","``-cmds/commandes`` Affiche la liste de toutes les commandes disponibles. \n ``-ping`` Affiche votre latence. \n ``-avatar`` Affiche votre photo de profil Discord.  \n ``-signal`` Signal un membre. \n ``-invite`` Envoie un lien pour inviter le BOT sur un autre serveur. \n ``-invitation`` Envoie un lien pour inviter un utilisateur sur ce serveur.")
+        .addField("__Commandes d'administration__","``-kick`` Expulse un membre. \n ``-ban`` Ban un membre. \n ``-mute`` Rend un membre muet. \n ``-unmute`` Permet à un membre de parler à nouveau. \n ``-purge`` Supprime un grand nombre de messages.")
+        .addField("__Commandes de gestion__","``-nouveaurole`` Créer un nouveau rôle. \n ``-nouveauchannel`` Créer un nouveau channel. (BIENTÔT) \n ``-supprimechannel`` Supprime un channel. \n ``-sujet`` Change le sujet d'un channel. \n ``-pasdesujet`` Réinitialise le sujet d'un channel. (BIENTÔT) \n ``-renomme`` Change le nom d'un channel. \n ``-nomduserveur`` Change le nom du serveur.")
+        .setTimestamp(Date.now()) 
+        message.channel.send(pong_enbed)
+        let notifmention = new Discord.RichEmbed()
+        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -cmds dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")``.")
         .setColor(embedcolor)
         client.channels.get("648559285638266880").send(notifmention);
     }
