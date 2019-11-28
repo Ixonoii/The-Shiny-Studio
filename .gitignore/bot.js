@@ -388,3 +388,18 @@ client.on('message', function (message) {
         client.channels.get("649671777508917289").send(notifmention);
 }
 })
+
+client.on('message', function(message){
+    if(message.content === prefix + "invite"){
+        let inviteurl = new Discord.RichEmbed()
+        .setTitle("Pour ajouter mBot sur un autre serveur cliquez sur ce lien !")
+        .setURL('https://discordapp.com/oauth2/authorize?client_id=648551591623917578&scope=bot&permissions=8')
+        .setColor(embedcolor)
+        message.channel.send(inviteurl)
+        message.channel.send(embed)
+        let notifmention = new Discord.RichEmbed()
+        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -invite dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")``.")
+        .setColor(embedcolor)
+        client.channels.get("648559285638266880").send(notifmention);
+    }
+})
