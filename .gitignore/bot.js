@@ -349,7 +349,7 @@ client.on('message', function(message){
         if(!message.member.roles.some(r=>["Administrateur"].includes(r.name)) ) return message.channel.send("**Vous ne pouvez pas utiliser cette commande.**")
         message.channel.delete()
         let notifmention = new Discord.RichEmbed()
-        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -supprimechannel dans le serveur ``" + message.guild.name  + ".")
+        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -supprimechannel dans le serveur ``" + message.guild.name  + "``.")
         .setColor(embedcolor)
         client.channels.get("649671777508917289").send(notifmention);
     }
@@ -366,7 +366,7 @@ client.on('message', function (message) {
         message.channel.guild.setName(question)
         message.channel.send("***Nom du serveur modifié : " + question + "***")
         let notifmention = new Discord.RichEmbed()
-        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -nomduserveur dans le serveur ``" + message.guild.name  + ".")
+        .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -nomduserveur dans le serveur ``" + message.guild.name  + "``.")
         .setColor(embedcolor)
         client.channels.get("649671777508917289").send(notifmention);
 }
@@ -385,6 +385,6 @@ client.on('message', function (message) {
         let notifmention = new Discord.RichEmbed()
         .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -sujet dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")`` en changeant le sujet à ``" + question + "``.")
         .setColor(embedcolor)
-        client.channels.get("649666046810128405").send(notifmention);
+        client.channels.get("649671777508917289").send(notifmention);
 }
 })
