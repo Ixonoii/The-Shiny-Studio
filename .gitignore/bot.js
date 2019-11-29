@@ -41,7 +41,6 @@ client.on('message', function (message) {
         message.channel.send(serverinformation)
 }
 })
-
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -63,7 +62,7 @@ client.on('message', function (message) {
         let annonce = new Discord.RichEmbed()
         .setTitle(question)
         .setColor(embedcolor)
-        .setAuthor("")
+        .setAuthor("Space Studios Management Team.")
         message.delete()
         message.channel.send(successmessage)
         ENDchannel.send(annonce)
