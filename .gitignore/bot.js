@@ -38,6 +38,7 @@ client.on('message', function (message) {
         .addField("Owner:", message.guild.owner)
         .addField("Server created at:", message.guild.createdAt)
         .addField("Members:", message.guild.memberCount + " members")
+        .addField("Roles", message.guild.roles)
         message.channel.send(serverinformation)
 }
 })
