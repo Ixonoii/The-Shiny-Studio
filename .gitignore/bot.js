@@ -41,6 +41,7 @@ client.on('message', function (message) {
         message.channel.send(serverinformation)
 }
 })
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -53,7 +54,7 @@ client.on('message', function (message) {
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
         let successmessage = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Message successfully sent in " + ENDchannel.name + ".")
+        .setTitle(":white_check_mark: You have to mention a channel.")
         .setColor(embedcolor)
         let ENDchannel = message.mentions.channels.first()       
         let question = args.slice(2).join(" ")
@@ -62,11 +63,11 @@ client.on('message', function (message) {
         let annonce = new Discord.RichEmbed()
         .setTitle(question)
         .setColor(embedcolor)
-        .setAuthor("Space Studios Management Team.")
+        .setFooter("Space Studios Management Team.")
         message.delete()
-        message.channel.send(successmessage)
         ENDchannel.send(annonce)
         ENDchannel.send("@everyone")
         .then((m) => m.delete());
+        message.channel.send(successmessage)
 }
 })
