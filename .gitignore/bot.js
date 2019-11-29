@@ -38,7 +38,7 @@ client.on('message', function (message) {
         .addField("Owner:", message.guild.owner)
         .addField("Server created at:", message.guild.createdAt)
         .addField("Members:", message.guild.memberCount + " members")
-        .addField("Roles", message.guild.roles)
+        .setTimestamp("Space Assistant | " + Date.now())
         message.channel.send(serverinformation)
 }
 })
