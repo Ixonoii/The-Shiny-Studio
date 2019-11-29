@@ -18,7 +18,7 @@ client.on('message', function(message){
     if(message.content === "<@650067878292357170>"){
         let informationembed = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
-        .setTitle(":white_check_mark: Test done and embed successfully displayed!")
+        .setTitle("Hello " + message.author.username + ". I'm Space Assistant, the official bot of Space Studios. Need help? Use the -cmds command!")
         .setColor(embedcolor)
         message.channel.send(informationembed)
     }
