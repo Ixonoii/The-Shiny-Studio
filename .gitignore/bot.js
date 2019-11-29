@@ -23,3 +23,23 @@ client.on('message', function(message){
         message.channel.send(informationembed)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "whois"){
+        let memberMEN = message.mentions.members.first()
+        if(!memberMEN) return message.channel.send("**You have to mention someone.**")
+        let informationuser = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setTitle("Information about " + memberMEN)
+        .setColor(embedcolor)
+        .addField("Username:", memberMEN)
+        .addField("Discriminator:", memberMEN.discriminator)
+        .addField("ID:", memberMEN.id)
+        .addField("User joined at:", memberMEN.joinedAt)
+        .addField("Permissions:", memberMEN.hasPermissions)
+        message.channel.send(informationuser)
+}
+})
