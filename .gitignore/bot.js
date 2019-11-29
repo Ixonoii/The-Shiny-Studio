@@ -28,17 +28,16 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "whois"){
-        let memberMEN = message.mentions.members.first()
-        if(!memberMEN) return message.channel.send("**You have to mention someone.**")
-        let informationuser = new Discord.RichEmbed()
+    if (args[0].toLocaleLowerCase()=== prefix + "server"){
+        let serverinformation = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
-        .setTitle("Information about " + memberMEN)
+        .setTitle("Here is some information about the server " + message.guild.name)
         .setColor(embedcolor)
-        .addField("Username:", memberMEN)
-        .addField("ID:", memberMEN.id)
-        .addField("User joined at:", memberMEN.joinedAt)
-        .addField("Permissions:", memberMEN.permissions)
-        message.channel.send(informationuser)
+        .addField("Name:", message.guild.name)
+        .addField("ID:", message.guild.id)
+        .addField("Owner:", message.guild.owner)
+        .addField("Server created at:", message.guild.createdAt)
+        .addField("Members:", message.guild.memberCount + " members")
+        message.channel.send(serverinformation)
 }
 })
