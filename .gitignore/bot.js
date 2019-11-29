@@ -36,10 +36,9 @@ client.on('message', function (message) {
         .setTitle("Information about " + memberMEN)
         .setColor(embedcolor)
         .addField("Username:", memberMEN)
-        .addField("Discriminator:", memberMEN.discriminator)
         .addField("ID:", memberMEN.id)
         .addField("User joined at:", memberMEN.joinedAt)
-        .addField("Permissions:", memberMEN.hasPermissions)
+        .addField("Permissions:", memberMEN.permissions)
         message.channel.send(informationuser)
 }
 })
