@@ -41,33 +41,3 @@ client.on('message', function (message) {
         message.channel.send(serverinformation)
 }
 })
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "pingannounce"){
-        let errormessage1 = new Discord.RichEmbed()
-        .setTitle(":x: You have to mention a channel.")
-        .setColor(embedcolor)
-        let errormessage2 = new Discord.RichEmbed()
-        .setTitle(":x: You have to enter a message.")
-        .setColor(embedcolor)
-        let successmessage = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Message successfully send in " + ENDchannel + ".")
-        .setColor(embedcolor)
-        let ENDchannel = message.mentions.channels.first()       
-        let question = args.slice(2).join(" ")
-        if(!ENDchannel) return message.channel.send(errormessage1)
-        if(!question) return message.channel.send(errormessage2)
-        let annonce = new Discord.RichEmbed()
-        .setTitle(question)
-        .setColor(embedcolor)
-        .setFooter("Space Studios Management Team.")
-        message.delete()
-        ENDchannel.send(annonce)
-        ENDchannel.send("@everyone")
-        .then((m) => m.delete());
-        message.channel.send(successmessage)
-}
-})
