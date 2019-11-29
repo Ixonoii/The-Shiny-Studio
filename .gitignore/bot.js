@@ -54,7 +54,7 @@ client.on('message', function (message) {
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
         let successmessage = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: You have to mention a channel.")
+        .setTitle(":white_check_mark: Message successfully send in " + ENDchannel.name + ".")
         .setColor(embedcolor)
         let ENDchannel = message.mentions.channels.first()       
         let question = args.slice(2).join(" ")
