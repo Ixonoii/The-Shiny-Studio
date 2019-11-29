@@ -63,7 +63,7 @@ client.on('message', function (message) {
         let annonce = new Discord.RichEmbed()
         .setTitle(question)
         .setColor(embedcolor)
-        .setAuthor("Space Studios Management Team.")
+        .setAuthor("")
         message.delete()
         message.channel.send(successmessage)
         ENDchannel.send(annonce)
