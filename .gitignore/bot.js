@@ -197,3 +197,21 @@ client.on('message', function (message) {
         .then((m) => m.delete())
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "whois"){
+        let memberMEN = message.mentions.members.first()
+        let nomention = new Discord.RichEmbed()
+        .setTitle(":x: You have to mention someone.")
+        if(!memberMEN) return message.channel.send(nomention)
+        let whois = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Username :", memberMEN)
+        .addField("Membre signalé :", memberMEN.id)
+        .addField("Nickname :", memberMEN.nickname)
+    message.channel.send(whois)
+}})
