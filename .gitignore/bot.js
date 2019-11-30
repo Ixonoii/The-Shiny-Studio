@@ -20,6 +20,7 @@ client.on('message', function(message){
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setTitle("Hello " + message.author.username + ". I'm Space Assistant, the official bot of Space Studios. Need help? Use the " + prefix + "cmds command!")
         .setColor(embedcolor)
+        .setThumbnail(message.guild.iconURL)
         message.channel.send(informationembed)
     }
 })
