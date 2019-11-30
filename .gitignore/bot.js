@@ -65,7 +65,7 @@ client.on('message', function (message) {
         let successmessage = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Message sent!")
         let errormessage2 = new Discord.RichEmbed()
-        .setTitle(":x: I can't send your announcement. I may not have the necessary permissions or the ``announcements'` channel does not exist on this server.")
+        .setTitle(":x: I can't send your announcement. I may not have the necessary permission, or the ``announcements`` channel does not exist on this server.")
         .setColor(embedcolor)
         if (!args[1]) return message.channel.send(errormessage1)
         let question = args.slice(1).join(" ")
