@@ -82,3 +82,32 @@ client.on('message', function (message) {
     message.delete();
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "hannounce"){
+        let errormessage1 = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter a message.")
+        .setColor(embedcolor)
+        let successmessage = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Message sent!")
+        let errormessage2 = new Discord.RichEmbed()
+        .setTitle(":x: I can't send your announcement. I may not have the necessary permission, or the ``announcements`` channel does not exist on this server.")
+        .setColor(embedcolor)
+        if (!args[1]) return message.channel.send(errormessage1)
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setColor(embedcolor)
+        .setDescription(question)
+        .setFooter("Space Studios Management Team.")
+        let announcechannel = message.guild.channels.find(c => c.name === "announcements")
+        if(!announcechannel) return message.channel.send(errormessage2)
+        announcechannel.send(embed);
+        announcechannel.send('@here')
+        .then((m) => m.delete());
+    message.channel.send(successmessage)
+    message.delete();
+    }
+})
