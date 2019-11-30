@@ -170,3 +170,13 @@ client.on('message', function (message) {
     message.delete();
     }
 })
+
+client.on('message', function(message){
+    if(message.content === prefix + "countbans"){
+        let banscoutn = new Discord.RichEmbed()
+        .setTitle(`:white_check_mark: ${bans.size} found!`)
+        .setColor(embedcolor)
+        .setThumbnail(message.guild.iconURL)
+        message.channel.send(banscoutn)
+    }
+})
