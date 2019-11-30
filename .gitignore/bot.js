@@ -42,3 +42,21 @@ client.on('message', function (message) {
         message.channel.send(serverinformation)
 }
 })
+
+client.on('message', function(message){
+    if(message.content === prefix + "avatar"){
+        let membermentionned = message.mentions.members.first()
+        let selfavatar = new Discord.RichEmbed()
+        .setTitle("Here is your avatar, " + message.author.username + ".")
+        .setColor(embedcolor)
+        .setImage(message.author.displayAvatarURL)
+        .setURL(message.author.displayAvatarURL)
+        if(!member) return message.channel.send(selfavatar)
+        var noselfmention = new Discord.RichEmbed()
+        .setTitle("Here is " + membermentionned + "'s avatar.")
+        .setColor(embedcolor)
+        .setImage(membermentionned.displayAvatarURL)
+        .setURL(membermentionned.displayAvatarURL)
+        message.channel.send(noselfmention)
+    }
+})
