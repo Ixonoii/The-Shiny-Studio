@@ -42,3 +42,14 @@ client.on('message', function (message) {
         message.channel.send(serverinformation)
 }
 })
+
+client.on('message', function(message){
+    if(message.content === prefix + "avatar"){
+        var pong_enbed = new Discord.RichEmbed()
+        .setTitle("Here is your avatar, " + message.author.username + ". The image does not load correctly? Click here!")
+        .setColor(embedcolor)
+        .setImage(message.author.displayAvatarURL)
+        .setURL(message.author.displayAvatarURL)
+        message.channel.send(pong_enbed)
+    }
+})
