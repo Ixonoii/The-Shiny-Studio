@@ -185,9 +185,9 @@ client.on('message', function (message) {
     if (args[0].toLowerCase() === prefix + "purge") {
         if(!message.author.id === "434061967951659019") return message.channel.send("You're not a developer!")
         let count = parseInt(args[1])
-        if (!count) return message.channel.send("**Vous devez entrer un nombre.**")
-        if (isNaN(count)) return message.channel.send("**Vous devez entrer un nombre.**")
-        if (count < 1 || count > 100) return message.channel.send("**Vous devez entrer un nombre entre 1 et 99.**")
+        if (!count) return message.channel.send("**You have to enter a number.**")
+        if (isNaN(count)) return message.channel.send("**You have to enter a number**")
+        if (count < 1 || count > 100) return message.channel.send("**You have to enter a number between 1 and 100.**")
         message.channel.bulkDelete(count + 1)
         message.channel.send("**" + count + " messages deleted.**")
         .then((m) => m.edit("**" + count + " messages deleted.**"))
