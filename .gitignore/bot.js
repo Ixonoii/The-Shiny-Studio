@@ -174,16 +174,6 @@ client.on('message', function (message) {
 client.on('message', function(message){
     if(message.content === prefix + "countbans"){
         message.guild.fetchBans()
-        .then(bans => message.channel.send(`This guild has ${bans.size} bans`))
-    }
-})
-
-client.on('message', function(message){
-    if(message.content === prefix + "countbans"){
-        let bansembed = new Discord.RichEmbed()
-        .setTitle(`${bans.size} bans found!`)
-        .setColor(embedcolor)
-        message.guild.fetchBans()
-        .then(bans => message.channel.send(bansembed))
+        .then(bans => message.channel.send(`**:white_check_mark: ${bans.size} bans found.**`))
     }
 })
