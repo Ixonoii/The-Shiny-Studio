@@ -177,3 +177,23 @@ client.on('message', function(message){
         .then(bans => message.channel.send(`**:white_check_mark: ${bans.size} bans found.**`))
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "purge") {
+        if(!message.author.id === "434061967951659019") return message.channel.send("You're not a developer!")
+        let count = parseInt(args[1])
+        if (!count) return message.channel.send("**Vous devez entrer un nombre.**")
+        if (isNaN(count)) return message.channel.send("**Vous devez entrer un nombre.**")
+        if (count < 1 || count > 100) return message.channel.send("**Vous devez entrer un nombre entre 1 et 99.**")
+        message.channel.bulkDelete(count + 1)
+        message.channel.send("**" + count + " messages deleted.**")
+        .then((m) => m.edit("**" + count + " messages deleted.**"))
+        .then((m) => m.edit("**" + count + " messages deleted.**"))
+        .then((m) => m.edit("**" + count + " messages deleted.**"))
+        .then((m) => m.edit("**" + count + " messages deleted.**"))
+        .then((m) => m.delete())
+    }
+})
