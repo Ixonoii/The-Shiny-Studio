@@ -206,6 +206,7 @@ client.on('message', function (message) {
         let memberMEN = message.mentions.members.first()
         let nomention = new Discord.RichEmbed()
         .setTitle(":x: You have to mention someone.")
+        .setColor(embedcolor)
         if(!memberMEN) return message.channel.send(nomention)
         let whois = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
