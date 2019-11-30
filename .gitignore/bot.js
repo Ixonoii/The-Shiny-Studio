@@ -161,8 +161,6 @@ client.on('message', function (message) {
         let embed = new Discord.RichEmbed()
         .setColor(embedcolor)
         .setTitle("Hello everyone, today's activity check is: \n \n" + question)
-        .setDescription(question)
-        .setFooter("Space Studios Management Team.")
         let announcechannel = message.guild.channels.find(c => c.name === "activity-checks")
         if(!announcechannel) return message.channel.send(errormessage2)
         announcechannel.send(embed);
