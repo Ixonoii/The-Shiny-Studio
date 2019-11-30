@@ -141,3 +141,32 @@ client.on('message', function (message) {
     message.delete();
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "activitycheck"){
+        let errormessage1 = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter a question.")
+        .setColor(embedcolor)
+        let successmessage = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Activity check sent!")
+        .setColor(embedcolor)
+        let errormessage2 = new Discord.RichEmbed()
+        .setTitle(":x: I can't send your activity check. I may not have the necessary permission, or the ``activity-checks`` channel does not exist on this server.")
+        .setColor(embedcolor)
+        if (!args[1]) return message.channel.send(errormessage1)
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setColor(embedcolor)
+        .setTitle("Hello everyone, today's activity check is: \n \n" + question)
+        .setDescription(question)
+        .setFooter("Space Studios Management Team.")
+        let announcechannel = message.guild.channels.find(c => c.name === "activity-checks")
+        if(!announcechannel) return message.channel.send(errormessage2)
+        announcechannel.send(embed);
+    message.channel.send(successmessage)
+    message.delete();
+    }
+})
