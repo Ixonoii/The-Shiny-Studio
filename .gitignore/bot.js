@@ -278,3 +278,19 @@ client.on('message', function (message) {
         message.channel.send(success)
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "lockdown"){
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: The Space Studios Management Team decided to lock this channel.")
+        .setColor(embedcolor)
+        message.channel.overwritePermissions(message.author, {
+            VIEW_CHANNEL: false,
+            SEND_MESSAGES: false
+        })
+        message.channel.send(success)
+}
+})
