@@ -330,3 +330,38 @@ client.on('message', function (message) {
         message.channel.send(success)
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "report"){
+        let nomention = new Discord.RichEmbed()
+        .setTitle(":x: You have to mention someone.")
+        .setColor(embedcolor)
+        let noreason = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter a reason.")
+        .setColor(embedcolor)
+        let nochannel = new Discord.RichEmbed()
+        .setTitle("I can't send your report. I may not have the necessary permission, or the ``discord-reports`` channel does not exist on this server.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Report sent!")
+        .setColor(embedcolor)
+        let memberMEN = message.mentions.members.first()
+        let question = args.slice(2).join(" ")
+        if(!memberMEN) return message.channel.send(nomention)
+        if(!question) return message.channel.send(noreason)
+        let embed = new Discord.RichEmbed()
+        .setColor(embedcolor)
+        .addField("Member:", message.author.username + " (ID:" + message.author.id + ")")
+        .addField("Member reported:", memberMEN + " (ID:" + memberMEN.id + ")")
+        .addField("Reason:", question)
+        .addField("Channel:", "<#" + message.channel.id + ">")
+        let cChannel = message.guild.channels.find(c => c.name === "discord-reports")
+        if(!cChannel) return message.channel.send(nochannel)
+    cChannel.send(embed);
+    message.delete();
+    message.channel.send(success)
+}
+})
