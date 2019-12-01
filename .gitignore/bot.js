@@ -260,3 +260,21 @@ client.on('message', function (message) {
         message.channel.send(success)
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "setname"){
+        let errormessage1 = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter the new name.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Name updated!")
+        .setColor(embedcolor)
+        let newname = args.slice(1).join(" ")
+        if(!newname) return message.channel.send(errormessage1)
+        client.user.setUsername(newname)
+        message.channel.send(success)
+}
+})
