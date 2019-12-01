@@ -243,7 +243,7 @@ client.on('message', function (message) {
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now offline!")
         .setColor(embedcolor)
-        client.user.setPresence({ game: { name: '' }, status: "idle" })
+        client.user.setPresence({ game: { name: '' }, status: "invisible" })
         message.channel.send(success)
 }
 })
