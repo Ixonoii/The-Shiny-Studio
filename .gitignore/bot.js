@@ -6,6 +6,10 @@ const fs = require('fs');
 var prefix = ";";
 var embedcolor = "#7e05ca";
 
+client.on('ready', function(){
+    client.user.setActivity("Mention me | ;cmds", {type: "PLAYING"})
+})
+
 const warns = JSON.parse(fs.readFileSync('./warns.json'))
 
 client.login(process.env.BOT_TOKEN)                                                            
