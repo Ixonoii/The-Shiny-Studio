@@ -234,3 +234,29 @@ client.on('message', function (message) {
         message.channel.send(success)
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "offline"){
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: The bot is now offline!")
+        .setColor(embedcolor)
+        client.user.setPresence({status: "invisible"})
+        message.channel.send(success)
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "online"){
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: The bot is now online!")
+        .setColor(embedcolor)
+        client.user.setPresence({status: "online"})
+        message.channel.send(success)
+}
+})
