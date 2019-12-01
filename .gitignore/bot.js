@@ -261,21 +261,15 @@ client.on('message', function (message) {
 }
 })
 
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "setname"){
-        let errormessage1 = new Discord.RichEmbed()
-        .setTitle(":x: You have to enter the new name.")
-        .setColor(embedcolor)
+    if (args[0].toLocaleLowerCase()=== prefix + "lockdown"){
         let success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Name updated!")
+        .setTitle(":white_check_mark: This channel has been locked.")
         .setColor(embedcolor)
-        let newname = args.slice(1).join(" ")
-        if(!newname) return message.channel.send(errormessage1)
-        client.user.setUsername(newname)
+        message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: false
+        })
         message.channel.send(success)
+        message.delete()
 }
 })
 
@@ -283,13 +277,14 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "lockdown"){
+    if (args[0].toLocaleLowerCase()=== prefix + "unlockdown"){
         let success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: The Space Studios Management Team decided to lock this channel.")
+        .setTitle(":white_check_mark: This channel has been unlocked.")
         .setColor(embedcolor)
-        message.channel.lockPermissions(message.guild.id, {
+        message.channel.overwritePermissions(message.guild.id, {
             SEND_MESSAGES: false
         })
         message.channel.send(success)
+        message.delete()
 }
 })
