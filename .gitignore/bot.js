@@ -8,11 +8,7 @@ var embedcolor = "#7e05ca";
 
 const warns = JSON.parse(fs.readFileSync('./warns.json'))
 
-client.login(process.env.BOT_TOKEN)
-
-client.on('ready', function(){
-    client.user.setActivity("Mention me | ;cmds", {type: "PLAYING"})
-})                                                             
+client.login(process.env.BOT_TOKEN)                                                            
 
 client.on('message', function(message){
     if(message.content === "<@650067878292357170>"){
@@ -216,3 +212,18 @@ client.on('message', function (message) {
         .addField("Joined at:", memberMEN.joinedAt)
     message.channel.send(whois)
 }})
+
+client.on('message', function(message){
+    if(message.content === prefix +  "setstatus"){
+        let question = args.slice(1).join(" ")
+        let errormessage1 = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter a message.")
+        .setColor(embedcolor)
+        let statussuccess = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Status updated!")
+        .setColor(embedcolor)
+        if(!question) return message.channel.send(errormessage1)
+        client.user.setActivity(question)
+        message.channel.send(statussuccess)
+    }
+})
