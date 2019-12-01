@@ -366,3 +366,24 @@ client.on('message', function (message) {
     message.channel.send(success)
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "inforole"){
+        let norolemention = new Discord.RichEmbed()
+        .setTitle(":x: You have to mention a role.")
+        .setColor(embedcolor)
+        let rolemention = message.mentions.roles.first()
+        if(!rolemention) return message.channel.send(norolemention)
+        let inforole = new Discord.RichEmbed()
+        .setColor(embedcolor)
+        .addField("Role:", rolemention)
+        .addField("ID:", rolemention.id)
+        .addField("Permissionsn:", rolemention.permissions)
+        .addField("Created at:", rolemention.createdAt)
+        .addField("Color:", rolemention.color)
+    message.channel.send(inforole)
+}
+})
