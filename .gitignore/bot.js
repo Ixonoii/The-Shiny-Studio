@@ -292,3 +292,41 @@ client.on('message', function (message) {
         message.delete()
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "setavatar"){
+        let errormessage1 = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter the link of the new avatar.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Avatar updated!")
+        .setColor(embedcolor)
+        .setFooter("Please note: The avatar of the bot may take a few minutes to update due to the Discord limitation.")
+        let newavatarlink = args.slice(1).join(" ")
+        if(!newavatarlink) return message.channel.send(errormessage1)
+        client.user.setAvatar(newavatarlink)
+        message.channel.send(success)
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "setname"){
+        let errormessage1 = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter the new name.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Name updated!")
+        .setColor(embedcolor)
+        .setFooter("Please note: The name of the bot may take a few minutes to update due to the Discord limitation.")
+        let newavatarlink = args.slice(1).join(" ")
+        if(!newavatarlink) return message.channel.send(errormessage1)
+        client.user.setUsername(newavatarlink)
+        message.channel.send(success)
+}
+})
