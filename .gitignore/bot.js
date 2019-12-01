@@ -243,7 +243,7 @@ client.on('message', function (message) {
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now offline!")
         .setColor(embedcolor)
-        client.user.setPresence({status: "idle"})
+        client.user.setPresence({ game: { name: 'TEST GAME' }, status: "invisible" })
         message.channel.send(success)
 }
 })
@@ -256,7 +256,7 @@ client.on('message', function (message) {
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now online!")
         .setColor(embedcolor)
-        client.user.setPresence({status: "online"})
+        client.user.setPresence({ game: { name: 'Mention me | ;cmds' }, status: "online" })
         message.channel.send(success)
 }
 })
