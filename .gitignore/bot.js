@@ -287,8 +287,7 @@ client.on('message', function (message) {
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The Space Studios Management Team decided to lock this channel.")
         .setColor(embedcolor)
-        message.channel.overwritePermissions(message.guild.id, {
-            VIEW_CHANNEL: false,
+        message.channel.lockPermissions(message.guild.id, {
             SEND_MESSAGES: false
         })
         message.channel.send(success)
