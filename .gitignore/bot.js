@@ -354,10 +354,11 @@ client.on('message', function (message) {
         if(!question) return message.channel.send(noreason)
         let embed = new Discord.RichEmbed()
         .setColor(embedcolor)
-        .addField("Member:", message.author.username + " (ID:" + message.author.id + ")")
-        .addField("Member reported:", memberMEN + " (ID:" + memberMEN.id + ")")
+        .addField("Member:", message.author.username + " (ID: " + message.author.id + ")")
+        .addField("Member reported:", memberMEN + " (ID: " + memberMEN.id + ")")
         .addField("Reason:", question)
         .addField("Channel:", "<#" + message.channel.id + ">")
+        .setTimestamp(Date.now()) 
         let cChannel = message.guild.channels.find(c => c.name === "discord-reports")
         if(!cChannel) return message.channel.send(nochannel)
     cChannel.send(embed);
