@@ -261,6 +261,10 @@ client.on('message', function (message) {
 }
 })
 
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
     if (args[0].toLocaleLowerCase()=== prefix + "lockdown"){
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: This channel has been locked.")
