@@ -214,6 +214,5 @@ client.on('message', function (message) {
         .addField("ID:", memberMEN.id)
         .addField("Nickname :", memberMEN.nickname)
         .addField("Joined at:", memberMEN.joinedAt)
-        .addField("Account created at:", memberMEN.joinedTimestamp)
     message.channel.send(whois)
 }})
