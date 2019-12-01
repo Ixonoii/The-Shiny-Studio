@@ -381,9 +381,10 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         .addField("Role:", rolemention)
         .addField("ID:", rolemention.id)
-        .addField("Permissionsn:", rolemention.permissions)
+        .addField("Permissions:", rolemention.permissions)
         .addField("Created at:", rolemention.createdAt)
         .addField("Color:", rolemention.color)
+        .addField("HexColor:", rolemention.hexColor)
     message.channel.send(inforole)
 }
 })
