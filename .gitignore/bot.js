@@ -217,17 +217,20 @@ client.on('message', function (message) {
     message.channel.send(whois)
 }})
 
-client.on('message', function(message){
-    if(message.content === prefix +  "setstatus"){
-        let question = args.slice(1).join(" ")
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "setstatus"){
         let errormessage1 = new Discord.RichEmbed()
-        .setTitle(":x: You have to enter a message.")
+        .setTitle(":x: You have to enter the new status.")
         .setColor(embedcolor)
-        let statussuccess = new Discord.RichEmbed()
+        let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Status updated!")
         .setColor(embedcolor)
-        if(!question) return message.channel.send(errormessage1)
-        client.user.setActivity(question)
-        message.channel.send(statussuccess)
-    }
+        let newstatus = args.slice(1).join(" ")
+        if(!newstatus) return message.channel.send(errormessage1)
+        client.user.setActivity(newstatus)
+        message.channel.send(success)
+}
 })
