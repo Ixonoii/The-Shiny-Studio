@@ -396,7 +396,7 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         .addField("Role:", rolemention)
         .addField("ID:", rolemention.id)
-        .addField("Permissions:", rolemention.permissions)
+        .addField("Permissions calculator:", rolemention.permissions)
         .addField("Created at:", rolemention.createdAt)
         .addField("Color:", rolemention.color)
         .addField("HexColor:", rolemention.hexColor)
