@@ -5,7 +5,6 @@ const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
 var embedcolor = "#7e05ca";
-var blacklist = ["434061967951659019"]
 
 client.on('ready', function(){
     client.user.setActivity("Mention me | ;cmds", {type: "PLAYING"})
@@ -525,11 +524,5 @@ client.on('message', message =>{
         .setColor(embedcolor)
         client.user.setActivity("Mention me | ;cmds", {type: "PLAYING"})
         message.channel.send(success)
-    }
-})
-client.on('message', function(message){
-    if(message.content === "blacklist"){
-        if(message.author.id === blacklist) return message.channel.send(":x: You are blacklisted")
-        message.channel.send("You aren't blacklisted.")
     }
 })
