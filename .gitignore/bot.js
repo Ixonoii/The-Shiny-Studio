@@ -177,7 +177,7 @@ client.on('message', function (message) {
 
 client.on('message', function(message){
     if(message.content === prefix + "countbans"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         message.guild.fetchBans()
         .then(bans => message.channel.send(`**:white_check_mark: ${bans.size} bans found.**`))
     }
@@ -248,7 +248,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "offline"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now offline!")
         .setColor(embedcolor)
@@ -262,7 +262,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "online"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now online!")
         .setColor(embedcolor)
@@ -276,7 +276,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "lockdown"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: This channel has been locked.")
         .setColor(embedcolor)
@@ -293,7 +293,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "unlockdown"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: This channel has been unlocked.")
         .setColor(embedcolor)
@@ -310,7 +310,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "setavatar"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the link of the new avatar.")
         .setColor(embedcolor)
@@ -330,7 +330,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "setname"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the new name.")
         .setColor(embedcolor)
@@ -494,7 +494,7 @@ client.on('message', function (message) {
 
 client.on('message', message =>{
     if(message.content === prefix + "reset name"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Name reset!")
         .setColor(embedcolor)
@@ -506,7 +506,7 @@ client.on('message', message =>{
 
 client.on('message', message =>{
     if(message.content === prefix + "reset avatar"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Avatar reset!")
         .setColor(embedcolor)
@@ -518,7 +518,7 @@ client.on('message', message =>{
 
 client.on('message', message =>{
     if(message.content === prefix + "reset status"){
-        if(!message.member.roles.some(r=>["👑Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Status reset!")
         .setColor(embedcolor)
