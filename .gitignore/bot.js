@@ -491,3 +491,15 @@ client.on('message', function (message) {
         client.channels.get("651471265256833044").send(ReportInformationCard);
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "bot"){
+        let success = new Discord.RichEmbed()
+        .setColor(embedcolor)
+        .setImage(client.user.displayAvatarURL)
+        message.channel.send(success)
+}
+})
