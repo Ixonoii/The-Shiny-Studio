@@ -419,3 +419,23 @@ client.on('message', function (message) {
     message.channel.send(cmdslist)
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "bug"){
+        let noreason = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter your bug report.")
+        .setColor(embedcolor)
+        let question = args.slice(1).join(" ")
+        if(!question) return message.channel.send(noreason)
+        let ReportInformationCard = new Discord.RichEmbed()
+        .setTitle(":space_invader: A bug has been sent!")
+        .setColor(embedcolor)
+        .setDescription(`` + question + ``)
+        .setFooter("Bug report sent by " + message.author.tag + " (ID: " + message.author.id + ")")
+        message.channel.send("Bug report sent!")
+        client.channels.get("651471216573415454").send(ReportInformationCard);
+}
+})
