@@ -503,3 +503,47 @@ client.on('message', function (message) {
         message.channel.send(success)
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "reset name"){
+        if(!message.member.roles.some(r=>["👑Owner"].includes(r.name)) ) return
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Name reset!")
+        .setColor(embedcolor)
+        .setFooter("The name of the bot may take a few minutes to update due to the Discord limitation.")
+        client.user.setUsername("Space Assistant")
+        message.channel.send(success)
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "reset status"){
+        if(!message.member.roles.some(r=>["👑Owner"].includes(r.name)) ) return
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Status reset!")
+        .setColor(embedcolor)
+        client.user.setUsername("Space Assistant")
+        message.channel.send(success)
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "reset avatar"){
+        if(!message.member.roles.some(r=>["👑Owner"].includes(r.name)) ) return
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Avatar reset!")
+        .setColor(embedcolor)
+        .setFooter("The avatar of the bot may take a few minutes to update due to the Discord limitation.")
+        client.user.setAvatar("https://images-ext-1.discordapp.net/external/K3z2Aeqzeboy32XksxTqj-mEGEd8o6KUPAfPeUWk0iY/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/650067878292357170/977914a859234cce9c1e6f97fa958e99.png")
+        message.channel.send(success)
+}
+})
