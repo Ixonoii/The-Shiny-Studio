@@ -425,6 +425,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "bug"){
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         let noreason = new Discord.RichEmbed()
         .setTitle(":x: You have to enter your bug report.")
         .setColor(embedcolor)
@@ -440,5 +441,53 @@ client.on('message', function (message) {
         .setFooter("Bug report sent by " + message.author.tag + " (ID: " + message.author.id + ")")
         message.channel.send(success)
         client.channels.get("651471216573415454").send(ReportInformationCard);
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "feedback"){
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        let noreason = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter your feedback.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Feedback sent!")
+        .setColor(embedcolor)
+        let question = args.slice(1).join(" ")
+        if(!question) return message.channel.send(noreason)
+        let ReportInformationCard = new Discord.RichEmbed()
+        .setTitle(":space_invader: A feedback has been recieved from the Space!")
+        .setColor(embedcolor)
+        .setDescription("```" + question + "```")
+        .setFooter("Feedback sent by " + message.author.tag + " (ID: " + message.author.id + ")")
+        message.channel.send(success)
+        client.channels.get("651471244864258051").send(ReportInformationCard);
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "suggest"){
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        let noreason = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter your suggestion.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Suggestion sent!")
+        .setColor(embedcolor)
+        let question = args.slice(1).join(" ")
+        if(!question) return message.channel.send(noreason)
+        let ReportInformationCard = new Discord.RichEmbed()
+        .setTitle(":space_invader: A suggestion has been recieved from the Space!")
+        .setColor(embedcolor)
+        .setDescription("```" + question + "```")
+        .setFooter("Suggested by " + message.author.tag + " (ID: " + message.author.id + ")")
+        message.channel.send(success)
+        client.channels.get("651471265256833044").send(ReportInformationCard);
 }
 })
