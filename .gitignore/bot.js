@@ -428,7 +428,7 @@ client.on('message', function (message) {
         let noreason = new Discord.RichEmbed()
         .setTitle(":x: You have to enter your bug report.")
         .setColor(embedcolor)
-        let noreason = new Discord.RichEmbed()
+        let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Bug report sent!")
         .setColor(embedcolor)
         let question = args.slice(1).join(" ")
@@ -438,7 +438,7 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         .setDescription("``` \n" + question + "\n```")
         .setFooter("Bug report sent by " + message.author.tag + " (ID: " + message.author.id + ")")
-        message.channel.send("Bug report sent!")
+        message.channel.send(success)
         client.channels.get("651471216573415454").send(ReportInformationCard);
 }
 })
