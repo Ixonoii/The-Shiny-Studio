@@ -436,7 +436,7 @@ client.on('message', function (message) {
         let ReportInformationCard = new Discord.RichEmbed()
         .setTitle(":space_invader: A bug report has been recieved from the Space!")
         .setColor(embedcolor)
-        .setDescription(```+ question + ```)
+        .setDescription("```" + question + "```")
         .setFooter("Bug report sent by " + message.author.tag + " (ID: " + message.author.id + ")")
         message.channel.send(success)
         client.channels.get("651471216573415454").send(ReportInformationCard);
