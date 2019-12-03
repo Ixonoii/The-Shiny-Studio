@@ -188,7 +188,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "purge") {
-        if(!message.author.id === "434061967951659019") return message.channel.send("You're not a developer!")
+        if(!message.author.id === "434061967951659019") return
         let count = parseInt(args[1])
         if (!count) return message.channel.send("**You have to enter a number.**")
         if (isNaN(count)) return message.channel.send("**You have to enter a number**")
