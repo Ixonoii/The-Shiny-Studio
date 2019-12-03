@@ -415,7 +415,7 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         .addField("**__Public commands:__**",";help ``Explains the commands, and how to use them.`` \n;whois ``Someone's Discord Info.`` \n;inforole ``Information about a role.`` \n;cmds ``Lists all commands you're able to use.`` \n;avatar ``Display your avatar.`` \n;report ``Report someone.`` \n;bug ``Send a bug report.`` \n;suggest ``Send a suggestion.`` \n;feedback ``Send a feedback.``")
         .addField("**__HR Commands:__**",";announce ``Announces a message without a ping.`` \n;hannounce ``Announces a message with @here ping.`` \n;pingannounce ``Announces a message with @everyone ping.`` \n;activitycheck ``Create an activity check, HRs know how to use this command.`` \n;setstatus ``Changes the status of the bot.``")
-        .addField("**__Owners Commands:__**",";offline ``Makes the bot go offline.`` \n;online ``Makes the bot come back up online.`` \n;lockdown ``Locks a channel for non-staff members.`` \n;unlockdown ``Unlock a channel.`` \n;countbans ``Counts how many bans there are in the server.`` \n;setname ``Changes the name of the bot.`` \n;setavatar ``Changes the avatar of the bot.``")
+        .addField("**__Owners Commands:__**",";offline ``Makes the bot go offline.`` \n;online ``Makes the bot come back up online.`` \n;lockdown ``Locks a channel for non-staff members.`` \n;unlockdown ``Unlock a channel.`` \n;countbans ``Counts how many bans there are in the server.`` \n;setname ``Changes the name of the bot.`` \n;setavatar ``Changes the avatar of the bot.`` \n;reset avatar/name/status ``Reset the avatar/name/status of the bot.``")
     message.channel.send(cmdslist)
 }
 })
@@ -498,7 +498,7 @@ client.on('message', message =>{
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Name reset!")
         .setColor(embedcolor)
-        .setFooter("The name of the bot may take a few minutes to update due to the Discord limitation.")
+        .setFooter("Please noteThe name of the bot may take a few minutes to update due to the Discord limitation.")
         client.user.setUsername("Space Assistant")
         message.channel.send(success)
     }
@@ -510,7 +510,7 @@ client.on('message', message =>{
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Avatar reset!")
         .setColor(embedcolor)
-        .setFooter("The avatar of the bot may take a few minutes to update due to the Discord limitation.")
+        .setFooter("Please note: The avatar of the bot may take a few minutes to update due to the Discord limitation.")
         client.user.setAvatar("https://images-ext-1.discordapp.net/external/K3z2Aeqzeboy32XksxTqj-mEGEd8o6KUPAfPeUWk0iY/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/650067878292357170/977914a859234cce9c1e6f97fa958e99.png")
         message.channel.send(success)
     }
