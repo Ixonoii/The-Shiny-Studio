@@ -446,7 +446,7 @@ client.on('message', function (message) {
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         let cmdslist = new Discord.RichEmbed()
         .setColor(embedcolor)
-        .addField("**__Public commands:__**",";help ``Explains the commands, and how to use them.`` \n;whois ``Someone's Discord Info.`` \n;inforole ``Information about a role.`` \n;cmds ``Lists all commands you're able to use.`` \n;avatar ``Display your avatar.`` \n;report ``Report someone.`` \n;bug ``Send a bug report.`` \n;suggest ``Send a suggestion.`` \n;feedback ``Send a feedback.``")
+        .addField("**__Public commands:__**",";help ``Explains the commands, and how to use them.`` \n;whois ``Someone's Discord Info.`` \n;inforole ``Information about a role.`` \n;cmds ``Lists all commands you're able to use.`` \n;avatar ``Display your avatar.`` \n;report ``Report someone.`` \n;bug ``Send a bug report.`` \n;suggest ``Send a suggestion.`` \n;feedback ``Send a feedback.`` \n;tycoon ``Send a link to play Space Tycoon.`` \n;obby ``Send a link to play Kohl's Admin Obby.`` \n;group ``Send a link to to join our group.``")
         .addField("**__HR Commands:__**",";announce ``Announces a message without a ping.`` \n;hannounce ``Announces a message with @here ping.`` \n;pingannounce ``Announces a message with @everyone ping.`` \n;activitycheck ``Create an activity check, HRs know how to use this command.`` \n;setstatus ``Changes the status of the bot.`` \n;qotd ``Create an QOTD (question of the day), HRs know how to use this command.``")
         .addField("**__Owners Commands:__**",";offline ``Makes the bot go offline.`` \n;online ``Makes the bot come back up online.`` \n;lockdown ``Locks a channel for non-staff members.`` \n;unlockdown ``Unlock a channel.`` \n;countbans ``Counts how many bans there are in the server.`` \n;setname ``Changes the name of the bot.`` \n;setavatar ``Changes the avatar of the bot.`` \n;reset avatar/name/status ``Reset the avatar/name/status of the bot.``")
     message.channel.send(cmdslist)
@@ -556,6 +556,41 @@ client.on('message', message =>{
         .setTitle(":white_check_mark: Status reset!")
         .setColor(embedcolor)
         client.user.setActivity("Mention me | ;cmds", {type: "PLAYING"})
+        message.channel.send(success)
+    }
+})
+
+client.on('message', message =>{
+    if(message.content === prefix + "tycoon"){
+        if(!message.member.roles.some(r=>["Verified","Bot Developer"].includes(r.name)) ) return
+        let success = new Discord.RichEmbed()
+        .setTitle(":space_invader: Want to play Space Tycoon? Click here!")
+        .setColor(embedcolor)
+        .setURL("https://www.roblox.com/games/2729188904/Space-Tycoon#game-instances")
+        .setImage("https://images-ext-1.discordapp.net/external/A6ZDGZCJK3jFDMumUV8w0NVSTmIy3GtnEuhscZX5cCk/https/t3.rbxcdn.com/75177a02bcffae0509896cb5352bdcf9")
+        message.channel.send(success)
+    }
+})
+
+client.on('message', message =>{
+    if(message.content === prefix + "obby"){
+        if(!message.member.roles.some(r=>["Verified","Bot Developer"].includes(r.name)) ) return
+        let success = new Discord.RichEmbed()
+        .setTitle(":space_invader: Want to play Kohl's Admin Obby? Click here!")
+        .setColor(embedcolor)
+        .setURL("https://www.roblox.com/games/3666606995/Kohls-Admin-Obby")
+        .setImage("https://t7.rbxcdn.com/4f2ca94b08878cdd98426f2060c4ef97")
+        message.channel.send(success)
+    }
+})
+
+client.on('message', message =>{
+    if(message.content === prefix + "group"){
+        if(!message.member.roles.some(r=>["Verified","Bot Developer"].includes(r.name)) ) return
+        let success = new Discord.RichEmbed()
+        .setTitle(":space_invader: Want to join our group? Click here!")
+        .setColor(embedcolor)
+        .setURL("https://www.roblox.com/groups/4495490/SpaceTycn#!/about")
         message.channel.send(success)
     }
 })
