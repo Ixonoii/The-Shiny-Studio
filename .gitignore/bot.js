@@ -194,7 +194,7 @@ client.on('message', function (message) {
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
         .setColor(embedcolor)
-        .setTitle("QOTD: " + question)
+        .setTitle("QOTD: " + question + " Asnwer in <#651743020294602760>!")
         let announcechannel = message.guild.channels.find(c => c.name === "aotd")
         if(!announcechannel) return message.channel.send(errormessage2)
         announcechannel.send(embed)
