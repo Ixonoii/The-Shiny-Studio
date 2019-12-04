@@ -175,6 +175,36 @@ client.on('message', function (message) {
     }
 })
 
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "qotd"){
+        if(!message.member.roles.some(r=>["ℹ️"].includes(r.name)) ) return
+        let errormessage1 = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter a question.")
+        .setColor(embedcolor)
+        let successmessage = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: QOTD sent!")
+        .setColor(embedcolor)
+        let errormessage2 = new Discord.RichEmbed()
+        .setTitle(":x: I can't send your QOTD. I may not have the necessary permission, or the ``aotd`` channel does not exist on this server.")
+        .setColor(embedcolor)
+        if (!args[1]) return message.channel.send(errormessage1)
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setColor(embedcolor)
+        .setTitle("QOTD: " + question)
+        let announcechannel = message.guild.channels.find(c => c.name === "aotd")
+        if(!announcechannel) return message.channel.send(errormessage2)
+        announcechannel.send(embed)
+        announcechannel.send('@here')
+        .then((m) => m.delete());
+    message.channel.send(successmessage)
+    message.delete();
+    }
+})
+
 client.on('message', function(message){
     if(message.content === prefix + "countbans"){
         if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
