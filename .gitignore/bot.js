@@ -16,6 +16,7 @@ client.login(process.env.BOT_TOKEN)
 
 client.on('message', function(message){
     if(message.content === "<@650067878292357170>"){
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         let informationembed = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setTitle("Hello " + message.author.username + ". I'm Space Assistant, the official bot of Space Studios. Need help? Use the " + prefix + "cmds command!")
@@ -30,6 +31,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "server"){
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         let serverinformation = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setTitle("Here is some information about the server " + message.guild.name)
@@ -45,6 +47,7 @@ client.on('message', function (message) {
 
 client.on('message', function(message){
     if(message.content === prefix + "avatar"){
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         var pong_enbed = new Discord.RichEmbed()
         .setTitle("Here is your avatar, " + message.author.username + ". The image does not load correctly? Click here!")
         .setColor(embedcolor)
@@ -59,7 +62,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "pingannounce"){
-        if(!message.member.roles.some(r=>["ℹ️"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
@@ -90,7 +93,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "hannounce"){
-        if(!message.member.roles.some(r=>["ℹ️"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
@@ -121,7 +124,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "announce"){
-        if(!message.member.roles.some(r=>["ℹ️"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
@@ -150,7 +153,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "activitycheck"){
-        if(!message.member.roles.some(r=>["ℹ️"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a question.")
         .setColor(embedcolor)
@@ -180,7 +183,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "qotd"){
-        if(!message.member.roles.some(r=>["ℹ️"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a question.")
         .setColor(embedcolor)
@@ -194,7 +197,7 @@ client.on('message', function (message) {
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
         .setColor(embedcolor)
-        .setTitle("QOTD: " + question + " Asnwer in <#651743020294602760>!")
+        .setTitle("QOTD: " + question + " Answer in #aotd!")
         let announcechannel = message.guild.channels.find(c => c.name === "aotd")
         if(!announcechannel) return message.channel.send(errormessage2)
         announcechannel.send(embed)
@@ -207,7 +210,7 @@ client.on('message', function (message) {
 
 client.on('message', function(message){
     if(message.content === prefix + "countbans"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         message.guild.fetchBans()
         .then(bans => message.channel.send(`**:white_check_mark: ${bans.size} bans found.**`))
     }
@@ -259,7 +262,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "setstatus"){
-        if(!message.member.roles.some(r=>["ℹ️"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the new status.")
         .setColor(embedcolor)
@@ -278,7 +281,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "offline"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now offline!")
         .setColor(embedcolor)
@@ -292,7 +295,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "online"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now online!")
         .setColor(embedcolor)
@@ -306,7 +309,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "lockdown"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: This channel has been locked.")
         .setColor(embedcolor)
@@ -323,7 +326,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "unlockdown"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: This channel has been unlocked.")
         .setColor(embedcolor)
@@ -340,7 +343,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "setavatar"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the link of the new avatar.")
         .setColor(embedcolor)
@@ -360,7 +363,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "setname"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the new name.")
         .setColor(embedcolor)
@@ -524,7 +527,7 @@ client.on('message', function (message) {
 
 client.on('message', message =>{
     if(message.content === prefix + "reset name"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Name reset!")
         .setColor(embedcolor)
@@ -536,7 +539,7 @@ client.on('message', message =>{
 
 client.on('message', message =>{
     if(message.content === prefix + "reset avatar"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Avatar reset!")
         .setColor(embedcolor)
@@ -548,7 +551,7 @@ client.on('message', message =>{
 
 client.on('message', message =>{
     if(message.content === prefix + "reset status"){
-        if(!message.member.roles.some(r=>["👑 Creator"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Status reset!")
         .setColor(embedcolor)
