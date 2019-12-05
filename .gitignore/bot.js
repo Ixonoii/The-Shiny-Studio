@@ -693,6 +693,7 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         .setDescription("```" + question + "```")
         .setFooter("Suggested by " + message.author.tag + " (ID: " + message.author.id + ")")
+        message.delete()
         message.channel.send(success)
         client.channels.get("651471265256833044").send(ReportInformationCard);
         let setavatarlog = new Discord.RichEmbed()
