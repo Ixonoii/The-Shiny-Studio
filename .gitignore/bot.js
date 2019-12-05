@@ -713,7 +713,7 @@ client.on('message', message =>{
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Name reset!")
         .setColor(embedcolor)
-        .setFooter("Please noteThe name of the bot may take a few minutes to update due to the Discord limitation.")
+        .setFooter("Please note: The name of the bot may take a few minutes to update due to the Discord limitation.")
         client.user.setUsername("Space Assistant")
         message.channel.send(success)
     }
