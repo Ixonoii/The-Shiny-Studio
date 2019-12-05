@@ -23,6 +23,13 @@ client.on('message', function(message){
         .setColor(embedcolor)
         .setThumbnail(message.guild.iconURL)
         message.channel.send(informationembed)
+        let mentionlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Mention.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(mentionlog);
     }
 })
 
@@ -42,6 +49,13 @@ client.on('message', function (message) {
         .addField("Server created at:", message.guild.createdAt)
         .addField("Members:", message.guild.memberCount + " members")
         message.channel.send(serverinformation)
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Server.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(serverlog);
 }
 })
 
@@ -54,6 +68,13 @@ client.on('message', function(message){
         .setImage(message.author.displayAvatarURL)
         .setURL(message.author.displayAvatarURL)
         message.channel.send(pong_enbed)
+        let avatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Avatar.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(avatarlog);
     }
 })
 
@@ -85,6 +106,14 @@ client.on('message', function (message) {
         .then((m) => m.delete());
     message.channel.send(successmessage)
     message.delete();
+    let pingannouncelog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(embedcolor)
+    .addField("Command:","Ping announce.")
+    .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+    .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+    .addField("Argument:", question)
+    client.channels.get("652213287366426646").send(pingannouncelog);
     }
 })
 
@@ -116,6 +145,14 @@ client.on('message', function (message) {
         .then((m) => m.delete());
     message.channel.send(successmessage)
     message.delete();
+    let hannouncelog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(embedcolor)
+    .addField("Command:","Here announce.")
+    .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+    .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+    .addField("Argument:", question)
+    client.channels.get("652213287366426646").send(hannouncelog);
     }
 })
 
@@ -145,6 +182,14 @@ client.on('message', function (message) {
         announcechannel.send(embed);
     message.channel.send(successmessage)
     message.delete();
+    let announcelog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(embedcolor)
+    .addField("Command:","Announce.")
+    .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+    .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+    .addField("Argument:", question)
+    client.channels.get("652213287366426646").send(announcelog);
     }
 })
 
@@ -175,6 +220,14 @@ client.on('message', function (message) {
         .then((m) => m.delete());
     message.channel.send(successmessage)
     message.delete();
+    let activitychecklog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(embedcolor)
+    .addField("Command:","Activity check.")
+    .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+    .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+    .addField("Argument:", question)
+    client.channels.get("652213287366426646").send(activitychecklog);
     }
 })
 
@@ -205,6 +258,14 @@ client.on('message', function (message) {
         .then((m) => m.delete());
     message.channel.send(successmessage)
     message.delete();
+    let qotdlog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(embedcolor)
+    .addField("Command:","QOTD.")
+    .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+    .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+    .addField("Argument:", question)
+    client.channels.get("652213287366426646").send(qotdlog);
     }
 })
 
@@ -213,6 +274,13 @@ client.on('message', function(message){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
         message.guild.fetchBans()
         .then(bans => message.channel.send(`**:white_check_mark: ${bans.size} bans found.**`))
+        let countbanslog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Count bans.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(countbanslog);
     }
 })
 
@@ -233,6 +301,14 @@ client.on('message', function (message) {
         .then((m) => m.edit("**" + count + " messages deleted.**"))
         .then((m) => m.edit("**" + count + " messages deleted.**"))
         .then((m) => m.delete())
+        let purgelog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Purge.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", count)
+        client.channels.get("652213287366426646").send(purgelog);
     }
 })
 
@@ -255,6 +331,13 @@ client.on('message', function (message) {
         .addField("Nickname :", memberMEN.nickname)
         .addField("Joined at:", memberMEN.joinedAt)
     message.channel.send(whois)
+    let whoislog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(embedcolor)
+    .addField("Command:","Whois.")
+    .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+    .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+    client.channels.get("652213287366426646").send(whoislog);
 }})
 
 client.on('message', function (message) {
@@ -273,6 +356,14 @@ client.on('message', function (message) {
         if(!newstatus) return message.channel.send(errormessage1)
         client.user.setActivity(newstatus)
         message.channel.send(success)
+        let setstatuslog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Set status.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", newstatus)
+        client.channels.get("652213287366426646").send(setstatuslog);
 }
 })
 
@@ -287,6 +378,13 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         client.user.setPresence({ game: { name: '' }, status: "invisible" })
         message.channel.send(success)
+        let offlinelog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Offline.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(offlinelog);
 }
 })
 
@@ -301,6 +399,13 @@ client.on('message', function (message) {
         .setColor(embedcolor)
         client.user.setPresence({ game: { name: 'Mention me | ;cmds' }, status: "online" })
         message.channel.send(success)
+        let onlinelog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Online.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(onlinelog);
 }
 })
 
@@ -318,6 +423,13 @@ client.on('message', function (message) {
         })
         message.channel.send(success)
         message.delete()
+        let onlinelog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Lockdown.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(onlinelog);
 }
 })
 
@@ -335,6 +447,13 @@ client.on('message', function (message) {
         })
         message.channel.send(success)
         message.delete()
+        let onlinelog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Unlockdown.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(onlinelog);
 }
 })
 
@@ -355,6 +474,14 @@ client.on('message', function (message) {
         if(!newavatarlink) return message.channel.send(errormessage1)
         client.user.setAvatar(newavatarlink)
         message.channel.send(success)
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Set avatar.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", newavatarlink)
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
@@ -375,6 +502,14 @@ client.on('message', function (message) {
         if(!newavatarlink) return message.channel.send(errormessage1)
         client.user.setUsername(newavatarlink)
         message.channel.send(success)
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Set name.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", newavatarlink)
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
@@ -412,6 +547,14 @@ client.on('message', function (message) {
     cChannel.send(embed);
     message.delete();
     message.channel.send(success)
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Report.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", question)
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
@@ -435,6 +578,13 @@ client.on('message', function (message) {
         .addField("Color:", rolemention.color)
         .addField("HexColor:", rolemention.hexColor)
     message.channel.send(inforole)
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Info role.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
@@ -450,6 +600,14 @@ client.on('message', function (message) {
         .addField("**__HR Commands:__**",";announce ``Announces a message without a ping.`` \n;hannounce ``Announces a message with @here ping.`` \n;pingannounce ``Announces a message with @everyone ping.`` \n;activitycheck ``Create an activity check, HRs know how to use this command.`` \n;setstatus ``Changes the status of the bot.`` \n;qotd ``Create an QOTD (question of the day), HRs know how to use this command.``")
         .addField("**__Owners Commands:__**",";offline ``Makes the bot go offline.`` \n;online ``Makes the bot come back up online.`` \n;lockdown ``Locks a channel for non-staff members.`` \n;unlockdown ``Unlock a channel.`` \n;countbans ``Counts how many bans there are in the server.`` \n;setname ``Changes the name of the bot.`` \n;setavatar ``Changes the avatar of the bot.`` \n;reset avatar/name/status ``Reset the avatar/name/status of the bot.``")
     message.channel.send(cmdslist)
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Cmds.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", newavatarlink)
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
@@ -474,6 +632,14 @@ client.on('message', function (message) {
         .setFooter("Bug report sent by " + message.author.tag + " (ID: " + message.author.id + ")")
         message.channel.send(success)
         client.channels.get("651471216573415454").send(ReportInformationCard);
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Bug.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", question)
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
@@ -498,6 +664,14 @@ client.on('message', function (message) {
         .setFooter("Feedback sent by " + message.author.tag + " (ID: " + message.author.id + ")")
         message.channel.send(success)
         client.channels.get("651471244864258051").send(ReportInformationCard);
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Feedback.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", question)
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
@@ -522,6 +696,14 @@ client.on('message', function (message) {
         .setFooter("Suggested by " + message.author.tag + " (ID: " + message.author.id + ")")
         message.channel.send(success)
         client.channels.get("651471265256833044").send(ReportInformationCard);
+        let setavatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Command:","Suggest.")
+        .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+        .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+        .addField("Argument:", question)
+        client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
 
