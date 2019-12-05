@@ -606,7 +606,6 @@ client.on('message', function (message) {
         .addField("Command:","Cmds.")
         .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
         .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
-        .addField("Argument:", newavatarlink)
         client.channels.get("652213287366426646").send(setavatarlog);
 }
 })
