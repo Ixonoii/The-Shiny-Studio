@@ -802,5 +802,13 @@ client.on('message', function (message) {
     message.delete();
     memberMEN.send(embed)
     message.channel.send(success)
+    let mentionlog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(embedcolor)
+    .addField("Command:","Log.")
+    .addField("User:", message.author.tag + " (ID: " + message.author.id + ")")
+    .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
+    .addField("Argument:", memberMEN + question)
+    client.channels.get("652213287366426646").send(mentionlog);
 }
 })
