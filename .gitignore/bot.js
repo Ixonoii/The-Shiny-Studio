@@ -790,7 +790,7 @@ client.on('message', function (message) {
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
         let nochannelfound = new Discord.RichEmbed()
-        .setTitle(":x: I can't send the logging due to the followind reason: The channel doesn't exist!")
+        .setTitle(":x: I can't send the logging notification due to the following reason: The channel doesn't exist!")
         .setColor(embedcolor)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Message sent!")
