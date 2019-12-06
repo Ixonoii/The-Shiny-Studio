@@ -781,7 +781,7 @@ client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
-    if (args[0].toLowerCase() === prefix + "log") {
+    if (args[0].toLowerCase() === prefix + "warn") {
         let notowner = new Discord.RichEmbed()
         .setTitle(":x: You're not Ixonoii.")
         .setColor(embedcolor)
@@ -789,10 +789,10 @@ client.on("message", function (message) {
         .setTitle(":x: You have to mention a member.")
         .setColor(embedcolor)
         let nolog = new Discord.RichEmbed()
-        .setTitle(":x: You have to enter a log.")
+        .setTitle(":x: You have to enter a reason.")
         .setColor(embedcolor)
         let success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Log successfully entered!")
+        .setTitle(":white_check_mark: Member successfully warned!")
         .setColor(embedcolor)
         if (!message.author.id === "434061967951659019") return message.channel.send(notowner)
         let member = message.mentions.members.first()
@@ -811,7 +811,7 @@ client.on("message", function (message) {
         message.channel.send(success)
     }
  
-    if (args[0].toLowerCase() === prefix + "logs") {
+    if (args[0].toLowerCase() === prefix + "warnings") {
         let notowner = new Discord.RichEmbed()
         .setTitle(":x: You're not Ixonoii.")
         .setColor(embedcolor)
@@ -822,9 +822,8 @@ client.on("message", function (message) {
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
         let embed = new Discord.RichEmbed()
-            .setAuthor(member.user.username, member.user.displayAvatarURL)
-            .addField('Logs entered:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No log found!"))
-            .setTimestamp()
+            .addField('Warnings:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No warning found!"))
+            .setColor(embedcolor)
         message.channel.send(embed)
     }
 })
