@@ -776,3 +776,31 @@ client.on('message', message =>{
         message.channel.send(success)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "log"){
+        if(!message.member.roles.some(r=>["ℹℹ️","Bot Developer"].includes(r.name)) ) return
+        let nomention = new Discord.RichEmbed()
+        .setTitle(":x: You have to mention someone.")
+        .setColor(embedcolor)
+        let noreason = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter a message.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Message sent!")
+        .setColor(embedcolor)
+        let memberMEN = message.mentions.members.first()
+        let question = args.slice(2).join(" ")
+        if(!memberMEN) return message.channel.send(nomention)
+        if(!question) return message.channel.send(noreason)
+        let embed = new Discord.RichEmbed()
+        .setTitle("Logging \n \n" + question + " \n \n ~ " + message.author.username)
+        .setColor(embedcolor)
+    message.delete();
+    memberMEN.send(embed)
+    message.channel.send(success)
+}
+})
