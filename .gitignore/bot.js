@@ -803,7 +803,7 @@ client.on('message', function (message) {
         .setTitle("Logging \n \n" + question + " \n \n ~ " + message.author.username)
         .setColor(embedcolor)
         let lognotif = new Discord.RichEmbed()
-        .setTitle("Logging sent to the staff member " + memberMEN + ": \n \n" + question + " \n \n Send by ~ " + message.author.username)
+        .setTitle("Logging sent to the staff member " + memberMEN.username + ": \n \n" + question + " \n \n Send by ~ " + message.author.username)
         .setColor(embedcolor)
         let loglogs = message.guild.channels.find(c => c.name === "logging")
         if(!loglogs) return message.channel.send(nochannelfound)
