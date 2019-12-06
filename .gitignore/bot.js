@@ -782,7 +782,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "log"){
-        if(!message.member.roles.some(r=>["ℹℹ️","Bot Developer"].includes(r.name)) ) return
+        if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
         let nomention = new Discord.RichEmbed()
         .setTitle(":x: You have to mention someone.")
         .setColor(embedcolor)
