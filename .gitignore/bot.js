@@ -776,3 +776,55 @@ client.on('message', message =>{
         message.channel.send(success)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "log") {
+        let notowner = new Discord.RichEmbed()
+        .setTitle(":x: You're not Ixonoii.")
+        .setColor(embedcolor)
+        let nomention = new Discord.RichEmbed()
+        .setTitle(":x: You have to mention a member.")
+        .setColor(embedcolor)
+        let nolog = new Discord.RichEmbed()
+        .setTitle(":x: You have to enter a log.")
+        .setColor(embedcolor)
+        let success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Log successfully entered!")
+        .setColor(embedcolor)
+        if (!message.author.id === "434061967951659019") return message.channel.send(notowner)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        let reason = args.slice(2).join(' ')
+        if (!reason) return message.channel.send(nolog)
+        if (!warns[member.id]) {
+            warns[member.id] = []
+        }
+        warns[member.id].unshift({
+            reason: reason,
+            date: Date.now(),
+            mod: message.author.id
+        })
+        fs.writeFileSync('./warns.json', JSON.stringify(warns))
+        message.channel.send(success)
+    }
+ 
+    if (args[0].toLowerCase() === prefix + "logs") {
+        let notowner = new Discord.RichEmbed()
+        .setTitle(":x: You're not Ixonoii.")
+        .setColor(embedcolor)
+        let nomention = new Discord.RichEmbed()
+        .setTitle(":x: You have to mention a member.")
+        .setColor(embedcolor)
+        if (!message.author.id === "434061967951659019") return message.channel.send(notowner)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        let embed = new Discord.RichEmbed()
+            .setAuthor(member.user.username, member.user.displayAvatarURL)
+            .addField('Logs entered:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No log found!"))
+            .setTimestamp()
+        message.channel.send(embed)
+    }
+})
