@@ -803,6 +803,7 @@ client.on('message', function (message) {
         .setTitle("Logging \n \n" + question + " \n \n ~ " + message.author.username)
         .setColor(embedcolor)
         let lognotif = new Discord.RichEmbed()
+        .setAuthor(memberMEN.nickname)
         .setTitle("Logging Notification: \n \n" + question)
         .setFooter("The user " + message.author.username + " has send this logging to the user " + memberMEN + ".")
         .setColor(embedcolor)
