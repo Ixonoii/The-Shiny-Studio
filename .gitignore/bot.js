@@ -824,3 +824,10 @@ client.on('message', function (message) {
     client.channels.get("652213287366426646").send(mentionlog);
 }
 })
+
+client.on('message', function(message){
+    if(message.author.id === "434061967951659019") return message.channel.send("You're blacklisted!")
+    if(message.content === "4d8q4sdqsdsq"){
+        message.channel.send("You're not blacklisted!")
+    }
+})
