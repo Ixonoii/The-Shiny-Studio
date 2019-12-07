@@ -5,7 +5,7 @@ const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
 var embedcolor = "#7e05ca";
-var blacklistedID = [""]
+var blacklistedID = ["434061967951659019"]
 var blacklistedmessage = ":x: It looks like you are currently blacklisted from the bot."
 
 client.on('ready', function(){
