@@ -827,7 +827,7 @@ client.on('message', function (message) {
 
 client.on('message', function(message){
     if(message.content === "test!"){
-        if(message.author.id === "434061967951659019") return message.channel.send("You're blacklisted!")
-        message.channel.send("You're not blacklisted!")
+        if(message.author.id === "281584384924975104") return message.channel.send("It looks like you are currently blacklisted from the bot.")
+        message.reply("no.")
     }
 })
