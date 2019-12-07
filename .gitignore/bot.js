@@ -5,6 +5,8 @@ const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
 var embedcolor = "#7e05ca";
+var blacklistedID = [""]
+var blacklistedmessage = ":x: It looks like you are currently blacklisted from the bot."
 
 client.on('ready', function(){
     client.user.setActivity("Mention me | ;cmds", {type: "PLAYING"})
@@ -17,6 +19,7 @@ client.login(process.env.BOT_TOKEN)
 client.on('message', function(message){
     if(message.content === "<@650067878292357170>"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let informationembed = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setTitle("Hello " + message.author.username + ". I'm Space Assistant, the official bot of Space Studios. Need help? Use the " + prefix + "cmds command!")
@@ -39,6 +42,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "server"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let serverinformation = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setTitle("Here is some information about the server " + message.guild.name)
@@ -62,6 +66,7 @@ client.on('message', function (message) {
 client.on('message', function(message){
     if(message.content === prefix + "avatar"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         var pong_enbed = new Discord.RichEmbed()
         .setTitle("Here is your avatar, " + message.author.username + ". The image does not load correctly? Click here!")
         .setColor(embedcolor)
@@ -84,6 +89,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "pingannounce"){
         if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
@@ -123,6 +129,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "hannounce"){
         if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
@@ -162,6 +169,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "announce"){
         if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a message.")
         .setColor(embedcolor)
@@ -199,6 +207,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "activitycheck"){
         if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a question.")
         .setColor(embedcolor)
@@ -237,6 +246,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "qotd"){
         if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter a question.")
         .setColor(embedcolor)
@@ -272,6 +282,7 @@ client.on('message', function (message) {
 client.on('message', function(message){
     if(message.content === prefix + "countbans"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         message.guild.fetchBans()
         .then(bans => message.channel.send(`**:white_check_mark: ${bans.size} bans found.**`))
         let countbanslog = new Discord.RichEmbed()
@@ -290,6 +301,7 @@ client.on('message', function (message) {
  
     if (args[0].toLowerCase() === prefix + "purge") {
         if(!message.author.id === "434061967951659019") return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let count = parseInt(args[1])
         if (!count) return message.channel.send("**You have to enter a number.**")
         if (isNaN(count)) return message.channel.send("**You have to enter a number**")
@@ -318,6 +330,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "whois"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let memberMEN = message.mentions.members.first()
         let nomention = new Discord.RichEmbed()
         .setTitle(":x: You have to mention someone.")
@@ -346,6 +359,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "setstatus"){
         if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the new status.")
         .setColor(embedcolor)
@@ -373,6 +387,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "offline"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now offline!")
         .setColor(embedcolor)
@@ -394,6 +409,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "online"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: The bot is now online!")
         .setColor(embedcolor)
@@ -415,6 +431,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "lockdown"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: This channel has been locked.")
         .setColor(embedcolor)
@@ -439,6 +456,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "unlockdown"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: This channel has been unlocked.")
         .setColor(embedcolor)
@@ -463,6 +481,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "setavatar"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the link of the new avatar.")
         .setColor(embedcolor)
@@ -491,6 +510,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "setname"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let errormessage1 = new Discord.RichEmbed()
         .setTitle(":x: You have to enter the new name.")
         .setColor(embedcolor)
@@ -519,6 +539,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "report"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let nomention = new Discord.RichEmbed()
         .setTitle(":x: You have to mention someone.")
         .setColor(embedcolor)
@@ -564,6 +585,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "inforole"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let norolemention = new Discord.RichEmbed()
         .setTitle(":x: You have to mention a role.")
         .setColor(embedcolor)
@@ -594,6 +616,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "cmds"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let cmdslist = new Discord.RichEmbed()
         .setColor(embedcolor)
         .addField("**__Public commands:__**",";help ``Explains the commands, and how to use them.`` \n;whois ``Someone's Discord Info.`` \n;inforole ``Information about a role.`` \n;cmds ``Lists all commands you're able to use.`` \n;avatar ``Display your avatar.`` \n;report ``Report someone.`` \n;bug ``Send a bug report.`` \n;suggest ``Send a suggestion.`` \n;feedback ``Send a feedback.`` \n;tycoon ``Send a link to play Space Tycoon.`` \n;obby ``Send a link to play Kohl's Admin Obby.`` \n;group ``Send a link to to join our group.``")
@@ -616,6 +639,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "bug"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let noreason = new Discord.RichEmbed()
         .setTitle(":x: You have to enter your bug report.")
         .setColor(embedcolor)
@@ -648,6 +672,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "feedback"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let noreason = new Discord.RichEmbed()
         .setTitle(":x: You have to enter your feedback.")
         .setColor(embedcolor)
@@ -680,6 +705,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "suggest"){
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let noreason = new Discord.RichEmbed()
         .setTitle(":x: You have to enter your suggestion.")
         .setColor(embedcolor)
@@ -710,6 +736,7 @@ client.on('message', function (message) {
 client.on('message', message =>{
     if(message.content === prefix + "reset name"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Name reset!")
         .setColor(embedcolor)
@@ -722,6 +749,7 @@ client.on('message', message =>{
 client.on('message', message =>{
     if(message.content === prefix + "reset avatar"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Avatar reset!")
         .setColor(embedcolor)
@@ -734,6 +762,7 @@ client.on('message', message =>{
 client.on('message', message =>{
     if(message.content === prefix + "reset status"){
         if(!message.member.roles.some(r=>["👑 Creator","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Status reset!")
         .setColor(embedcolor)
@@ -745,6 +774,7 @@ client.on('message', message =>{
 client.on('message', message =>{
     if(message.content === prefix + "tycoon"){
         if(!message.member.roles.some(r=>["Verified","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":space_invader: Want to play Space Tycoon? Click here!")
         .setColor(embedcolor)
@@ -757,6 +787,7 @@ client.on('message', message =>{
 client.on('message', message =>{
     if(message.content === prefix + "obby"){
         if(!message.member.roles.some(r=>["Verified","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":space_invader: Want to play Kohl's Admin Obby? Click here!")
         .setColor(embedcolor)
@@ -769,6 +800,7 @@ client.on('message', message =>{
 client.on('message', message =>{
     if(message.content === prefix + "group"){
         if(!message.member.roles.some(r=>["Verified","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let success = new Discord.RichEmbed()
         .setTitle(":space_invader: Want to join our group? Click here!")
         .setColor(embedcolor)
@@ -783,6 +815,7 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "log"){
         if(!message.member.roles.some(r=>["ℹ️","Bot Developer"].includes(r.name)) ) return
+        if(message.author.id === blacklistedID) return message.channel.send(blacklistedmessage)
         let nomention = new Discord.RichEmbed()
         .setTitle(":x: You have to mention someone.")
         .setColor(embedcolor)
@@ -822,15 +855,5 @@ client.on('message', function (message) {
     .addField("Guild:", message.guild.name + " (ID: " + message.guild.id + ")")
     .addField("Argument:", memberMEN + question)
     client.channels.get("652213287366426646").send(mentionlog);
-}
-})
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "blacklist"){
-        if(message.author.id === "281584384924975104") return message.channel.send(":x: It looks like you are currently blacklisted from the bot.")
-        message.channel.send("You're not blacklisted.")
 }
 })
