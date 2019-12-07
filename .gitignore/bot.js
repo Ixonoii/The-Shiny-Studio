@@ -825,9 +825,12 @@ client.on('message', function (message) {
 }
 })
 
-client.on('message', function(message){
-    if(message.content === "test!"){
-        if(message.author.id === "281584384924975104") return message.channel.send("It looks like you are currently blacklisted from the bot.")
-        message.reply("no.")
-    }
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "blacklist"){
+        if(message.author.id === "281584384924975104") return message.channel.send(":x: It looks like you are currently blacklisted from the bot.")
+        message.channel.send("You're not blacklisted.")
+}
 })
