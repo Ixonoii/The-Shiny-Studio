@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client;
 const fs = require('fs')
 var couleur = "#00f0ff";
+var BOTversion = "BETA"
 
 client.login(process.env.BOT_TOKEN)
 
@@ -17,5 +18,21 @@ client.on('message', function(message){
         .setTitle("Mon préfixe est ; sur tous les serveurs.")
         .setColor(couleur)
         message.channel.send(prefixe)
+    }
+})
+
+client.login(process.env.BOT_TOKEN)
+
+client.on('message', message =>{
+    if(message.content === prefix + "info"){
+        let embed = new Discord.RichEmbed()
+        .setTitle("Informations à propos du bot :")
+        .setColor(couleur)
+        .addField("Créateur :","Ixonoii#3216")
+        .addField("Nombres de commandes disponibles :","Bientôt disponible")
+        .addField("Serveurs :", client.guilds)
+        .addField("Membres :", client.users)
+        .addField("Version :", BOTversion)
+        message.channel.send(embed)
     }
 })
