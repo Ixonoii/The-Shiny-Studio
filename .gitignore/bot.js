@@ -30,8 +30,8 @@ client.on('message', message =>{
         .setColor(couleur)
         .addField("Créateur :","Ixonoii#3216")
         .addField("Nombres de commandes disponibles :","Bientôt disponible")
-        .addField("Serveurs :", client.guilds)
-        .addField("Membres :", client.users)
+        .addField("Serveurs :", client.guilds.get(Number))
+        .addField("Membres :", client.users.get(Number))
         .addField("Version :", BOTversion)
         message.channel.send(embed)
     }
