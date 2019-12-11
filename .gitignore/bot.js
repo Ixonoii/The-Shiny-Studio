@@ -21,8 +21,6 @@ client.on('message', function(message){
     }
 })
 
-client.login(process.env.BOT_TOKEN)
-
 client.on('message', message =>{
     if(message.content === prefix + "info"){
         let embed = new Discord.RichEmbed()
