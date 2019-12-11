@@ -18,7 +18,7 @@ client.login(process.env.BOT_TOKEN)
                                                                  // BOT MENTION //
 
 client.on('message', function(message){
-    if(message.content === "<@648551591623917578>"){
+    if(message.content === "<@654374834888769556>"){
         if(!message.author.id === "434061967951659019") return message.channel.send("Vous n'êtes pas mon créateur.")
         let mention = new Discord.RichEmbed()
         .setAuthor(message.author.displayAvatarURL, message.author.username)
