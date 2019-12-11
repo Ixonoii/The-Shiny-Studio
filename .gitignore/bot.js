@@ -20,11 +20,11 @@ client.login(process.env.BOT_TOKEN)
 client.on('message', function(message){
     if(message.content === "<@648551591623917578>"){
         if(!message.author.id === "434061967951659019") return message.channel.send("Vous n'êtes pas mon créateur.")
-        let réponse = new Discord.RichEmbed()
+        let mention = new Discord.RichEmbed()
         .setAuthor(message.author.displayAvatarURL, message.author.username)
         .setTitle("Besoin d'aide ?")
         .setColor(couleur)
         .setDescription("Test!")
-        message.channel.send(réponse)
+        message.channel.send(mention)
     }
 })
