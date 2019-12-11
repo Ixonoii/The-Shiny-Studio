@@ -12,7 +12,8 @@ client.on('ready', function(){
 })
 
 client.on('message', function(message){
-    if(message.content === "test"){
-        message.channel.send("TEST.")
+    if(message.content === "<@654374834888769556>"){
+        if(!message.author.id === "434061967951659019") return message.channel.send("Tu n'est pas mon créateur.")
+        message.channel.send("Ceci est un test.")
     }
 })
