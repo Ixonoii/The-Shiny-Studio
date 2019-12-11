@@ -13,7 +13,9 @@ client.on('ready', function(){
 
 client.on('message', function(message){
     if(message.content === "<@654374834888769556>"){
-        if(!message.author.id === "434061967951659019") return message.channel.send("Tu n'est pas mon créateur.")
-        message.channel.send("Ceci est un test.")
+        let prefixe = new Discord.RichEmbed()
+        .setTitle("Mon préfixe est ; sur tous les serveurs.")
+        .setColor(couleur)
+        message.channel.send(prefixe)
     }
 })
