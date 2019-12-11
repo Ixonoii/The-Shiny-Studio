@@ -13,10 +13,6 @@ client.on('ready', function(){
 
 client.on('message', function(message){
     if(message.content === "test"){
-        let mention = new Discord.RichEmbed()
-        .setAuthor(message.author.displayAvatarURL, message.author.username)
-        .setTitle(":white_check_mark")
-        .setColor(couleur)
-        message.channel.send(mention)
+        message.channel.send("TEST.")
     }
 })
