@@ -25,5 +25,6 @@ client.on('message', function(message){
         .setTitle("Besoin d'aide ?")
         .setColor(couleur)
         .setDescription("Test!")
+        message.channel.send(réponse)
     }
 })
