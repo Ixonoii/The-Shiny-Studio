@@ -116,7 +116,7 @@ client.on('message', function (message) {
     let whoislog = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.displayAvatarURL)
     .setColor(couleur)
-    .addField("**__Commande :__**","Whois.")
+    .addField("**__Commande :__**",";info")
     .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
     .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
     .addField("**__Utilisateur mentionné :__**", memberMEN + " | " + memberMEN.id)
