@@ -81,7 +81,7 @@ client.on('message', function(message){
         .setColor(couleur)
         .setImage(message.author.displayAvatarURL)
         .setURL(message.author.displayAvatarURL)
-        .setFooter("Note : L'image ne se charge pas correctement? Cliquez sur le lien situé en haut de ce message.")
+        .setFooter("Note : L'image ne s'affiche pas correctement? Cliquez sur le lien situé en haut de ce message.")
         message.channel.send(pong_enbed)
         let avatarlog = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
