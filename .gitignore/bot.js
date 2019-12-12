@@ -48,7 +48,7 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "server"){
+    if (args[0].toLocaleLowerCase()=== prefix + "serveur"){
         let serverinformation = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setTitle("Informations sur le serveur " + message.guild.name)
