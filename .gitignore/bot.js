@@ -17,7 +17,7 @@ client.on('message', message =>{
         let embed = new Discord.RichEmbed()
         .setTitle("Voici les différentes aides disponibles :")
         .setColor(couleur)
-        .setDescription(";aide commandes ``Affiche toutes les commandes disponibles.`` \n ;aide permissions ``Affiche des informations sur les rôles.``")
+        .setDescription(";aide commandes ``Affiche toutes les commandes disponibles.`` \n ;aide autorisations ``Affiche des informations sur les rôles.``")
         message.channel.send(embed)
     }
 })
@@ -32,10 +32,11 @@ client.on('message', message =>{
 })
 
 client.on('message', message =>{
-    if(message.content === prefix + "aide permissions"){
+    if(message.content === prefix + "aide autorisations"){
         let embed = new Discord.RichEmbed()
-        .setTitle("Cette commande n'est pas disponible pour le moment.")
+        .setTitle("Informations sur les autorisations :")
         .setColor(couleur)
+        .setDescription("Certaines commandes de bot nécessitent des autorisations spéciales pour fonctionner. C'est pourquoi un membre devra avoir un de ces rôles pour utiliser une commande.")
         message.channel.send(embed)
     }
 })
