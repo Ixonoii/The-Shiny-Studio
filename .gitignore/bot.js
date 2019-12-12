@@ -17,7 +17,7 @@ client.on('message', message =>{
         let embed = new Discord.RichEmbed()
         .setTitle("Voici les différentes aides disponibles :")
         .setColor(couleur)
-        .setDescription(";aide commandes ``Affiche toutes les commandes disponibles.`` \n ;aide configuration ``Affiche des informations sur les rôles.``")
+        .setDescription(";aide commandes ``Affiche toutes les commandes disponibles.`` \n ;aide permissions ``Affiche des informations sur les rôles.``")
         message.channel.send(embed)
     }
 })
@@ -32,7 +32,7 @@ client.on('message', message =>{
 })
 
 client.on('message', message =>{
-    if(message.content === prefix + "aide configuration"){
+    if(message.content === prefix + "aide permissions"){
         let embed = new Discord.RichEmbed()
         .setTitle("Cette commande n'est pas disponible pour le moment.")
         .setColor(couleur)
