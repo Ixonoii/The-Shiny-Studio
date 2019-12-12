@@ -41,6 +41,12 @@ client.on('message', message =>{
         .addField("**__Administrateur :__**","Une personne possédant ce rôle pourra utiliser des commandes de gestion comme ;description, ;nouveaurole, ;bloque, ;débloque, et plus.")
         .addField("**__Super Administrateur :__**","Une personne possédant ce rôle pourra utiliser toutes les commandes disponibles.")
         message.channel.send(embed)
+        let serverlog = new Discord.RichEmbed()
+        .setColor(couleur)
+        .addField("**__Commande:__**",";aide autorisations")
+        .addField("**__Utilisateur:__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur:__**", message.guild.name + " | " + message.guild.id)
+        client.channels.get("654757180037267516").send(serverlog);
     }
 })
 
