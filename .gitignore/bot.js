@@ -94,3 +94,31 @@ client.on('message', function(message){
         client.channels.get("654757180037267516").send(avatarlog);
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "info"){
+        let memberMEN = message.mentions.members.first()
+        let nomention = new Discord.RichEmbed()
+        .setTitle("Le format de cette commande est ;info @utilisateur.")
+        .setColor(couleur)
+        if(!memberMEN) return message.channel.send(nomention)
+        let whois = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Nom :__**", memberMEN)
+        .addField("**__ID :__**", memberMEN.id)
+        .addField("**__Surnom :__**", memberMEN.nickname)
+        .addField("**__Date d'arrivée :__**", memberMEN.joinedAt)
+    message.channel.send(whois)
+    let whoislog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(couleur)
+    .addField("**__Commande :_**","Whois.")
+    .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+    .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+    .addField("**__Utilisateur mentionné :__**", memberMEN + " | " + memberMEN.id)
+    client.channels.get("654757180037267516").send(whoislog);
+}})
