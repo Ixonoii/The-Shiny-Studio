@@ -89,6 +89,6 @@ client.on('message', function(message){
         .addField("**__Commande :__**",";avatar")
         .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
         .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
-        client.channels.get("652213287366426646").send(avatarlog);
+        client.channels.get("654757180037267516").send(avatarlog);
     }
 })
