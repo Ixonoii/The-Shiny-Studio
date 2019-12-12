@@ -50,7 +50,6 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "serveur"){
         let serverinformation = new Discord.RichEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setTitle("Informations sur le serveur " + message.guild.name)
         .setColor(couleur)
         .addField("**Nom :**", message.guild.name)
