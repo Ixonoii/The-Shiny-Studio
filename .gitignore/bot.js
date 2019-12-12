@@ -43,3 +43,29 @@ client.on('message', message =>{
         message.channel.send(embed)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "server"){
+        let serverinformation = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setTitle("Informations sur le serveur " + message.guild.name)
+        .setColor(couleur)
+        .addField("**Nom :**", message.guild.name)
+        .addField("**ID :**", message.guild.id)
+        .addField("**Propriétaire :**", message.guild.owner)
+        .addField("**Date de création du serveur :**", message.guild.createdAt)
+        .addField("**Nombre de membres :**", message.guild.memberCount + " membres")
+        .addField("**Icône du serveur :**", message.guild.iconURL)
+        message.channel.send(serverinformation)
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("Commande:",";serveur")
+        .addField("Utilisateur:", message.author.tag + " | " + message.author.id)
+        .addField("Serveur:", message.guild.name + " | " + message.guild.id)
+        client.channels.get("654757180037267516").send(serverlog);
+}
+})
