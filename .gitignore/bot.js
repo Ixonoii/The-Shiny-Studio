@@ -73,3 +73,22 @@ client.on('message', function (message) {
         client.channels.get("654757180037267516").send(serverlog);
 }
 })
+
+client.on('message', function(message){
+    if(message.content === prefix + "avatar"){
+        var pong_enbed = new Discord.RichEmbed()
+        .setTitle("Voici votre avatar, " + message.author.username + ".")
+        .setColor(embedcolor)
+        .setImage(message.author.displayAvatarURL)
+        .setURL(message.author.displayAvatarURL)
+        .setFooter("Note : L'image ne se charge pas correctement? Cliquez sur le lien situé en haut de ce message.")
+        message.channel.send(pong_enbed)
+        let avatarlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(embedcolor)
+        .addField("**__Commande :__**",";avatar")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        client.channels.get("652213287366426646").send(avatarlog);
+    }
+})
