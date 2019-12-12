@@ -60,7 +60,6 @@ client.on('message', function (message) {
         .addField("**__Icône du serveur :__**", message.guild.iconURL)
         message.channel.send(serverinformation)
         let serverlog = new Discord.RichEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setColor(couleur)
         .addField("**__Commande:__**",";serveur")
         .addField("**__Utilisateur:__**", message.author.tag + " | " + message.author.id)
