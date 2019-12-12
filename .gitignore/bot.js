@@ -37,9 +37,9 @@ client.on('message', message =>{
         .setTitle("Informations sur les autorisations :")
         .setColor(couleur)
         .setDescription("Certaines commandes de bot nécessitent des autorisations spéciales pour fonctionner. C'est pourquoi un membre devra avoir un de ces rôles pour utiliser une commande.")
-        .addField("Modérateur :","Une personne possédant ce rôle pourra utiliser des commandes de base comme ;ban, ;kick, ;mute, ;supprime, et plus.")
-        .addField("Administrateur :","Une personne possédant ce rôle pourra utiliser des commandes de gestion comme ;description, ;nouveaurole, ;bloque, ;débloque, et plus.")
-        .addField("Super-Administrateur","Une personne possédant ce rôle pourra utiliser toutes les commandes disponibles.")
+        .addField("**Modérateur :**","Une personne possédant ce rôle pourra utiliser des commandes de base comme ;ban, ;kick, ;mute, ;supprime, et plus.")
+        .addField("**Administrateur :**","Une personne possédant ce rôle pourra utiliser des commandes de gestion comme ;description, ;nouveaurole, ;bloque, ;débloque, et plus.")
+        .addField("**Super Administrateur :**","Une personne possédant ce rôle pourra utiliser toutes les commandes disponibles.")
         message.channel.send(embed)
     }
 })
