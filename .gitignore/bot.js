@@ -124,10 +124,7 @@ client.on('message', function (message) {
 }})
 
 client.on('message', function (message) {
-    let notallowed = new Discord.RichEmbed()
-    .setTitle("Veuillez utiliser cette commande dans un serveur.")
-    .setColor(couleur)
-    if (!message.guild) return message.channel.send(notallowed)
+    if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "signal"){
@@ -167,5 +164,28 @@ client.on('message', function (message) {
         .addField("**__Utilisateur signalé :__**", memberMEN + " | " + memberMEN.id)
         .addField("**__Raison(s) du signalement :__**", question)
         client.channels.get("654757180037267516").send(setavatarlog);
+}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "erreur"){
+        let noreason = new Discord.RichEmbed()
+        .setTitle("Le format de cette commande est ;erreur Message")
+        .setColor(couleur)
+        let success = new Discord.RichEmbed()
+        .setTitle("Erreur envoyée.")
+        .setColor(couleur)
+        let question = args.slice(1).join(" ")
+        if(!question) return message.channel.send(noreason)
+        let ReportInformationCard = new Discord.RichEmbed()
+        .setTitle("Une erreur à était signalée :")
+        .setColor(embedcolor)
+        .addField("**Description :__**", question)
+        .addField("**__Erreur envoyée par :__**", message.author.username + " | " + message.author.id)
+        message.channel.send(success)
+        client.channels.get("654757180037267516").send(ReportInformationCard);
 }
 })
