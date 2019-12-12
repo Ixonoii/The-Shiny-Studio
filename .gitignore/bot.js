@@ -17,7 +17,7 @@ client.on('message', message =>{
         let embed = new Discord.RichEmbed()
         .setTitle("Voici les différentes aides disponibles :")
         .setColor(couleur)
-        .setDescription(";aide commandes ``Affiche toutes les commandes disponibles.`` \n ;aide configuration ``Affiche des informations sur les rôles.")
+        .setDescription(";aide commandes ``Affiche toutes les commandes disponibles.`` \n ;aide configuration ``Affiche des informations sur les rôles.``")
         message.channel.send(embed)
     }
 })
