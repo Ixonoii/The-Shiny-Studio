@@ -21,3 +21,21 @@ client.on('message', message =>{
         message.channel.send(embed)
     }
 })
+
+client.on('message', message =>{
+    if(message.content === prefix + "aide commandes"){
+        let embed = new Discord.RichEmbed()
+        .setTitle("Cette commande n'est pas disponible pour le moment.")
+        .setColor(couleur)
+        message.channel.send(embed)
+    }
+})
+
+client.on('message', message =>{
+    if(message.content === prefix + "aide configuration"){
+        let embed = new Discord.RichEmbed()
+        .setTitle("Cette commande n'est pas disponible pour le moment.")
+        .setColor(couleur)
+        message.channel.send(embed)
+    }
+})
