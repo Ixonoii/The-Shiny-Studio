@@ -138,7 +138,7 @@ client.on('message', function (message) {
         .setTitle("Le format de cette commande est ;signal @utilisateur Raison(s)")
         .setColor(couleur)
         let nochannel = new Discord.RichEmbed()
-        .setTitle("Je ne peux pas envoyer votre signalement. Je n'ai peut-être pas l'autorisation nécessaire, ou le channel ``signalements'' n'existe pas sur ce serveur.")
+        .setTitle("Je ne peux pas envoyer votre signalement. Je n'ai peut-être pas l'autorisation nécessaire, ou le channel ``signalements`` n'existe pas sur ce serveur.")
         .setColor(couleur)
         let success = new Discord.RichEmbed()
         .setTitle("Signalement envoyé.")
