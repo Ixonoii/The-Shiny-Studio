@@ -275,22 +275,3 @@ client.on('message', function (message) {
        client.channels.get("655085219979984917").send(serverlog);
     }
 })
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase() === prefix + 'rejoin') {
-        let notallowed = new Discord.RichEmbed()
-        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
-        .setColor(couleur)
-        let noIDfound = new Discord.RichEmbed()
-        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
-        .setColor(couleur)
-        if(!message.author.id === "434061967951659019") return message.channel.send(notallowed)
-       let IDduserveur = args.slice(1).join(" ")
-       if(!IDduserveur) return message.channel.send("Vous devez entrer l'ID d'un serveur.")
-       client.guilds.get(IDduserveur).fetchInvites()
-       .then(invites => message.channel.send(`**Invitation trouvée : ${invites._keyArray}**`))
-    }
-})
