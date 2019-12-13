@@ -45,9 +45,9 @@ client.on('message', message =>{
         let serverlog = new Discord.RichEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setColor(couleur)
-        .addField("**__Commande:__**",";aide autorisations")
-        .addField("**__Utilisateur:__**", message.author.tag + " | " + message.author.id)
-        .addField("**__Serveur:__**", message.guild.name + " | " + message.guild.id)
+        .addField("**__Commande :__**",";aide autorisations")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
         client.channels.get("654757180037267516").send(serverlog);
     }
 })
