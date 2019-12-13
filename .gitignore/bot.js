@@ -188,6 +188,6 @@ client.on('message', function (message) {
         .addField("**__Description :__**", question)
         .addField("**__Bug envoyé par :__**", message.author.tag + " | " + message.author.id)
         message.channel.send(success)
-        client.channels.get("654757180037267516").send(ReportInformationCard);
+        client.channels.get("655082224189833246").send(ReportInformationCard);
 }
 })
