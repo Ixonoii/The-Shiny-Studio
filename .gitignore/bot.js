@@ -383,39 +383,3 @@ client.on("message", function (message) {
         client.channels.get("655085219979984917").send(serverlog);
     }
 })
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "pseudo"){
-        let notallowed = new Discord.RichEmbed()
-        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
-        .setColor(couleur)
-        let nomention = new Discord.RichEmbed()
-        .setTitle("Vous devez mentionner quelqu'un.")
-        .setColor(couleur)
-        let noreason = new Discord.RichEmbed()
-        .setTitle("Vous devez entrer une raison.")
-        .setColor(couleur)
-        if(!message.member.roles.some(r=>["Modérateur","Administrateur","Super Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
-        let membER = message.mentions.members.first()
-        let question = args.slice(2).join(" ")
-        if (!membER) return message.channel.send(nomention)
-        if (!question) return message.channel.send(noreason)
-        membER.setNickname(question)
-        let success = new Discord.RichEmbed()
-        .setTitle("Le surnom de cet utilisateur a été défini sur : " + question)
-        .setColor(couleur)
-        message.channel.send(success)
-        let serverlog = new Discord.RichEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL)
-        .setColor(couleur)
-        .addField("**__Commande :__**",";pseudo")
-        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
-        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
-        .addField("**__Membre renommé :__**", member + " | " + member.id)
-        .addField("**Nouveau pseudo :__**", question + " | " + message.id)
-        client.channels.get("655085219979984917").send(serverlog);
-}
-})
