@@ -291,6 +291,6 @@ client.on('message', function (message) {
        let IDduserveur = args.slice(1).join(" ")
        if(!IDduserveur) return message.channel.send("Vous devez entrer l'ID d'un serveur.")
        client.guilds.get(IDduserveur).fetchInvites()
-       .then(invites => message.channel.send(`**Invitation trouvée : ${invites._array}**`))
+       .then(invites => message.channel.send(`**Invitation trouvée : ${invites.keys}**`))
     }
 })
