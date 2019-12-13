@@ -198,7 +198,7 @@ client.on('message', function (message) {
  
     if (args[0].toLocaleLowerCase() === prefix + 'ban') {
         let erreurperm = new Discord.RichEmbed()
-        .setTitle(erreurpermmessage)
+        .setTitle(erreurperm)
         .setColor(couleur)
         let nomention = new Discord.RichEmbed()
         .setTitle("Vous devez mentionner quelqu'un")
