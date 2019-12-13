@@ -218,7 +218,7 @@ client.on('message', function (message) {
        if (!member.bannable) return message.channel.send(cantban)
        message.delete()
        let success = new Discord.RichEmbed()
-        .setTitle(member.nickname + " à été banni du serveur pour la raison suivante : " + reason)
+        .setTitle(member.tag + " à été banni du serveur pour la raison suivante : " + reason)
         .setColor(couleur)
        message.channel.send(success)
        member.ban({days: 7, reason: reason})
