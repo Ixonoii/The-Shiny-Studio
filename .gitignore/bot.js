@@ -191,3 +191,29 @@ client.on('message', function (message) {
         client.channels.get("655082224189833246").send(ReportInformationCard);
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLocaleLowerCase() === prefix + 'ban') {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
+        .setColor(couleur)
+        if(!message.member.roles.some(r=>["Modérateur","Administrateur","Super Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
+       let member = message.mentions.members.first()
+       let reason = args.slice(2).join(" ")
+       if (!member) return message.channel.send("**Vous devez mentionner quelqu'un.**")
+       if (!reason) return message.channel.send("**Vous devez entrer une raison.**")
+       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send("**Je ne peux pas ban ce membre.**")
+       if (!member.bannable) return message.channel.send("**Je ne peux pas ban ce membre.**")
+       member.send(notif)
+       message.channel.send('**' + member + ' à été ban du serveur pour la raison suivante : ' + reason + "**")
+       message.delete()
+       message.guild.ban(member, {days: 7, reason: question})
+       let notifmention = new Discord.RichEmbed()
+       .setTitle("L'utilisateur ``" + message.author.tag + " (" + message.author.id + ")`` a utilisé la commande -ban dans le serveur ``" + message.guild.name  + " (" + message.guild.id + ")`` depuis le channel ``" + message.channel.name + " (" + message.channel.id + ")`` en expulsant le membre``" + memberMEN + "`` pour la raison ``" + question + "``.")
+       .setColor(embedcolor)
+       client.channels.get("649666046810128405").send(notifmention);
+    }
+})
