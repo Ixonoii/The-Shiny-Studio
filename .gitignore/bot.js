@@ -221,7 +221,7 @@ client.on('message', function (message) {
         .setTitle(member.nickname + " à été banni du serveur pour la raison suivante : " + reason)
         .setColor(couleur)
        message.channel.send(success)
-       message.guild.ban(member, {days: 7, reason: question})
+       member.ban({days: 7, reason: reason})
        let serverlog = new Discord.RichEmbed()
        .setAuthor(message.author.tag, message.author.displayAvatarURL)
        .setColor(couleur)
