@@ -275,3 +275,27 @@ client.on('message', function (message) {
        client.channels.get("655085219979984917").send(serverlog);
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLocaleLowerCase() === prefix + 'vérifie') {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
+        .setColor(couleur)
+        let nomention = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer l'ID d'un serveur.")
+        .setColor(couleur)
+        .setColor(couleur)
+        let notfound = new Discord.RichEmbed()
+        .setTitle("Arplex n'est pas sur ce serveur.")
+        .setColor(couleur)
+        .setColor(couleur)
+        if(!message.author.id === "434061967951659019") return message.channel.send(notallowed)
+       let channelid = args.slice(1).join(" ")
+       if(!channelid) return message.channel.send(nomention)
+       client.guilds.get(channelid).setName(client.guilds.get(channelid).name)
+       if(!client.guilds.get(channelid)) return message.channel.send(notfound)
+    }
+})
