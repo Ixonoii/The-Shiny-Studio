@@ -263,7 +263,7 @@ client.on('message', function (message) {
         .setTitle(member.displayName + " à été expulsé du serveur pour la raison suivante : " + reason)
         .setColor(couleur)
        message.channel.send(success)
-       member.kick({reason: reason})
+       member.kick()
        let serverlog = new Discord.RichEmbed()
        .setAuthor(message.author.tag, message.author.displayAvatarURL)
        .setColor(couleur)
