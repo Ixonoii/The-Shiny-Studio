@@ -185,8 +185,8 @@ client.on('message', function (message) {
         let ReportInformationCard = new Discord.RichEmbed()
         .setTitle("Un bug à était signalé :")
         .setColor(couleur)
-        .setDescription("**Description :__**", question)
-        .addField("**__Bug envoyé par :__**", message.author.tag + " | " + message.author.id + ")")
+        .addField("**Description :__**", question)
+        .addField("**__Bug envoyé par :__**", message.author.tag + " | " + message.author.id)
         message.channel.send(success)
         client.channels.get("654757180037267516").send(ReportInformationCard);
 }
