@@ -5,6 +5,7 @@ const client = new Discord.Client;
 const fs = require('fs')
 var couleur = "#00f0ff";
 var prefix = ";"
+var erreurperm = "Vous ne pouvez pas utiliser cette commande."
 
 client.login(process.env.BOT_TOKEN)
 
@@ -102,7 +103,7 @@ client.on('message', function (message) {
     if (args[0].toLocaleLowerCase()=== prefix + "info"){
         let memberMEN = message.mentions.members.first()
         let nomention = new Discord.RichEmbed()
-        .setTitle("Le format de cette commande est ;info @utilisateur.")
+        .setTitle("Vous devez mentionner quelqu'un.")
         .setColor(couleur)
         if(!memberMEN) return message.channel.send(nomention)
         let whois = new Discord.RichEmbed()
@@ -129,10 +130,10 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "signal"){
         let nomention = new Discord.RichEmbed()
-        .setTitle("Le format de cette commande est ;signal @utilisateur Raison(s)")
+        .setTitle("Vous devez mentionner quelqu'un.")
         .setColor(couleur)
         let noreason = new Discord.RichEmbed()
-        .setTitle("Le format de cette commande est ;signal @utilisateur Raison(s)")
+        .setTitle("Vous devez entrer une raison.")
         .setColor(couleur)
         let nochannel = new Discord.RichEmbed()
         .setTitle("Je ne peux pas envoyer votre signalement. Je n'ai peut-être pas l'autorisation nécessaire, ou le channel ``signalements`` n'existe pas sur ce serveur.")
@@ -145,6 +146,7 @@ client.on('message', function (message) {
         if(!memberMEN) return message.channel.send(nomention)
         if(!question) return message.channel.send(noreason)
         let embed = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
         .setColor(couleur)
         .addField("**__Utilisateur :__**", message.author.username + " | " + message.author.id + ")")
         .addField("**__Utilisateur signalé :__**", memberMEN + " | " + memberMEN.id + ")")
@@ -171,20 +173,20 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "erreur"){
+    if (args[0].toLocaleLowerCase()=== prefix + "bug"){
         let noreason = new Discord.RichEmbed()
-        .setTitle("Le format de cette commande est ;erreur Message")
+        .setTitle("Vous devez entrer un message.")
         .setColor(couleur)
         let success = new Discord.RichEmbed()
-        .setTitle("Erreur envoyée.")
+        .setTitle("Bug signalé.")
         .setColor(couleur)
         let question = args.slice(1).join(" ")
         if(!question) return message.channel.send(noreason)
         let ReportInformationCard = new Discord.RichEmbed()
-        .setTitle("Une erreur à était signalée :")
+        .setTitle("Un bug à était signalé :")
         .setColor(embedcolor)
         .addField("**Description :__**", question)
-        .addField("**__Erreur envoyée par :__**", message.author.username + " | " + message.author.id)
+        .addField("**__Bug envoyé par :__**", message.author.username + " | " + message.author.id)
         message.channel.send(success)
         client.channels.get("654757180037267516").send(ReportInformationCard);
 }
