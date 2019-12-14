@@ -383,3 +383,44 @@ client.on("message", function (message) {
         client.channels.get("655085219979984917").send(serverlog);
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "pseudo") {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
+        .setColor(couleur)
+        let nomention = new Discord.RichEmbed()
+        .setTitle("Vous devez mentionner quelqu'un.")
+        .setColor(couleur)
+        let noreason = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer un pseudo.")
+        .setColor(couleur)
+        let cantrenamme = new Discord.RichEmbed()
+        .setTitle("Je ne peux pas renommer ce membre.")
+        .setColor(couleur)
+        if(!message.member.roles.some(r=>["Modérateur","Administrateur","Super Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        if (!reason) return message.channel.send(noreason)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send(cantrenamme)
+        if (member.highestRole.calculatedPosition >= message.guild.me.highestRole.calculatedPosition || member.id === message.guild.ownerID) return message.channel.send(cantrenamme)
+        member.setNickname(reason)
+        let success = new Discord.RichEmbed()
+        .setTitle(member.displayName + " a été renommé en : " + reason)
+        .setColor(couleur)
+        message.channel.send(success)
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Commande :__**",";pseudo")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        .addField("**__Membre renommé :__**", member + " | " + member.id)
+        .addField("**__Nouveau pseudo :__**", reason + " | " + message.id)
+        client.channels.get("655085219979984917").send(serverlog);
+    }
+})
