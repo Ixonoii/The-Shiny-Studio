@@ -612,20 +612,3 @@ client.on('message', function (message) {
         cChannel.send(success)
     }
 })
-
-client.on('message', function(message){
-    if(message.content === "bot écrit"){
-        message.channel.startTyping()
-        message.channel.send("Le bot écrit ...")
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        .then((m) => m.edit("Le bot écrit ..."))
-        message.channel.stopTyping
-    }
-})
