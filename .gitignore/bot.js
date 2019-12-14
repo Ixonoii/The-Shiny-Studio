@@ -556,27 +556,3 @@ client.on('message', function (message) {
         client.channels.get("654757180037267516").send(serverlog);
     }
 })
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLocaleLowerCase()=== prefix + "newrole"){
-    if (!args[1]) return message.channel.send("Please enter a name.")
-        let question = args.slice(1).join(" ")
-        message.guild.createRole({
-            name: question,
-            color: "#000000"
-        })
-        message.channel.send("Role successfuly created: " + question)
-        let success = new Discord.RichEmbed()
-        .setTitle("Moderator Log Entry")
-        .setColor("#05f516")
-        .addField("Administrator:", message.author.tag)
-        .addField("Action:","New Role")
-        .addField("New role:", question)
-        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
-        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
-        cChannel.send(success)
-    }
-})
