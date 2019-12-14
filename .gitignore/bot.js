@@ -23,12 +23,60 @@ client.on('message', message =>{
     }
 })
 
-client.on('message', message =>{
-    if(message.content === prefix + "aide commandes"){
-        let embed = new Discord.RichEmbed()
-        .setTitle("Cette commande n'est pas disponible pour le moment.")
+client.on('message', function(message){
+    if(message.content === prefix + "cmds"){
+        var pong_enbed = new Discord.RichEmbed()
         .setColor(couleur)
-        message.channel.send(embed)
+        .addField("**__Commandes publiques :__**",";aide ``Affiche plusieurs aides.`` \n ;cmds/commandes ``Affiche les commandes disponibles.`` \n ;avatar ``Affiche votre photo de profil Discord.`` \n ;signal `` Signal un membre du serveur.`` \n ;bug `` Signal un bug à notre équipe de développeurs. \n ;info `` Affiche plusieurs informations à propos d'un membre.`` \n ;8ball `` Répond à vos questions.`` \n ;serveur `` Affiche plusieurs informations à propos d'un serveur.``")
+        .addField("**__Commandes d'administration :__**",";kick ``Expulse un membre.`` \n ;ban ``Ban un membre.`` \n ;softban ``Ban puis un-ban un membre.`` \n ;supprime ``Supprime un grand nombre de messages.`` \n ;mute ``Rend un membre muet.`` \n ;un-mute ``Rend un membre un-muet.`` \n ;pseudo ``Renomme un membre.``")
+        .addField("**__Commandes de gestion :__**",";rôle ``Créé un nouveau rôle.`` \n ;renomme ``Renomme un channel.`` \n ;sujet ``Définie le sujet d'un channel.`` \n ;nomduserveur ``Renomme un serveur.``")
+        .setFooter("Plus de commandes très bientôt !")
+        message.channel.send(pong_enbed)
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Commande :__**",";cmds")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        client.channels.get("654757180037267516").send(serverlog);
+    }
+})
+
+client.on('message', function(message){
+    if(message.content === prefix + "commandes"){
+        var pong_enbed = new Discord.RichEmbed()
+        .setColor(couleur)
+        .addField("**__Commandes publiques :__**",";aide ``Affiche plusieurs aides.`` \n ;cmds/commandes ``Affiche les commandes disponibles.`` \n ;avatar ``Affiche votre photo de profil Discord.`` \n ;signal `` Signal un membre du serveur.`` \n ;bug `` Signal un bug à notre équipe de développeurs. \n ;info `` Affiche plusieurs informations à propos d'un membre.`` \n ;8ball `` Répond à vos questions.`` \n ;serveur `` Affiche plusieurs informations à propos d'un serveur.``")
+        .addField("**__Commandes d'administration :__**",";kick ``Expulse un membre.`` \n ;ban ``Ban un membre.`` \n ;softban ``Ban puis un-ban un membre.`` \n ;supprime ``Supprime un grand nombre de messages.`` \n ;mute ``Rend un membre muet.`` \n ;un-mute ``Rend un membre un-muet.`` \n ;pseudo ``Renomme un membre.``")
+        .addField("**__Commandes de gestion :__**",";rôle ``Créé un nouveau rôle.`` \n ;renomme ``Renomme un channel.`` \n ;sujet ``Définie le sujet d'un channel.`` \n ;nomduserveur ``Renomme un serveur.``")
+        .setFooter("Plus de commandes très bientôt !")
+        message.channel.send(pong_enbed)
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Commande :__**",";commandes")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        client.channels.get("654757180037267516").send(serverlog);
+    }
+})
+
+client.on('message', function(message){
+    if(message.content === prefix + "aide autorisations"){
+        var pong_enbed = new Discord.RichEmbed()
+        .setColor(couleur)
+        .addField("**__Commandes publiques :__**",";aide ``Affiche plusieurs aides.`` \n ;cmds/commandes ``Affiche les commandes disponibles.`` \n ;avatar ``Affiche votre photo de profil Discord.`` \n ;signal `` Signal un membre du serveur.`` \n ;bug `` Signal un bug à notre équipe de développeurs. \n ;info `` Affiche plusieurs informations à propos d'un membre.`` \n ;8ball `` Répond à vos questions.`` \n ;serveur `` Affiche plusieurs informations à propos d'un serveur.``")
+        .addField("**__Commandes d'administration :__**",";kick ``Expulse un membre.`` \n ;ban ``Ban un membre.`` \n ;softban ``Ban puis un-ban un membre.`` \n ;supprime ``Supprime un grand nombre de messages.`` \n ;mute ``Rend un membre muet.`` \n ;un-mute ``Rend un membre un-muet.`` \n ;pseudo ``Renomme un membre.``")
+        .addField("**__Commandes de gestion :__**",";rôle ``Créé un nouveau rôle.`` \n ;renomme ``Renomme un channel.`` \n ;sujet ``Définie le sujet d'un channel.`` \n ;nomduserveur ``Renomme un serveur.``")
+        .setFooter("Plus de commandes très bientôt !")
+        message.channel.send(pong_enbed)
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Commande :__**",";aide autorisations")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        client.channels.get("654757180037267516").send(serverlog);
     }
 })
 
