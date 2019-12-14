@@ -487,7 +487,7 @@ client.on('message', function (message) {
         if(!memberMEN) return message.channel.send(nomention)
         if(!question) return message.channel.send(noreason)
         let embed = new Discord.RichEmbed()
-        .setTitle('Un signalement a été envoyé!')
+        .setTitle('Un signalement a été envoyé !')
         .setColor(couleur)
         .addField('**__Utilisateur :__** ', message.author + " | " + message.author.id)
         .addField('**__Utilisateur signalé :__** ', memberMEN + " | " + memberMEN.id)
