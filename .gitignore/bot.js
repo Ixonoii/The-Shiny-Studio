@@ -556,3 +556,36 @@ client.on('message', function (message) {
         client.channels.get("654757180037267516").send(serverlog);
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLocaleLowerCase()=== prefix + "rôle"){
+        let notallowed = new Discord.RichEmbed()
+        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
+        .setColor(couleur)
+        if(!message.member.roles.some(r=>["Administrateur","Super Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let noname = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer le nom du nouveau rôle.")
+        .setColor(couleur)
+    if (!args[1]) return message.channel.send(noname)
+        let question = args.slice(1).join(" ")
+        message.guild.createRole({
+            name: question,
+            color: "#000000"
+        })
+        let success = new Discord.RichEmbed()
+        .setTitle("Rôle créé : " + question)
+        .setColor(couleur)
+        message.channel.send(success)
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Commande :__**",";rôle")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        .addField("**__Role créé :__**", question + " | " + message.id)
+        client.channels.get("655365898688790558").send(serverlog);
+    }
+})
