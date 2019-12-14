@@ -512,3 +512,52 @@ client.on('message', function (message) {
        client.channels.get("655085219979984917").send(serverlog);
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "signal"){
+        let nomention = new Discord.RichEmbed()
+        .setTitle("Vous devez mentionner quelqu'un.")
+        .setColor(couleur)
+        let noreason = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer un pseudo.")
+        .setColor(couleur)
+        let cantrenamme = new Discord.RichEmbed()
+        .setTitle("Je ne peux pas renommer ce membre.")
+        .setColor(couleur)
+        let success = new Discord.RichEmbed()
+        .setTitle("Votre rapport a été envoyé.")
+        .setColor(couleur)
+        let memberMEN = message.mentions.members.first()
+        let question = args.slice(2).join(" ")
+        if(!memberMEN) return message.channel.send(nomention)
+        if(!question) return message.channel.send(noreason)
+        let embed = new Discord.RichEmbed()
+        .setTitle('Un signalement a été envoyé!')
+        .setColor("#05f516")
+        .addField('**__Utilisateur :__** ', message.author + " | " + message.author.id)
+        .addField('**__Utilisateur signalé :__** ', memberMEN + " | " + memberMEN.id)
+        .addField('**__Reason :__**', question + " | " + message.id)
+        .addField('**__Signalé depuis le channel :__**',"<#" + message.channel.id + "> | " + message.channel.id)
+        let cChannel = message.guild.channels.find(c => c.name === "signalements")
+        let channelnontrouvé = new Discord.RichEmbed()
+        .setTitle("Je ne peux pas envoyer votre signalement car le channel ``signalements`` n'existe pas sur ce serveur.")
+        .setColor(couleur)
+        if(!cChannel) return message.channel.send(channelnontrouvé)
+        if(!cChannel) return message.delete()
+    cChannel.send(embed);
+    message.channel.send(success)
+    message.delete();
+    let serverlog = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.displayAvatarURL)
+    .setColor(couleur)
+    .addField("**__Commande :__**",";signal")
+    .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+    .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+    .addField("**__Membre signalé :__**", memberMEN + " | " + memberMEN.id)
+    .addField("**__Raison :__**", question + " | " + message.id)
+    client.channels.get("655085219979984917").send(serverlog);
+}
+})
