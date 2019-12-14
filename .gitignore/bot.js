@@ -659,7 +659,7 @@ client.on('message', function (message) {
         let question = args.slice(1).join(" ")
         message.channel.setTopic(question)
         let success = new Discord.RichEmbed()
-        .setTitle("Channel renommé en : " + question)
+        .setTitle("Sujet du channel changé en : " + question)
         .setColor(couleur)
         message.channel.send(success)
         let serverlog = new Discord.RichEmbed()
