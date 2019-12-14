@@ -16,7 +16,7 @@ client.on('ready', function(){
 
 client.on('message', function(message){
     if(message.content === "test reaction"){
-        message.awaitReactions(filter, {time: 1500})
+        message.awaitReactions(filter, {time: 3000})
         .then(collected => message.channel.send(`Collected ${collected.size} reactions`))
     }
 })
