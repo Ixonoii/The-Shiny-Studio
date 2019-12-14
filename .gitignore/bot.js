@@ -128,51 +128,6 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "signal"){
-        let nomention = new Discord.RichEmbed()
-        .setTitle("Vous devez mentionner quelqu'un.")
-        .setColor(couleur)
-        let noreason = new Discord.RichEmbed()
-        .setTitle("Vous devez entrer une raison.")
-        .setColor(couleur)
-        let nochannel = new Discord.RichEmbed()
-        .setTitle("Je ne peux pas envoyer votre signalement. Je n'ai peut-être pas l'autorisation nécessaire, ou le channel ``signalements`` n'existe pas sur ce serveur.")
-        .setColor(couleur)
-        let success = new Discord.RichEmbed()
-        .setTitle("Signalement envoyé.")
-        .setColor(couleur)
-        let memberMEN = message.mentions.members.first()
-        let question = args.slice(2).join(" ")
-        if(!memberMEN) return message.channel.send(nomention)
-        if(!question) return message.channel.send(noreason)
-        let embed = new Discord.RichEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL)
-        .setColor(couleur)
-        .addField("**__Utilisateur :__**", message.author.username + " | " + message.author.id + ")")
-        .addField("**__Utilisateur signalé :__**", memberMEN + " | " + memberMEN.id + ")")
-        .addField("**__Raison(s) du signalement:__**", question)
-        .addField("**__Envoyé depuis le channel :__**", "<#" + message.channel.id + "> | " + message.channel.id)
-        let cChannel = message.guild.channels.find(c => c.name === "signalements")
-        if(!cChannel) return message.channel.send(nochannel)
-    cChannel.send(embed);
-    message.delete();
-    message.channel.send(success)
-        let setavatarlog = new Discord.RichEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL)
-        .setColor(couleur)
-        .addField("**__Commande :__**",";signal")
-        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
-        .addField("**__Serveur__**:", message.guild.name + " | " + message.guild.id)
-        .addField("**__Utilisateur signalé :__**", memberMEN + " | " + memberMEN.id)
-        .addField("**__Raison(s) du signalement :__**", question)
-        client.channels.get("654757180037267516").send(setavatarlog);
-}
-})
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
     if (args[0].toLocaleLowerCase()=== prefix + "bug"){
         let noreason = new Discord.RichEmbed()
         .setTitle("Vous devez entrer un message.")
