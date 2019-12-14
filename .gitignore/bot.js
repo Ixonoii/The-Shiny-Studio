@@ -424,3 +424,48 @@ client.on("message", function (message) {
         client.channels.get("655085219979984917").send(serverlog);
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "supprime") {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
+        .setColor(couleur)
+        let nocount = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer un nombre.")
+        .setColor(couleur)
+        let nocount2 = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer un pseudo.")
+        .setColor(couleur)
+        let nocount3 = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer un nombre entre 1 et 99.")
+        .setColor(couleur)
+        if(!message.member.roles.some(r=>["Modérateur","Administrateur","Super Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let count = parseInt(args[1])
+        if (!count) return message.channel.send(nocount)
+        if (isNaN(count)) return message.channel.send(nocount2)
+        if (count < 1 || count > 100) return message.channel.send(nocount3)
+        message.channel.bulkDelete(count + 1)
+        let success = new Discord.RichEmbed()
+        .setTitle(count + " messages ont été supprimés.")
+        .setColor(couleur)
+        message.channel.send(success)
+        .then((m) => m.edit(success))
+        .then((m) => m.edit(success))
+        .then((m) => m.edit(success))
+        .then((m) => m.edit(success))
+        .then((m) => m.edit(success))
+        .then((m) => m.edit(success))
+        .then((m) => m.delete())
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Commande :__**",";supprime")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        .addField("**__Messages supprimés :__**", count + " | " + message.id)
+        client.channels.get("655085219979984917").send(serverlog);
+    }
+})
