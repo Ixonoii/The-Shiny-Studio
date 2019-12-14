@@ -510,6 +510,6 @@ client.on('message', function (message) {
     .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
     .addField("**__Membre signalé :__**", memberMEN + " | " + memberMEN.id)
     .addField("**__Raison :__**", question + " | " + message.id)
-    client.channels.get("655085219979984917").send(serverlog);
+    client.channels.get("654757180037267516").send(serverlog);
 }
 })
