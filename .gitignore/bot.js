@@ -572,7 +572,7 @@ client.on('message', function (message) {
         .setTitle("Rôle créé : " + question)
         .setColor(couleur)
         if(!message.member.roles.some(r=>["Administrateur","Super Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
-    if (!args[1]) return message.channel.send(nonameentered)
+        if (!args[1]) return message.channel.send(nonameentered)
         let question = args.slice(1).join(" ")
         message.guild.createRole({
             name: question,
