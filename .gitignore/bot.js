@@ -517,7 +517,7 @@ client.on('message', function (message) {
 client.on('message', message =>{
     if(message.content === "<@654374834888769556>"){
         let embed = new Discord.RichEmbed()
-        .setTitle("Hey " + message.author.username + ". Je suis Arlex, un bot Discord. Si tu as besoin d'aide, dit ;aide !")
+        .setTitle("Hey " + message.author.username + ". Je suis Arplex, un bot Discord. Si tu as besoin d'aide, dit ;aide !")
         .setColor(couleur)
         .setThumbnail(message.author.displayAvatarURL)
         message.channel.send(embed)
