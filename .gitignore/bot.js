@@ -513,3 +513,32 @@ client.on('message', function (message) {
     client.channels.get("654757180037267516").send(serverlog);
 }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLocaleLowerCase()=== prefix + "8ball"){
+        let noquestion = new Discord.RichEmbed()
+        .setTitle("Vous devez entrer une question.")
+        .setColor(couleur)
+        let waitinganswer = new Discord.RichEmbed()
+        .setTitle("La réponse est ...")
+        .setColor(couleur)
+    if (!args[1]) return message.channel.send(noquestion)
+        let answers = ["Oui !", "Non !", "Bien sûr.", "Peut être", "Je ne sais pas !","Jamais !","Impossible!"]
+        let question = args.slice(1).join(" ")
+        let answer = new Discord.RichEmbed()
+        .setTitle("La réponse est : " + answers[Math.floor(Math.random() * answers.length)])
+        .setColor(couleur)
+        message.channel.send(waitinganswer)
+        .then((m) => m.edit(waitinganswer))
+        .then((m) => m.edit(waitinganswer))
+        .then((m) => m.edit(waitinganswer))
+        .then((m) => m.edit(waitinganswer))
+        .then((m) => m.edit(waitinganswer))
+        .then((m) => m.edit(waitinganswer))
+        .then((m) => m.edit(waitinganswer))
+        .then((m) => m.edit(answer))
+    }
+})
