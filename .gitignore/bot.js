@@ -546,5 +546,13 @@ client.on('message', function (message) {
         .then((m) => m.edit(waitinganswer2))
         .then((m) => m.edit(waitinganswer2))
         .then((m) => m.edit(answer))
+        let serverlog = new Discord.RichEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+        .setColor(couleur)
+        .addField("**__Commande :__**",";8ball")
+        .addField("**__Utilisateur :__**", message.author.tag + " | " + message.author.id)
+        .addField("**__Serveur :__**", message.guild.name + " | " + message.guild.id)
+        .addField("**__Question :__**", question + " | " + message.id)
+        client.channels.get("654757180037267516").send(serverlog);
     }
 })
