@@ -13,6 +13,10 @@ client.on('ready', function(){
     client.user.setActivity(">> Bientôt Disponible <<", {type: "PLAYING"})
 })
 
+client.on("guildCreate", guild => {
+    client.channels.get("654757180037267516").send("I've been added on a server! " + guild.name);
+})
+
 client.on('message', message =>{
     if(message.content === prefix + "aide"){
         let embed = new Discord.RichEmbed()
