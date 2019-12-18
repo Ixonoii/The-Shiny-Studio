@@ -622,29 +622,6 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "newchannel"){
-        if (!args[1]) return message.channel.send("Please enter a name.")
-        let question = args.slice(1).join(" ")
-        message.guild.createChannel(question).then(channel =>{
-    })
-    message.delete();
-    message.channel.send("Channel successfully created: " + question)
-    let success = new Discord.RichEmbed()
-        .setTitle("Moderator Log Entry")
-        .setColor("#05f516")
-        .addField("Administrator:", message.author.tag)
-        .addField("Action:","New Channel")
-        .addField("New channel:", question)
-        let cChannel = message.guild.channels.find(c => c.name === "bot-logs")
-        if(!cChannel) return message.channel.send("I can't find the channel 'bot-logs'.")
-        cChannel.send(success)
-    }
-})
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
     if (args[0].toLocaleLowerCase()=== prefix + "renomme"){
         let notallowed = new Discord.RichEmbed()
         .setTitle("Vous n'êtes pas autorisé à utiliser cette commande.")
