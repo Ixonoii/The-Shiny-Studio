@@ -1,10 +1,15 @@
 // CONFIGURATION //
 
-const Discord = require('discord.js');
-const client = new Discord.Client;
+const Discord = require("discord.js");
 const dev_ids = ["434061967951659019"];
+const client = new Discord.Client;
+const fs = require('fs');
 
 client.login(process.env.BOT_TOKEN)
+
+client.on('ready', function(){
+    client.user.setActivity("Mentionne moi | mBot", {type: "PLAYING"})
+})
 
 var allowedToUse = false;
 dev_ids.forEach(id => allowedToUse = message.author.id == id ? true : false);
