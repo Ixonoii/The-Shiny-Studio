@@ -15,7 +15,7 @@ client.on('ready', function(){
 
 client.on('message', function(message){
     if(message.content === prefix + "owner"){
-        if(message.author.id === "434061967951659019") return message.channel.send("You're not Ixonoii.")
+        if(!message.author.id === "434061967951659019") return message.channel.send("You're not Ixonoii.")
         message.channel.send("You're Ixonoii.")
     }
 })
