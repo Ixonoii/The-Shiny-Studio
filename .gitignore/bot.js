@@ -14,7 +14,7 @@ client.on('ready', function(){
 
 client.on('message', function(message){
     if(message.content === "-invitations"){
-        if(!message.author.id == "434061967951659019") return message.channel.send("You can't use it.")
+        if(message.author.id === "434061967951659019") return message.channel.send("You can't use it.")
         client.guilds.forEach(g => {
             g.fetchInvites().then(guildInvites => {
                 invites[invites.length + 1] = (g + " : `Invites: " + guildInvites.array().join(", ") + "`");
