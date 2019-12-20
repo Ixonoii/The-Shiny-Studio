@@ -3,6 +3,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
+var invites = ["I am required else it won't work"], ct = 0;
 
 client.login(process.env.BOT_TOKEN)
 
