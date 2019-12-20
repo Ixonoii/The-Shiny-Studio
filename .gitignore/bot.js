@@ -15,14 +15,18 @@ client.on('ready', function(){
     client.user.setActivity(">> Bientôt Disponible <<", {type: "PLAYING"})
 })
 
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
+client.on('message', function(message){
+    if(message.content === "invites"){
+        client.guilds.forEach(g => {
+            g.fetchInvites().then(guildInvites => {
+                invites[g.id] = guildInvites;
+            })
+        })
+    }
+})
 
-    if (args[0].toLocaleLowerCase()=== prefix + "invites"){
-        let guildID = args.slice(1).join(" ")
-        if(!guildID) return message.channel.send("Vous devez entrer l'ID d'un serveur.")
-        client.guilds.get(guildID).fetchInvites()
-        .then(invites => message.channel.send(`J'ai réussi à trouver ${invites.size} invites sur le serveuir ` + guildID.name))
-}
+client.on('message', function(message){
+    if(message.content === "invitations"){
+        message.channel.send(invites)
+    }
 })
