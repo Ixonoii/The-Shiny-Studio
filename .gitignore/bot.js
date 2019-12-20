@@ -14,3 +14,15 @@ client.login(process.env.BOT_TOKEN)
 client.on('ready', function(){
     client.user.setActivity(">> Bientôt Disponible <<", {type: "PLAYING"})
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "invites"){
+        let guildID = message.mentions.members.first()
+        if(!guildID) return message.channel.send("You have to enter a ID.")
+        client.guilds.get(guildID).fetchInvites()
+        .then(invites => message.channel.send(`Fetched ${invites.size} webhooks on the server ` + guildID.displayName))
+}
+})
