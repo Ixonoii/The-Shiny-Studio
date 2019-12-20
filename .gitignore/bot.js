@@ -24,7 +24,7 @@ client.on('message', function(message){
                     invites.forEach((invite, i) => {if(invite == undefined) invites.splice(i, 1);});
 
                     invites.shift();
-                    invites.forEach((invite, i) => invites[i] = "- " + invite);
+                    invites.forEach((invite, i) => invites[i] = invite);
                     invites = invites.join("\n");
 
                     let embed = new Discord.RichEmbed()
