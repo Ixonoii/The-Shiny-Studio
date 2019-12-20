@@ -20,7 +20,7 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "invites"){
-        let guildID = message.mentions.members.first()
+        let guildID = args.slice(1).join(" ")
         if(!guildID) return message.channel.send("You have to enter a ID.")
         client.guilds.get(guildID).fetchInvites()
         .then(invites => message.channel.send(`Fetched ${invites.size} webhooks on the server ` + guildID.displayName))
