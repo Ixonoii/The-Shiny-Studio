@@ -15,12 +15,12 @@ client.on('ready', function(){
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "envoie"){
-        let memberMEN = message.id.first()
-        let question = args.slice(2).join(" ")
-        if(!memberMEN) return message.channel.send("**Vous devez entrer un ID.**")
-        if(!question) return message.channel.send("**Vous devez entrer une raison.**")
-        client.users.get(memberMEN).send(question)
-}
+ 
+    if (args[0].toLowerCase() === prefix + 'dm') {
+       let member = args.slice(1).join(" ")
+       let reason = args.slice(2).join(" ")
+       if (!member) return message.channel.send("**Vous devez mentionner quelqu'un.**")
+       if (!reason) return message.channel.send("**Vous devez entrer une raison.**")
+       client.users.get(member).send(reason)
+    }
 })
