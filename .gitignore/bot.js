@@ -10,7 +10,7 @@ var erreurperm = "Vous ne pouvez pas utiliser cette commande."
 client.login(process.env.BOT_TOKEN)
 
 client.on('ready', function(){
-    client.user.setActivity(">> Bientôt Disponible <<", {type: "PLAYING"})
+    client.user.setActivity(";aide", {type: "PLAYING"})
 })
 
  // client.on("guildCreate", guild => {
