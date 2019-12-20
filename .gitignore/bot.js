@@ -18,11 +18,5 @@ client.on('ready', function(){
 // JOIN NOTIFICATION //
 
 client.on("guildCreate", guild => {
-    let joinnotif = new Discord.RichEmbed()
-    .setTitle("I've been added on a server!")
-    .setColor(color)
-    .addField("Guild:", guild.name, true)
-    .addField("Guld owner:", guild.owner, true)
-    .addField("Members:", guild.memberCount, true)
-    client.channels.get("657652649516204052").send(joinnotif);
+    client.channels.get("657652649516204052").send("I've been abbed on a server: " + guild.name) 
 })
