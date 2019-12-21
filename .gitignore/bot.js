@@ -3,7 +3,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
-var invites = ["I am required else it won't work"], ct = 0;
 var color = "#007bff";
 var devids = ["111856278220845056"]
 
@@ -13,29 +12,16 @@ client.on('ready', function(){
     client.user.setActivity("Mentionne moi | mBot", {type: "PLAYING"})
 })
 
-client.on('message', function(message){
-    if(message.content === "-invitations"){
-        if(message.author.id === devids) return message.channel.send("You're not Ixonoii.")
-            client.guilds.forEach(g => {
-                g.fetchInvites().then(guildInvites => {
-                    invites[invites.length + 1] = (g + " : `Invites: " + guildInvites.array().join(", ") + "`");
-                    ct++;
-    
-                    if(ct >= client.guilds.size) {
-                        invites.forEach((invite, i) => {if(invite == undefined) invites.splice(i, 1);});
-    
-                        invites.shift();
-                        invites.forEach((invite, i) => invites[i] = invite);
-                        invites = invites.join("\n");
-    
-                        let embed = new Discord.RichEmbed()
-                        .setTitle("All invites:")
-                        .setDescription(invites)
-                        .setColor(color);
-    
-                        message.channel.send(embed);
-                    }
-                })
-            })
+client.on('message', message =>{
+    if(message.content === ";info"){
+        let embed = new Discord.RichEmbed()
+        .setTitle("__Information about Calypso Administration__")
+        .setColor("#05f516")
+        .addField("Creator:","Ixonoii#7399", true)
+        .addField("Version:", VERsion, true)
+        .addField("Users:", message.guild.memberCount, true)
+        .addField("Commands:","28", true)
+        .addField("Invite link:","https://discord.gg/ynkpfVB", true)
+        message.channel.send(embed)
     }
 })
