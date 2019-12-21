@@ -11,7 +11,7 @@ var prefix = "-";
 client.login(process.env.BOT_TOKEN)
 
 client.on('ready', function(){
-    client.user.setActivity("Mentionne moi | mBot", {type: "PLAYING"})
+    client.user.setActivity("à rien.", {type: "PLAYING"})
 })
 
 client.on('message', function (message) {
