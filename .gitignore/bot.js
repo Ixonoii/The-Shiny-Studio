@@ -6,7 +6,6 @@ const fs = require('fs');
 var color = "#4d78f0";
 var activity = "Updated!";
 var prefix = "-";
-var blacklistedIDs = [""]
 
 client.login(process.env.BOT_TOKEN)
 
@@ -15,24 +14,12 @@ client.on('ready', function(){
 })
 
 function emoji (id) {
-    return client.emojis.get(id).toString();
+    return client.emojis.get(id).toString(); 434061967951659019
 }
 
 client.on('message', function(message){
-    if(message.content === prefix + "black-list"){
-        message.channel.send( emoji("651305600860553236") + " **Here is the list: " + blacklistedIDs + "**");
+    if(message.content === prefix + "check"){
+        if(!message.author.id == "434061967951659019") return ( emoji("641689428565164063") + " **You're not Ixonoii.**")
+        message.channel.send( emoji("641771906726625299") + " **You are Ixonoii.**")
     }
-})
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "blacklist"){
-        let memberMEN = message.mentions.members.first()
-        if(!memberMEN) return message.channel.send( emoji("641689428565164063") + " **You have to mention someone.**")
-    message.delete();
-    message.channel.send( emoji('641771906726625299') + memberMEN + " **has been blacklisted from using the bot.**")
-    blacklistedIDs = blacklistedIDs + memberMEN.id
-}
 })
