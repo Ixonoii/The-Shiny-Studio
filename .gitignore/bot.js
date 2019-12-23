@@ -16,13 +16,3 @@ client.on('ready', function(){
 function emoji (id) {
     return client.emojis.get(id).toString();
 }
-
-client.on('message', function(message) {
-    const emoji = client.emojis.get("434061967951659019");
-
-    if(message.content === prefix + "check"){
-        if(message.author.id === "434061967951659019") return message.channel.send(`**${emoji} You are not Ixonoii.**`)
-    } else {
-        return message.channel.send(`**${emoji} You are not Ixonoii.**`)
-    }
-});
