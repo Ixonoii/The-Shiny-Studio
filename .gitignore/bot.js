@@ -20,6 +20,6 @@ function emoji (id) {
 
 client.on('message', function(message){
     if(message.content === "test"){
-        message.channel.send( emoji("650975437887111171") );
+        message.channel.send( emoji("641771906726625299") );
     }
 })
