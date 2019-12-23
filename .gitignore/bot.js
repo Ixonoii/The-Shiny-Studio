@@ -14,12 +14,14 @@ client.on('ready', function(){
 })
 
 function emoji (id) {
-    return client.emojis.get(id).toString(); 434061967951659019
+    return client.emojis.get(id).toString();
 }
 
-client.on('message', function(message){
-    if(message.content === prefix + "check"){
-        if(message.author.id === "434061967951659019") return ( emoji("641689428565164063") + " **You're not Ixonoii.**")
-        message.channel.send( emoji("641771906726625299") + " **You are Ixonoii.**")
-    }
-})
+client.on("message", function(message) {
+    if (message.content === prefix + "check") {
+        if (!message.author.id === "434061967951659019") {
+            return message.channel.send(emoji("641689428565164063") + " **You're not Ixonoii.**");
+        };
+        message.channel.send(emoji("641771906726625299") + " **You are Ixonoii.**");
+    };
+});
