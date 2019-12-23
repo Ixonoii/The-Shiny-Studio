@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var color = "#4d78f0";
-var activity = "Bientôt Disponible";
+var activity = "Updated!";
 var prefix = "-";
 var blacklistedIDs = [""]
 
@@ -19,8 +19,8 @@ function emoji (id) {
 }
 
 client.on('message', function(message){
-    if(message.content === prefix + "blacklist"){
-        message.channel.send( emoji("641771906726625299") + "here is the list: " + blacklistedIDs);
+    if(message.content === prefix + "black-list"){
+        message.channel.send( emoji("651305600860553236") + " **Here is the list: " + blacklistedIDs + "**");
     }
 })
 
@@ -30,9 +30,9 @@ client.on('message', function (message) {
 
     if (args[0].toLocaleLowerCase()=== prefix + "blacklist"){
         let memberMEN = message.mentions.members.first()
-        if(!memberMEN) return message.channel.send( emoji("641689428565164063") + " You have to mention someone.")
+        if(!memberMEN) return message.channel.send( emoji("641689428565164063") + " **You have to mention someone.**")
     message.delete();
-    message.channel.send( emoji('641771906726625299') + memberMEN + " has been blacklisted from using the bot!")
+    message.channel.send( emoji('641771906726625299') + memberMEN + " **has been blacklisted from using the bot.**")
     blacklistedIDs = blacklistedIDs + memberMEN.id
 }
 })
