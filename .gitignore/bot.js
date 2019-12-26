@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var color = "#4d78f0";
-var prefix = "-";
+var prefix = "!";
 
 client.login(process.env.BOT_TOKEN)
 
