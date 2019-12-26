@@ -11,3 +11,9 @@ client.login(process.env.BOT_TOKEN)
 function emoji (id) {
     return client.emojis.get(id).toString();
 }
+
+client.on('message', function(message){
+    if(message.content === "!emoji"){
+        message.channel.send( emoji("659504785036148750") + " You're not allowed to use this command.")
+    }
+})
