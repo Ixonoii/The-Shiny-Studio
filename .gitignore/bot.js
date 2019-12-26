@@ -12,11 +12,8 @@ function emoji (id) {
     return client.emojis.get(id).toString();
 }
 
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "support"){
+client.on('message', function(message){
+    if(message.content === prefix + "support"){
         let pasautorise = new Discord.RichEmbed()
         .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
         .setColor(errorcolor)
@@ -54,6 +51,5 @@ client.on('message', function (message) {
         .setTitle("L'utilisateur " + message.author.username  + " a promu l'utilisateur " + memberMEN.displayName + " au rang d'assistant.")
         .setColor(successcolor)
         .setTimestamp(Date.now())
-
-}
+    }
 })
