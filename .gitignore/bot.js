@@ -17,3 +17,11 @@ client.on('message', function(message){
         message.channel.send( emoji("659504785036148750") + " You're not allowed to use this command.")
     }
 })
+
+client.on('message', function(message){
+    if(message.content === "!emoji2"){
+        let embed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " You're not allowed to use this command.")
+        message.channel.send(embed)
+    }
+})
