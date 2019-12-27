@@ -35,8 +35,16 @@ client.on('message', function (message) {
         if (supportrole) {
             member.addRole(supportrole)
             let success = new Discord.RichEmbed()
-            .setTitle( emoji("659504835535831060") + member.displayName + " rejoint l'équipe d'assistance !")
-            .setColor(errorcolor)
+            .setTitle( emoji("659504835535831060") + " " + member.displayName + " rejoint l'équipe d'assistance !")
+            .setColor(successcolor)
             message.channel.send(success)
+            let confirm = new Discord.RichEmbed()
+            .setTitle("__Notification de prmotion__")
+            .setColor(successcolor)
+            .addField("Administrateur","<@" + message.author.id + ">", true)
+            .addField("Membre promu","<@" + member.id + ">", true)
+            .addField("Nouveau rang","Support", true)
+            .setThumbnail("https://media.discordapp.net/attachments/659827100127330335/660177355787993108/ArplexSuccess.png?width=538&height=538")
+            client.channels.get('659830689356709890').send(confirm)
         }}
 })
