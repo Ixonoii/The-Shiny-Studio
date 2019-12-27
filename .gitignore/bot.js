@@ -176,3 +176,21 @@ client.on('message', function (message) {
             client.channels.get('659830689356709890').send(confirm)
         }}
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'status') {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let noreason = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez enter un status.")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+       let reason = args.slice(1).join(" ")
+       if (!reason) return message.channel.send(noreason)
+       status = reason
+    }
+})
