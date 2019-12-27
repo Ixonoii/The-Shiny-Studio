@@ -132,7 +132,6 @@ client.on('message', function (message) {
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
-    let STAFFroles = ["Staff","Modérateur","Administrateur"]
 
     if (args[0].toLowerCase() === prefix + "membre") {
         let notallowed = new Discord.RichEmbed()
@@ -144,8 +143,21 @@ client.on('message', function (message) {
         if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
-        if (STAFFroles) {
-            member.addRole(STAFFroles)
+        let modrole = message.guild.roles.find(role => role.name === 'Modérateur')
+        let staffrole = message.guild.roles.find(role => role.name === 'Staff')
+        let supportrole = message.guild.roles.find(role => role.name === 'Support')
+        let adminrole = message.guild.roles.find(role => role.name === 'Administrateur')
+        if (modrole) {
+            member.removeRole(modrole)
+        }
+        if (staffrole) {
+            member.removeRole(staffrole)
+        }
+        if (supportrole) {
+            member.removeRole(supportrole)
+        }
+        if (adminrole) {
+            member.removeRole(adminrole)
             let success = new Discord.RichEmbed()
             .setTitle( emoji("659504835535831060") + " " + member.displayName + " ne fait plus parti de l'équipe du STAFF !")
             .setColor(successcolor)
