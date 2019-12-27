@@ -44,7 +44,47 @@ client.on('message', function (message) {
             .addField("**Administrateur**","<@" + message.author.id + ">", true)
             .addField("**Membre promu**","<@" + member.id + ">", true)
             .addField("**Nouveau rang**","Support", true)
-            .setThumbnail("https://media.discordapp.net/attachments/659827100127330335/660177355787993108/ArplexSuccess.png?width=538&height=538")
+            .setThumbnail("https://image.flaticon.com/icons/png/512/69/69114.png")
             client.channels.get('659830689356709890').send(confirm)
+        }}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLowerCase() === prefix + "modérateur") {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let nomention = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        let supportrole = message.guild.roles.find(role => role.name === 'Modérateur')
+        let staffrole = message.guild.roles.find(role => role.name === 'Staff')
+        let modrole = message.guild.roles.find(role => role.name === 'Modérateur')
+        if (staffrole) {
+            member.addRole(staffrole)
+        }
+        if (modrole) {
+            member.addRole(modrole)
+            let success = new Discord.RichEmbed()
+            .setTitle( emoji("659504835535831060") + " " + member.displayName + " rejoint l'équipe d'assistance !")
+            .setColor(successcolor)
+            message.channel.send(success)
+            let confirm = new Discord.RichEmbed()
+            .setTitle("__Notification de promotion__")
+            .setColor(successcolor)
+            .addField("**Administrateur**","<@" + message.author.id + ">", true)
+            .addField("**Membre promu**","<@" + member.id + ">", true)
+            .addField("**Nouveau rang**","Modérateur", true)
+            .setThumbnail("https://img.icons8.com/ios-filled/452/moderator-male.png")
+            client.channels.get('659830689356709890').send(confirm)
+        }
+        if (supportrole) {
+            member.removeRole(supportrole)
         }}
 })
