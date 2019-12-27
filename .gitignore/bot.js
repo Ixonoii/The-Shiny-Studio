@@ -6,8 +6,13 @@ const fs = require('fs');
 var successcolor = "#04f028";
 var errorcolor = "#ff0000"
 var prefix = "!";
+var status = "";
 
 client.login(process.env.BOT_TOKEN)
+
+client.on('ready', function(){
+    client.user.setActivity(status, {type: "PLAYING"})
+})
 
 function emoji (id) {
     return client.emojis.get(id).toString();
