@@ -35,7 +35,7 @@ client.on('message', function (message) {
         if (supportrole) {
             member.addRole(supportrole)
             let success = new Discord.RichEmbed()
-            .setTitle( emoji("659504835535831060") + member + " rejoint l'équipe d'assistance !")
+            .setTitle( emoji("659504835535831060") + member.displayName + " rejoint l'équipe d'assistance !")
             .setColor(errorcolor)
             message.channel.send(success)
         }}
