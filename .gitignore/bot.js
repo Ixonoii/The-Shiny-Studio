@@ -17,14 +17,14 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLowerCase() === prefix + "support") {
+    if (args[0].toLowerCase() === prefix + "sup") {
         let notallowed = new Discord.RichEmbed()
         .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
         .setColor(errorcolor)
         let nomention = new Discord.RichEmbed()
         .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
         .setColor(errorcolor)
-        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        if(!message.member.roles.some(r=>["Développeur","Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
         let supportrole = message.guild.roles.find(role => role.name === 'Support')
@@ -53,14 +53,14 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLowerCase() === prefix + "modérateur") {
+    if (args[0].toLowerCase() === prefix + "mod") {
         let notallowed = new Discord.RichEmbed()
         .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
         .setColor(errorcolor)
         let nomention = new Discord.RichEmbed()
         .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
         .setColor(errorcolor)
-        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        if(!message.member.roles.some(r=>["Développeur","Administrateur"].includes(r.name)) ) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
         let supportrole = message.guild.roles.find(role => role.name === 'Support')
@@ -72,7 +72,7 @@ client.on('message', function (message) {
         if (modrole) {
             member.addRole(modrole)
             let success = new Discord.RichEmbed()
-            .setTitle( emoji("659504835535831060") + " " + member.displayName + " rejoint l'équipe d'assistance !")
+            .setTitle( emoji("659504835535831060") + " " + member.displayName + " rejoint l'équipe de modération !")
             .setColor(successcolor)
             message.channel.send(success)
             let confirm = new Discord.RichEmbed()
@@ -86,5 +86,76 @@ client.on('message', function (message) {
         }
         if (supportrole) {
             member.removeRole(supportrole)
+        }}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLowerCase() === prefix + "admin") {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let nomention = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        let modrole = message.guild.roles.find(role => role.name === 'Modérateur')
+        let staffrole = message.guild.roles.find(role => role.name === 'Staff')
+        let adminrole = message.guild.roles.find(role => role.name === 'Administrateur')
+        if (staffrole) {
+            member.addRole(staffrole)
+        }
+        if (adminrole) {
+            member.addRole(adminrole)
+            let success = new Discord.RichEmbed()
+            .setTitle( emoji("659504835535831060") + " " + member.displayName + " rejoint l'équipe d'administration !")
+            .setColor(successcolor)
+            message.channel.send(success)
+            let confirm = new Discord.RichEmbed()
+            .setTitle("__Notification de promotion__")
+            .setColor(successcolor)
+            .addField("**Développeur**","<@" + message.author.id + ">", true)
+            .addField("**Membre promu**","<@" + member.id + ">", true)
+            .addField("**Nouveau rang**","Administrateur", true)
+            .setThumbnail("http://cdn.onlinewebfonts.com/svg/img_239979.png")
+            client.channels.get('659830689356709890').send(confirm)
+        }
+        if (modrole) {
+            member.removeRole(modrole)
+        }}
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+    let STAFFroles = ["Staff","Modérateur","Administrateur"]
+
+    if (args[0].toLowerCase() === prefix + "membre") {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let nomention = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        if (STAFFroles) {
+            member.addRole(STAFFroles)
+            let success = new Discord.RichEmbed()
+            .setTitle( emoji("659504835535831060") + " " + member.displayName + " ne fait plus parti de l'équipe du STAFF !")
+            .setColor(successcolor)
+            message.channel.send(success)
+            let confirm = new Discord.RichEmbed()
+            .setTitle("__Notification d'expulsion__")
+            .setColor(errorcolor)
+            .addField("**Administrateur**","<@" + message.author.id + ">", true)
+            .addField("**Membre expulsé**","<@" + member.id + ">", true)
+            .setThumbnail("https://image.flaticon.com/icons/png/512/59/59802.png")
+            client.channels.get('659830689356709890').send(confirm)
         }}
 })
