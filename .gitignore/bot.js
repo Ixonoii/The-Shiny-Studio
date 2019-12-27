@@ -223,7 +223,7 @@ client.on('message', function (message) {
        if (!reason) return message.channel.send(noreason)
        client.user.setAvatar(reason)
        let success = new Discord.RichEmbed()
-        .setTitle( emoji("659504835535831060") + " L'avatar a été modifié! : " + reason)
+        .setTitle( emoji("659504835535831060") + " L'avatar a été modifié : " + reason)
         .setColor(successcolor)
         .setFooter("Note : L'avatar du bot peut prendre quelques minutes (15 minutes maximum) à se mettre à jour en raison de la limitation Discord.")
         message.channel.send(success)
