@@ -192,5 +192,10 @@ client.on('message', function (message) {
        let reason = args.slice(1).join(" ")
        if (!reason) return message.channel.send(noreason)
        status = reason
+       client.user.setActivity(status, {type: "PLAYING"})
+       let success = new Discord.RichEmbed()
+        .setTitle( emoji("659504835535831060") + " Status modifié : " + reason)
+        .setColor(successcolor)
+        message.channel.send(success)
     }
 })
