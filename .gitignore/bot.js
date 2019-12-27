@@ -6,7 +6,7 @@ const fs = require('fs');
 var successcolor = "#04f028";
 var errorcolor = "#ff0000"
 var prefix = "!";
-var status = "";
+var status = "Je surveille les membres !";
 
 client.login(process.env.BOT_TOKEN)
 
@@ -197,5 +197,44 @@ client.on('message', function (message) {
         .setTitle( emoji("659504835535831060") + " Status modifié : " + reason)
         .setColor(successcolor)
         message.channel.send(success)
+        let confirm = new Discord.RichEmbed()
+        .setTitle("__Modification de status__")
+        .setColor(errorcolor)
+        .addField("**Administrateur**","<@" + message.author.id + ">", true)
+        .addField("**Nouveau status**",reason, true)
+        .setThumbnail("https://static.thenounproject.com/png/60319-200.png")
+        client.channels.get('660241015591927819').send(confirm)
+    }
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'avatar') {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let noreason = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez enter un lien.")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+       let reason = args.slice(1).join(" ")
+       if (!reason) return message.channel.send(noreason)
+       client.user.setAvatar(reason)
+       let success = new Discord.RichEmbed()
+        .setTitle( emoji("659504835535831060") + " L'avatar a été modifié! : " + reason)
+        .setColor(successcolor)
+        .setFooter("Note : L'avatar du bot peut prendre quelques minutes (15 minutes maximum) à se mettre à jour en raison de la limitation Discord.")
+        message.channel.send(success)
+        let confirm = new Discord.RichEmbed()
+        .setTitle("__Modification d'avatar__")
+        .setColor(errorcolor)
+        .addField("**Administrateur**","<@" + message.author.id + ">", true)
+        .addField("**Lien de l'avatar**", reason, true)
+        .addField("**Aperçu de l'avatar**","Voir ci-dessous", true)
+        .setThumbnail("https://static.thenounproject.com/png/363640-200.png")
+        .setImage(reason)
+        client.channels.get('660241015591927819').send(confirm)
     }
 })
