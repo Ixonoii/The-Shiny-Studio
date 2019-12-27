@@ -238,3 +238,33 @@ client.on('message', function (message) {
         client.channels.get('660241015591927819').send(confirm)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'nom') {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let noreason = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez enter un nom.")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+       let reason = args.slice(1).join(" ")
+       if (!reason) return message.channel.send(noreason)
+       client.user.setUsername(reason)
+       let success = new Discord.RichEmbed()
+        .setTitle( emoji("659504835535831060") + " Nom modifié : " + reason)
+        .setColor(successcolor)
+        .setFooter("Note : L'avatar du bot peut prendre quelques minutes (15 minutes maximum) à se mettre à jour en raison de la limitation Discord.")
+        message.channel.send(success)
+        let confirm = new Discord.RichEmbed()
+        .setTitle("__Modification du nom__")
+        .setColor(errorcolor)
+        .addField("**Administrateur**","<@" + message.author.id + ">", true)
+        .addField("**Nouveau nom**",reason, true)
+        .setThumbnail("https://static.thenounproject.com/png/60319-200.png")
+        client.channels.get('660241015591927819').send(confirm)
+    }
+})
