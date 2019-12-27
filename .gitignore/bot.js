@@ -3,7 +3,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
-var successcolor = "#4d78f0";
+var successcolor = "#04f028";
 var errorcolor = "#ff0000"
 var prefix = "!";
 
@@ -39,11 +39,11 @@ client.on('message', function (message) {
             .setColor(successcolor)
             message.channel.send(success)
             let confirm = new Discord.RichEmbed()
-            .setTitle("__Notification de prmotion__")
+            .setTitle("__Notification de promotion__")
             .setColor(successcolor)
-            .addField("Administrateur","<@" + message.author.id + ">", true)
-            .addField("Membre promu","<@" + member.id + ">", true)
-            .addField("Nouveau rang","Support", true)
+            .addField("**Administrateur**","<@" + message.author.id + ">", true)
+            .addField("**Membre promu**","<@" + member.id + ">", true)
+            .addField("**Nouveau rang**","Support", true)
             .setThumbnail("https://media.discordapp.net/attachments/659827100127330335/660177355787993108/ArplexSuccess.png?width=538&height=538")
             client.channels.get('659830689356709890').send(confirm)
         }}
