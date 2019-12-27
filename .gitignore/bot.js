@@ -63,7 +63,7 @@ client.on('message', function (message) {
         if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
-        let supportrole = message.guild.roles.find(role => role.name === 'Modérateur')
+        let supportrole = message.guild.roles.find(role => role.name === 'Support')
         let staffrole = message.guild.roles.find(role => role.name === 'Staff')
         let modrole = message.guild.roles.find(role => role.name === 'Modérateur')
         if (staffrole) {
