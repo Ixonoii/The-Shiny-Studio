@@ -314,12 +314,9 @@ client.on("message", function (message) {
         .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
         .setColor(errorcolor)
         if (!member) return message.channel.send(nomention)
-        let nowarns = new Discord.RichEmbed()
-        .setTitle( emoji("659504785036148750") + " Ce membre n'a aucun warns")
-        .setColor(errorcolor)
         let embed = new Discord.RichEmbed()
             .setTitle(member.user.username)
-            .addField('10 derniers avertissements', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : nowarns))
+            .addField('10 derniers avertissements', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "Ce membre n'a aucun avertissement."))
         message.channel.send(embed)
     }
 })
