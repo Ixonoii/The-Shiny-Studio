@@ -274,13 +274,10 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
 
     if (args[0].toLocaleLowerCase()=== prefix + "ticket"){
-        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send("You can't use this command.")
-        if (!args[1]) return message.channel.send("Please enter a name.")
-        let question = args.slice(1).join(" ")
-        message.guild.createChannel(question).then(channel =>{
-            channel.name = question;
-    })
-    message.delete();
-    message.channel.send("Channel successfully created: " + question)
+        if (!args[1]) return message.channel.send("You have to enter a name.")
+        let channelname = args.slice(1).join(" ")
+        message.guild.createChannel(channelname).then(channel =>{
+            channel.setTopic("Thanks for creating this ticket, " + message.author.username + ".")
+        })
     }
 })
