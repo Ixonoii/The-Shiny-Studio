@@ -268,3 +268,19 @@ client.on('message', function (message) {
         client.channels.get('660241015591927819').send(confirm)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+
+    if (args[0].toLocaleLowerCase()=== prefix + "ticket"){
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send("You can't use this command.")
+        if (!args[1]) return message.channel.send("Please enter a name.")
+        let question = args.slice(1).join(" ")
+        message.guild.createChannel(question).then(channel =>{
+            channel.name = question;
+    })
+    message.delete();
+    message.channel.send("Channel successfully created: " + question)
+    }
+})
