@@ -268,3 +268,58 @@ client.on('message', function (message) {
         client.channels.get('660241015591927819').send(confirm)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "avertir") {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let nomention = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
+        .setColor(errorcolor)
+        let noreason = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez entrer une raison.")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur","Administrateur","Modérateur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("Vous ne pouvez pas warn ce membre")
+        let reason = args.slice(2).join(' ')
+        if (!reason) return message.channel.send(noreason)
+        if (!warns[member.id]) {
+            warns[member.id] = []
+        }
+        warns[member.id].unshift({
+            reason: reason,
+            date: Date.now(),
+            mod: message.author.id
+        })
+        fs.writeFileSync('./warns.json', JSON.stringify(warns))
+        let confirm = new Discord.RichEmbed()
+        .setTitle( emoji("659504835535831060") + " " + member + " à été averti pour la raison suivante :" + reason)
+        .setColor(successcolor)
+        message.channel.send(confirm)
+    }
+ 
+    if (args[0].toLowerCase() === prefix + "avertissements") {
+        let notallowed = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.")
+        .setColor(errorcolor)
+        let nowarns = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Ce membre n'a aucun warns")
+        .setColor(errorcolor)
+        if(!message.member.roles.some(r=>["Développeur","Administrateur","Modérateur"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let nomention = new Discord.RichEmbed()
+        .setTitle( emoji("659504785036148750") + " Vous devez mentionner quelqu'un.")
+        .setColor(errorcolor)
+        if (!member) return message.channel.send(nomention)
+        let embed = new Discord.RichEmbed()
+            .setTitle(member.user.username)
+            .addField('10 derniers avertissements', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : nowarns))
+        message.channel.send(embed)
+    }
+})
