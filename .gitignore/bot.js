@@ -273,11 +273,13 @@ client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
 
-    if (args[0].toLocaleLowerCase()=== prefix + "ticket"){
-        if (!args[1]) return message.channel.send("You have to enter a name.")
-        let channelname = args.slice(1).join(" ")
-        message.guild.createChannel(channelname).then(channel =>{
-            channel.setTopic("Thanks for creating this ticket, " + message.author.username + ".")
-        })
+    if (args[0].toLocaleLowerCase()=== prefix + "newchannel"){
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send("**:shield: You can't use this command. You need the ``mBot Administrator`` role .**")
+        if (!args[1]) return message.channel.send("**:shield: The format is m!channel <name>.**")
+        let question = args.slice(1).join(" ")
+        message.guild.createChannel(question).then(channel =>{
+        channel.send("**" + message.author.username + ", I successfully created your channel: " + question + ".**")
+    })
+    message.delete();
     }
 })
