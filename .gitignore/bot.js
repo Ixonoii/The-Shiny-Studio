@@ -18,6 +18,15 @@ function emoji (id) {
     return client.emojis.get(id).toString();
 }
 
+client.on('guildMemberAdd', function (member) {
+    let joinembned = new Discord.RichEmbed()
+    .setTitle("**__Nouveau membre__**")
+    .setColor(successcolor)
+    .addField("**__Utilisateur__**", member.displayName, true)
+    .addField("**__ID__**", member.id, true)
+    client.channels.get("661987518937432095").send(joinembned)
+})
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -49,7 +58,6 @@ client.on('message', function (message) {
             .addField("**Administrateur**","<@" + message.author.id + ">", true)
             .addField("**Membre promu**","<@" + member.id + ">", true)
             .addField("**Nouveau rang**","Support", true)
-            .setThumbnail("https://image.flaticon.com/icons/png/512/69/69114.png")
             client.channels.get('659830689356709890').send(confirm)
         }}
 })
@@ -86,7 +94,6 @@ client.on('message', function (message) {
             .addField("**Administrateur**","<@" + message.author.id + ">", true)
             .addField("**Membre promu**","<@" + member.id + ">", true)
             .addField("**Nouveau rang**","Modérateur", true)
-            .setThumbnail("https://img.icons8.com/ios-filled/452/moderator-male.png")
             client.channels.get('659830689356709890').send(confirm)
         }
         if (supportrole) {
@@ -126,7 +133,6 @@ client.on('message', function (message) {
             .addField("**Développeur**","<@" + message.author.id + ">", true)
             .addField("**Membre promu**","<@" + member.id + ">", true)
             .addField("**Nouveau rang**","Administrateur", true)
-            .setThumbnail("http://cdn.onlinewebfonts.com/svg/img_239979.png")
             client.channels.get('659830689356709890').send(confirm)
         }
         if (modrole) {
@@ -172,7 +178,6 @@ client.on('message', function (message) {
             .setColor(errorcolor)
             .addField("**Administrateur**","<@" + message.author.id + ">", true)
             .addField("**Membre expulsé**","<@" + member.id + ">", true)
-            .setThumbnail("https://image.flaticon.com/icons/png/512/59/59802.png")
             client.channels.get('659830689356709890').send(confirm)
         }}
 })
@@ -202,7 +207,6 @@ client.on('message', function (message) {
         .setColor(errorcolor)
         .addField("**Administrateur**","<@" + message.author.id + ">", true)
         .addField("**Nouveau status**",reason, true)
-        .setThumbnail("https://static.thenounproject.com/png/60319-200.png")
         client.channels.get('660241015591927819').send(confirm)
     }
 })
@@ -233,7 +237,6 @@ client.on('message', function (message) {
         .addField("**Administrateur**","<@" + message.author.id + ">", true)
         .addField("**Lien de l'avatar**", reason, true)
         .addField("**Aperçu de l'avatar**","Voir ci-dessous", true)
-        .setThumbnail("https://static.thenounproject.com/png/363640-200.png")
         .setImage(reason)
         client.channels.get('660241015591927819').send(confirm)
     }
@@ -264,22 +267,6 @@ client.on('message', function (message) {
         .setColor(errorcolor)
         .addField("**Administrateur**","<@" + message.author.id + ">", true)
         .addField("**Nouveau nom**",reason, true)
-        .setThumbnail("https://static.thenounproject.com/png/60319-200.png")
         client.channels.get('660241015591927819').send(confirm)
-    }
-})
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
-
-    if (args[0].toLocaleLowerCase()=== prefix + "newchannel"){
-        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send("**:shield: You can't use this command. You need the ``mBot Administrator`` role .**")
-        if (!args[1]) return message.channel.send("**:shield: The format is m!channel <name>.**")
-        let question = args.slice(1).join(" ")
-        message.guild.createChannel(question).then(channel =>{
-        channel.send("**" + message.author.username + ", I successfully created your channel: " + question + ".**")
-    })
-    message.delete();
     }
 })
