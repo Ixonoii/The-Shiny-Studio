@@ -38,6 +38,11 @@ client.on('guildMemberRemove', function (member) {
     client.channels.get("661987518937432095").send(joinembned)
 })
 
+client.on('message', function ( message ) {
+    if(message.content === prefix + "connard")
+    message.channel.send("1 connard trouvé : <@404392698162708500>")
+})
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
