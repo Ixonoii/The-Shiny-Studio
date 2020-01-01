@@ -20,10 +20,21 @@ function emoji (id) {
 
 client.on('guildMemberAdd', function (member) {
     let joinembned = new Discord.RichEmbed()
-    .setTitle("**__Nouveau membre__**")
+    .setTitle("**__Arrivée d'un membre__**")
     .setColor(successcolor)
     .addField("**__Utilisateur__**", member.displayName, true)
     .addField("**__ID__**", member.id, true)
+    .setFooter("Nous sommes maintenant " + member.guild.memberCount + " sur le serveur " + member.guild.name + ".")
+    client.channels.get("661987518937432095").send(joinembned)
+})
+
+client.on('guildMemberRemove', function (member) {
+    let joinembned = new Discord.RichEmbed()
+    .setTitle("**__Départ d'un membre__**")
+    .setColor(errorcolor)
+    .addField("**__Utilisateur__**", member.displayName, true)
+    .addField("**__ID__**", member.id, true)
+    .setFooter("Nous sommes maintenant " + member.guild.memberCount + " sur le serveur " + member.guild.name + ".")
     client.channels.get("661987518937432095").send(joinembned)
 })
 
