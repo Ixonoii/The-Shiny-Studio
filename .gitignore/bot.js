@@ -27,5 +27,5 @@ client.on("message", message=>{
     var helpembed = new Discord.RichEmbed()
     .setTitle(notallowedmessage)
     if(message.content === prefix + "remove")
-    message.channel.send(emoji("665912297964830723"))
+    message.channel.send(helpembed)
 })
