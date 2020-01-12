@@ -8,6 +8,8 @@ var status = "Test";
 var errorlogo = "659504785036148750";
 var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
+var supportlink = "https://discord.gg/qn9WzNk"
+var sitelink
 
 client.login(process.env.BOT_TOKEN)
 
@@ -22,6 +24,8 @@ client.on('ready', function(){
 // ----------------------------------------- TEST ----------------------------------------- //
 
 client.on("message", message=>{
-    if(message.content === prefix + "test")
+    var helpembed = new Discord.RichEmbed()
+    .setTitle(notallowedmessage)
+    if(message.content === prefix + "remove")
     message.channel.send(emoji("665912297964830723"))
 })
