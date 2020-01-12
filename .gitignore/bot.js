@@ -23,5 +23,5 @@ client.on('ready', function(){
 
 client.on("message", message=>{
     if(message.content === prefix + "test")
-    message.channel.send(emoji("659504835535831060"))
+    message.channel.send(emoji("665912297964830723"))
 })
