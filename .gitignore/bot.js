@@ -3,7 +3,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
-var prefix = ";";
+var prefix = "rsddfsqdsqdqsdqs";
 var status = "Test";
 var errorlogo = "659504785036148750";
 var successlogo = "659504835535831060";
