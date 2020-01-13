@@ -23,15 +23,6 @@ client.on('ready', function(){
 
 // ----------------------------------------- TEST ----------------------------------------- //
 
-client.on('guildMemberAdd', function (member) {
-    let embed = new Discord.RichEmbed()
-        .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name + ".")
-        .setFooter('Ceci est un test ! ' + member.guild.memberCount)
-    member.guild.channels.get('665958406867386376').send(embed)
-})
-
-// ----------------------------------------- TEST ----------------------------------------- //
-
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
