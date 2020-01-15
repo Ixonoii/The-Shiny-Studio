@@ -3,10 +3,8 @@
 const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
-var prefix = "rsddfsqdsqdqsdqs";
+var prefix = ";";
 var status = "Test";
-var errorlogo = "659504785036148750";
-var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
 var sitelink
@@ -108,5 +106,39 @@ client.on('message', function (message) {
         .setTitle(member.displayName + " a été ban du serveur par " + message.author.username + " pour la raison suivante : " + reason)
         .setTimestamp()
        message.channel.send(success)
+    }
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "supprime") {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var nonumber = new Discord.RichEmbed()
+        .setTitle("Veuillez indiquer un nombre de messages à supprimer.")
+        var incorrectnumber = new Discord.RichEmbed()
+        .setTitle("Nombre non trouvé, veuillez indiquer un nombre valide.")
+        var toohigh = new Discord.RichEmbed()
+        .setTitle("Veuillez indiquer un nombre entre 1 et 100")
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
+        let count = parseInt(args[1])
+        if (!count) return message.channel.send(nonumber)
+        if (isNaN(count)) return message.channel.send(incorrectnumber)
+        if (count < 1 || count > 100) return message.channel.send(toohigh)
+        message.channel.bulkDelete(count + 1, true)
+        supprimelog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "supprime.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Modérateur**","<@" + message.author.id + ">", true)
+        .addField("**Channel**", message.channel.name, true)
+        .addField("**Nombre**", count, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du modérateur**", message.author.id, true)
+        .addField("**ID du channel**", member.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661948166442319894").send(supprimelog)
     }
 })
