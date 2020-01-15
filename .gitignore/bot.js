@@ -142,3 +142,65 @@ client.on('message', function (message) {
         client.channels.get("661948166442319894").send(supprimelog)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "mute") {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Veuillez mentionner un utilisateur.")
+        var cantmute1 = new Discord.RichEmbed()
+        .setTitle("Vous ne pouvez pas mute cet utilisateur.")
+        var cantmute2 = new Discord.RichEmbed()
+        .setTitle("Je ne peux pas mute cet utilisateur")
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send(cantmute1)
+        if (!member.manageable) return message.channel.send(cantmute2)
+        let muterole = message.guild.roles.find(role => role.name === 'Muet')
+        var success = new Discord.RichEmbed()
+        .setTitle(member.displayName + " a été mute par " + message.author.username + ".")
+        if (muterole) {
+            member.addRole(muterole)
+            message.channel.send(success)
+            var mutelog = new Discord.RichEmbed()
+            .setTitle("Quelqu'un a utilisé la commande " + prefix + "mute.")
+            .addField("**Serveur**", message.guild.name, true)
+            .addField("**Modérateur**","<@" + message.author.id + ">", true)
+            .addField("**Utilisateur muet**", member, true)
+            .addField("**ID du serveur**", message.guild.id, true)
+            .addField("**ID du modérateur**", message.author.id, true)
+            .addField("**ID de l'utilisateur muet**", member.id, true)
+            .addField("**ID du message**", message.id, true)
+            .setTimestamp()
+            client.channels.get("661948166442319894").send(mutelog)
+        }
+        else {
+            message.guild.createRole({name: 'Muet', permissions: 0}).then(function (role) {
+                message.guild.channels.filter(channel => channel.type === 'text').forEach(function (channel) {
+                    channel.overwritePermissions(role, {
+                        SEND_MESSAGES: false,
+                        ADD_REACTIONS: false,
+                    })
+                })
+                member.addRole(role)
+                message.channel.send(success)
+                var mutelog = new Discord.RichEmbed()
+                .setTitle("Quelqu'un a utilisé la commande " + prefix + "mute.")
+                .addField("**Serveur**", message.guild.name, true)
+                .addField("**Modérateur**","<@" + message.author.id + ">", true)
+                .addField("**Utilisateur muet**", member, true)
+                .addField("**ID du serveur**", message.guild.id, true)
+                .addField("**ID du modérateur**", message.author.id, true)
+                .addField("**ID de l'utilisateur muet**", member.id, true)
+                .addField("**ID du message**", message.id, true)
+                .setTimestamp()
+                client.channels.get("661948166442319894").send(mutelog)
+            })
+        }
+    }
+})
