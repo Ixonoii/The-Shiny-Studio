@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
-var status = "Test";
+var status = "😀";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
 var sitelink
@@ -127,7 +127,7 @@ client.on('message', function (message) {
         if (!count) return message.channel.send(nonumber)
         if (isNaN(count)) return message.channel.send(incorrectnumber)
         if (count < 1 || count > 100) return message.channel.send(toohigh)
-        message.channel.bulkDelete(count + 1, true)
+        message.channel.bulkDelete(count + 1)
         supprimelog = new Discord.RichEmbed()
         .setTitle("Quelqu'un a utilisé la commande " + prefix + "supprime.")
         .addField("**Serveur**", message.guild.name, true)
