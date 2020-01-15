@@ -4,12 +4,15 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
-var status = "Arplex | Bientôt Disponible";
+var status = "Test";
+var errorlogo = "659504785036148750";
+var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
-var sitelink
 
 client.login(process.env.BOT_TOKEN)
+
+const warns = JSON.parse(fs.readFileSync('./warns.json'))
 
 function emoji (id) {
     return client.emojis.get(id).toString();
@@ -19,7 +22,7 @@ client.on('ready', function(){
     client.user.setActivity(status, {type: "PLAYING"})
 })
 
-// ----------------------------------------- TEST ----------------------------------------- //
+// ----------------------------------------- KICK ----------------------------------------- //
 
 client.on('message', function (message) {
     if (!message.guild) return
@@ -28,7 +31,6 @@ client.on('message', function (message) {
     if (args[0].toLowerCase() === prefix + 'kick') {
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
-        .setTimestamp()
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         var noreason = new Discord.RichEmbed()
@@ -72,7 +74,6 @@ client.on('message', function (message) {
     if (args[0].toLowerCase() === prefix + 'ban') {
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
-        .setTimestamp()
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         var noreason = new Discord.RichEmbed()
@@ -88,7 +89,7 @@ client.on('message', function (message) {
        if (!reason) return message.channel.send(noreason)
        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send(cantkickowner)
        if (!member.bannable) return message.channel.send(nokickable)
-       var banlog = new Discord.RichEmbed()
+       var joinlog = new Discord.RichEmbed()
         .setTitle("Quelqu'un a utilisé la commande " + prefix + "ban.")
         .addField("**Serveur**", message.guild.name, true)
         .addField("**Modérateur**","<@" + message.author.id + ">", true)
@@ -155,7 +156,7 @@ client.on('message', function (message) {
         var cantmute1 = new Discord.RichEmbed()
         .setTitle("Vous ne pouvez pas mute cet utilisateur.")
         var cantmute2 = new Discord.RichEmbed()
-        .setTitle("Je ne peux pas mute cet utilisateur")
+        .setTitle("Je ne peux pas mute cet utilisateur.")
         if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
@@ -219,7 +220,7 @@ client.on('message', function (message) {
         var cantmute1 = new Discord.RichEmbed()
         .setTitle("Vous ne pouvez pas unmute cet utilisateur.")
         var cantmute2 = new Discord.RichEmbed()
-        .setTitle("Je ne peux pas unmute cet utilisateur")
+        .setTitle("Je ne peux pas unmute cet utilisateur.")
         if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
@@ -294,5 +295,52 @@ client.on('message', function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661946616382619648").send(questionlog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "warn") {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Veuillez mentionner un utilisateur.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle("Veuillez entrer une raison")
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("Vous ne pouvez pas warn ce membre")
+        let reason = args.slice(2).join(' ')
+        if (!reason) return message.channel.send(noreason)
+        if (!warns[member.id]) {
+            warns[member.id] = []
+        }
+        warns[member.id].unshift({
+            reason: reason,
+            date: Date.now(),
+            mod: message.author.id
+        })
+        fs.writeFileSync('./warns.json', JSON.stringify(warns))
+        var success = new Discord.RichEmbed()
+        .setTitle(member + " a été warn par " + message.author.username + " pour la raison suivante : " + reason)
+        message.channel.send(success)
+    }
+ 
+    if (args[0].toLowerCase() === prefix + "infractions") {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Veuillez mentionner un utilisateur.")
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(noreason)
+        let embed = new Discord.RichEmbed()
+            .setAuthor(member.user.username, member.user.displayAvatarURL)
+            .addField('10 derniers avertissements', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "Cet utilisateur n'a aucun avertissement."))
+            .setTimestamp()
+        message.channel.send(embed)
     }
 })
