@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
-var status = "🤣";
+var status = "Arplex | Bientôt Disponible";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
 var sitelink
@@ -227,7 +227,7 @@ client.on('message', function (message) {
         if (!member.manageable) return message.channel.send(cantmute2)
         let muterole = message.guild.roles.find(role => role.name === 'Muet')
         var success = new Discord.RichEmbed()
-        .setTitle(member.displayName + " a été mute par " + message.author.username + ".")
+        .setTitle(member.displayName + " a été unmute par " + message.author.username + ".")
         if (muterole) {
             member.removeRole(muterole)
             message.channel.send(success)
