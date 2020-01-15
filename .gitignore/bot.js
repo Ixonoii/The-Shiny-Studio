@@ -270,3 +270,19 @@ client.on('message', function (message) {
         }
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "8ball") {
+        var noquestion = new Discord.RichEmbed()
+        .setTitle("Vous devez poser une question.")
+        if (!args[1]) return message.channel.send(noquestion)
+        let answers = ["Non.", "Oui.", "Peut être.", "Jamais.", "Absolument.","Jamais."]
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setTitle(answers[Math.floor(Math.random() * answers.length)])
+        message.channel.send(embed)
+    }
+})
