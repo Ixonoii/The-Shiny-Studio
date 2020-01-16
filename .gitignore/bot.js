@@ -431,6 +431,6 @@ client.on("message", function (message) {
         .addField("**ID de l'utilisateur mentionné**", member.id, true)
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
-        client.channels.get("661948166442319894").send(kisslog)
+        client.channels.get("661946616382619648").send(kisslog)
     }
 })
