@@ -434,3 +434,30 @@ client.on("message", function (message) {
         client.channels.get("661946616382619648").send(kisslog)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "fight") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Veuillez mentionner un utilisateur.")
+        let member = message.mentions.members.first()
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setTitle(":punch: Un combat a commencé entre " + message.author.username + " et " + member.displayName + ".")
+        .setImage("https://media1.giphy.com/media/eR7OEDQDyA7Cg/giphy.gif")
+        message.channel.send(success)
+        var fightlog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "fight.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Utilisateur**","<@" + message.author.id + ">", true)
+        .addField("**Utilisateur mentionné**", member, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID de l'utilisateur**", message.author.id, true)
+        .addField("**ID de l'utilisateur mentionné**", member.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661948166442319894").send(fightlog)
+    }
+})
