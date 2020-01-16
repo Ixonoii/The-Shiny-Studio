@@ -461,3 +461,30 @@ client.on("message", function (message) {
         client.channels.get("661948166442319894").send(fightlog)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "hugs") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Veuillez mentionner un utilisateur.")
+        let member = message.mentions.members.first()
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setTitle(":blush: " + message.author.username + " fait un calîn à " + member.displayName + ".")
+        .setImage("https://i.pinimg.com/originals/ab/58/a8/ab58a8f3ad91fd62911f84bf3d54127c.gif")
+        message.channel.send(success)
+        var fightlog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "hugs.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Utilisateur**","<@" + message.author.id + ">", true)
+        .addField("**Utilisateur mentionné**", member, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID de l'utilisateur**", message.author.id, true)
+        .addField("**ID de l'utilisateur mentionné**", member.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661948166442319894").send(fightlog)
+    }
+})
