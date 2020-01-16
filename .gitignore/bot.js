@@ -10,7 +10,7 @@ var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
 
-client.login(process.env.BOT_TOKEN)
+client.login(process.env.TOKENBOT)
 
 const warns = JSON.parse(fs.readFileSync('./warns.json'))
 
