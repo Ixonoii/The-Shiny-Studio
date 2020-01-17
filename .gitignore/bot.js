@@ -25,6 +25,23 @@ client.on('ready', function(){
 })
 
 // ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- CMDS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "cmds") {
+        var cmdsembed = new Discord.RichEmbed()
+        .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
+        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.` \n" + prefix + "nickname ``Modifie le surnom d'un utilisateur.``")
+        .addField("**:gear: Gestion**", prefix + "setname ``Renomme un channel.`` \n" + prefix + "settopic ``Modifie le sujet d'un channel.``")
+        message.channel.send(cmdsembed)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- KICK ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
@@ -640,6 +657,23 @@ client.on("message", function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661948166442319894").send(thinklog)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- CMDS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "cmds") {
+        var cmdsembed = new Discord.RichEmbed()
+        .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
+        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.``")
+        .addField("**:gear: Gestion**")
+        message.channel.send(cmdsembed)
     }
 })
 
