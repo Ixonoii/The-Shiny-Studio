@@ -644,23 +644,6 @@ client.on("message", function (message) {
 })
 
 // ---------------------------------------------------------------------------------------- //
-// ----------------------------------------- CMDS ----------------------------------------- //
-// ---------------------------------------------------------------------------------------- //
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "cmds") {
-        var cmdsembed = new Discord.RichEmbed()
-        .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
-        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.``")
-        .addField("**:gear: Gestion**")
-        message.channel.send(cmdsembed)
-    }
-})
-
-// ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- SETNAME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
@@ -724,8 +707,8 @@ client.on("message", function (message) {
         var nicknamelog = new Discord.RichEmbed()
         .setTitle("Quelqu'un a utilisé la commande " + prefix + "nickname.")
         .addField("**Serveur**", message.guild.name, true)
-        .addField("**Utilisateur**","<@" + message.author.id + ">", true)
-        .addField("**Utilisateur mentionné**", member, true)
+        .addField("**Modérateur**","<@" + message.author.id + ">", true)
+        .addField("**Utilisateur renommé**", member, true)
         .addField("**Nouveau nom**", reason, true)
         .addField("**ID du serveur**", message.guild.id, true)
         .addField("**ID du modérateur**", message.author.id, true)
