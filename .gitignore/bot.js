@@ -882,7 +882,7 @@ client.on('message', function (message) {
 })
 
 // ---------------------------------------------------------------------------------------- //
-// ----------------------------------------- BOT AJOUTER ----------------------------------------- //
+// ----------------------------------------- BOT AJOUTE ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
 client.on("guildCreate", guild =>{
@@ -895,12 +895,11 @@ client.on("guildCreate", guild =>{
     .addField("**ID du propriétaire**", guild.owner.id)
     .addField("**Membres**", guild.memberCount, true)
     .setThumbnail(guild.iconURL)
-    .setFooter(`Arplex is now on ${client.guilds.size}`)
     client.channels.get("667780868265476096").send(addedlog)
-})
+}) //.setFooter(`Arplex is now on ${client.guilds.size}`)
 
 // ---------------------------------------------------------------------------------------- //
-// ----------------------------------------- BOT AJOUTER ----------------------------------------- //
+// ----------------------------------------- BOT SUPPRIME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
 client.on("guildCreate", guild =>{
@@ -913,6 +912,5 @@ client.on("guildCreate", guild =>{
     .addField("**ID du propriétaire**", guild.owner.id)
     .addField("**Membres**", guild.memberCount, true)
     .setThumbnail(guild.iconURL)
-    .setFooter(`Arplex is now on ${client.guilds.size}`)
     client.channels.get("667780868265476096").send(addedlog)
-})
+}) //.setFooter(`Arplex is now on ${client.guilds.size}`)
