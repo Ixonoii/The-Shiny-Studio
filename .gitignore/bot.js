@@ -684,14 +684,50 @@ client.on('message', function (message) {
         .addField("**Nouveau nom**", reason, true)
         .addField("**ID du serveur**", message.guild.id, true)
         .addField("**ID du modérateur**", message.author.id, true)
-        .addField("**ID du channel*", message.channel.id, true)
+        .addField("**ID du channel**", message.channel.id, true)
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661946883018719253").send(setnamelog)
        var success = new Discord.RichEmbed()
-        .setTitle('"' + message.channel.name + '" renommé en "' + reason + '".')
+        .setTitle('"' + message.channel.name + '" a été renommé en "' + reason + '".')
         .setTimestamp()
         message.channel.setName(reason)
        message.channel.send(success)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- NICKNAME ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "nickname") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Veuillez mentionner un utilisateur.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle("Veuillez entrer un nom.")
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        if(!reason) return message.channel.send(noreason)
+        var success = new Discord.RichEmbed()
+        .setTitle(member.displayName + " a été renommé en : " + rea)
+        message.channel.send(success)
+        member.setNickname(reason)
+        var nicknamelog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "nickname.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Utilisateur**","<@" + message.author.id + ">", true)
+        .addField("**Utilisateur mentionné**", member, true)
+        .addField("**Nouveau nom**", reason, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du modérateur**", message.author.id, true)
+        .addField("**ID de l'utilisateur mentionné**", member.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661948166442319894").send(nicknamelog)
     }
 })
