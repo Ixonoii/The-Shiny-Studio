@@ -902,15 +902,15 @@ client.on("guildCreate", guild =>{
 // ----------------------------------------- BOT SUPPRIME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
-client.on("guildCreate", guild =>{
+client.on("guildDelete", guild =>{
     let deletedlog = new Discord.RichEmbed()
     .setTitle("Arplex a été supprimé sur un serveur !")
     .addField("**Serveur**", guild.name, true)
     .addField("**Propriétaire**", guild.owner)
     .addField("**Membres**", guild.memberCount, true)
     .addField("**ID du serveur**", guild.id, true)
-    .addField("**ID du propriétaire**", guild.owner.id)
+    .addField("**ID du propriétaire**", guild.owner.id, true)
     .addField("**Membres**", guild.memberCount, true)
     .setThumbnail(guild.iconURL)
-    client.channels.get("667780868265476096").send(addedlog)
+    client.channels.get("667780868265476096").send(deletedlog)
 }) //.setFooter(`Arplex is now on ${client.guilds.size}`)
