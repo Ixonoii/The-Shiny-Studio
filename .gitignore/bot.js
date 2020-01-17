@@ -748,7 +748,43 @@ client.on('message', function (message) {
         .setTimestamp()
         client.channels.get("661946883018719253").send(setnamelog)
        var success = new Discord.RichEmbed()
-        .setTitle('Le sujet du channel "' + message.channel.name + '" a été modifié en .')
+        .setTitle('Le sujet du channel "' + message.channel.name + '" a été modifié en :' reason)
+        .setTimestamp()
+        message.channel.setTopic(reason)
+       message.channel.send(success)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SETSERVERNAME ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'setservername') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var noreason = new Discord.RichEmbed()
+        .setTitle("Veuillez entrer un nom.")
+       if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(notallowed)
+       let reason = args.slice(1).join(" ")
+       if(!reason) return message.channel.send(noreason)
+       var setnamelog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "setservername.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Modérateur**","<@" + message.author.id + ">", true)
+        .addField("**Channel**", message.channel.name, true)
+        .addField("**Nouveau sujet**", reason, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du modérateur**", message.author.id, true)
+        .addField("**ID du channel**", message.channel.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661946883018719253").send(setnamelog)
+       var success = new Discord.RichEmbed()
+        .setTitle("Le nom du serveur a été modifié en : " + reason)
         .setTimestamp()
         message.channel.setTopic(reason)
        message.channel.send(success)
