@@ -542,3 +542,14 @@ client.on("message", function (message) {
         client.channels.get("661948166442319894").send(thinklog)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "cmds") {
+        var cmdsembed = new Discord.RichEmbed()
+        .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.``")
+        message.channel.send(cmdsembed)
+    }
+})
