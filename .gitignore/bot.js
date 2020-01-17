@@ -6,7 +6,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
-var status = "Test";
+var status = "";
 var errorlogo = "659504785036148750";
 var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
@@ -37,7 +37,7 @@ client.on("message", function (message) {
         var cmdsembed = new Discord.RichEmbed()
         .addField("**:link: Liens**","Envie d'inviter Arplex sur votre serveur ? ``;invite`` \n Envie de rejoindre notre serveur Discord ? ``;support``")
         .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
-        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.` \n" + prefix + "nickname ``Modifie le surnom d'un utilisateur.``")
+        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.`` \n" + prefix + "nickname ``Modifie le surnom d'un utilisateur.``")
         .addField("**:gear: Gestion**", prefix + "setname ``Renomme un channel.`` \n" + prefix + "settopic ``Modifie le sujet d'un channel.`` \n" + prefix + "setservername ``Modifie le nom du serveur.``")
         .setFooter("Plus de commandes très bientôt.")
         message.channel.send(cmdsembed)
