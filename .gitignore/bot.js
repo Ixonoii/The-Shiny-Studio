@@ -836,7 +836,7 @@ client.on('message', function (message) {
     if (args[0].toLowerCase() === prefix + 'setstatus') {
         var notallowed = new Discord.RichEmbed()
         .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
-       if (!message.author.id === "434061967951659019") return message.channel.send(notallowed)
+       if (!message.author.id === "416358583220043796") return message.channel.send(notallowed)
        let reason = args.slice(1).join(" ")
        if(!reason) return message.channel.send(noreason)
        var setnamelog = new Discord.RichEmbed()
