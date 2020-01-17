@@ -36,7 +36,8 @@ client.on("message", function (message) {
         var cmdsembed = new Discord.RichEmbed()
         .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
         .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.` \n" + prefix + "nickname ``Modifie le surnom d'un utilisateur.``")
-        .addField("**:gear: Gestion**", prefix + "setname ``Renomme un channel.`` \n" + prefix + "settopic ``Modifie le sujet d'un channel.``")
+        .addField("**:gear: Gestion**", prefix + "setname ``Renomme un channel.`` \n" + prefix + "settopic ``Modifie le sujet d'un channel.`` \n" + prefix + "setservername ``Modifie le nom du serveur.``")
+        .setFooter("Plus de commandes très bientôt.")
         message.channel.send(cmdsembed)
     }
 })
@@ -661,23 +662,6 @@ client.on("message", function (message) {
 })
 
 // ---------------------------------------------------------------------------------------- //
-// ----------------------------------------- CMDS ----------------------------------------- //
-// ---------------------------------------------------------------------------------------- //
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "cmds") {
-        var cmdsembed = new Discord.RichEmbed()
-        .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
-        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.``")
-        .addField("**:gear: Gestion**")
-        message.channel.send(cmdsembed)
-    }
-})
-
-// ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- SETNAME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
@@ -895,4 +879,40 @@ client.on('message', function (message) {
         client.user.setAvatar(reason)
         message.channel.send(success)
     }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- BOT AJOUTER ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("guildCreate", guild =>{
+    let addedlog = new Discord.RichEmbed()
+    .setTitle("Arplex a été ajouté sur un serveur !")
+    .addField("**Serveur**", guild.name, true)
+    .addField("**Propriétaire**", guild.owner)
+    .addField("**Membres**", guild.memberCount, true)
+    .addField("**ID du serveur**", guild.id, true)
+    .addField("**ID du propriétaire**", guild.owner.id)
+    .addField("**Membres**", guild.memberCount, true)
+    .setThumbnail(guild.iconURL)
+    .setFooter(`Arplex is now on ${client.guilds.size}`)
+    client.channels.get("667780868265476096").send(addedlog)
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- BOT AJOUTER ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("guildCreate", guild =>{
+    let deletedlog = new Discord.RichEmbed()
+    .setTitle("Arplex a été supprimé sur un serveur !")
+    .addField("**Serveur**", guild.name, true)
+    .addField("**Propriétaire**", guild.owner)
+    .addField("**Membres**", guild.memberCount, true)
+    .addField("**ID du serveur**", guild.id, true)
+    .addField("**ID du propriétaire**", guild.owner.id)
+    .addField("**Membres**", guild.memberCount, true)
+    .setThumbnail(guild.iconURL)
+    .setFooter(`Arplex is now on ${client.guilds.size}`)
+    client.channels.get("667780868265476096").send(addedlog)
 })
