@@ -6,7 +6,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
-var status = "Ceci est un test.";
+var status = "Test";
 var errorlogo = "659504785036148750";
 var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
@@ -416,10 +416,6 @@ client.on("message", function (message) {
         .setTimestamp()
         client.channels.get("661948166442319894").send(warnlog)
     }
- 
-// ---------------------------------------------------------------------------------------- //
-// ----------------------------------------- WARNINGS ----------------------------------------- //
-// ---------------------------------------------------------------------------------------- //
 
     if (args[0].toLowerCase() === prefix + "warnings") {
         var notallowed = new Discord.RichEmbed()
