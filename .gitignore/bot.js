@@ -1,16 +1,18 @@
+// ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- SETTINGS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
 
 const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var prefix = ";";
-var status = "Arplex | Bientôt Disponible";
+var status = "Test";
 var errorlogo = "659504785036148750";
 var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
 
-client.login(process.env.TOKENBOT)
+client.login(process.env.BOT_TOKEN)
 
 const warns = JSON.parse(fs.readFileSync('./warns.json'))
 
@@ -22,7 +24,9 @@ client.on('ready', function(){
     client.user.setActivity(status, {type: "PLAYING"})
 })
 
+// ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- KICK ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
 
 client.on('message', function (message) {
     if (!message.guild) return
@@ -67,6 +71,10 @@ client.on('message', function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- BAN ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -110,6 +118,58 @@ client.on('message', function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SOFTBAN ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'softban') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Veuillez mentionner un utilisateur.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle("Veuillez entrer une raison.")
+        var cantkickowner = new Discord.RichEmbed()
+        .setTitle("Vous ne pouvez pas softban cet utilisateur.")
+        var nokickable = new Discord.RichEmbed()
+        .setTitle("Je ne peux pas softban cet utilisateur.")
+       if (!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send(notallowed)
+       let member = message.mentions.members.first()
+       let reason = args.slice(2).join(" ")
+       if (!member) return message.channel.send(nomention)
+       if (!reason) return message.channel.send(noreason)
+       if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send(cantkickowner)
+       if (!member.bannable) return message.channel.send(nokickable)
+       var joinlog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "softban.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Modérateur**","<@" + message.author.id + ">", true)
+        .addField("**Utilisateur banni**", member, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du modérateur**", message.author.id, true)
+        .addField("**ID de l'utilisateur banni**", member.id, true)
+        .addField("**Raison**", reason, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661948166442319894").send(banlog)
+        message.guild.ban(member, {days: 7, reason: reason})
+        message.guild.unban(member)
+       message.delete()
+       var success = new Discord.RichEmbed()
+        .setTitle(member.displayName + " a été softban du serveur par " + message.author.username + " pour la raison suivante : " + reason)
+        .setTimestamp()
+       message.channel.send(success)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SUPPRIME ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -143,6 +203,10 @@ client.on('message', function (message) {
         client.channels.get("661948166442319894").send(supprimelog)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- MUTE ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
 
 client.on('message', function (message) {
     if (!message.guild) return
@@ -208,6 +272,10 @@ client.on('message', function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- UNMUTE ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -272,6 +340,10 @@ client.on('message', function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- 8BALL ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -297,6 +369,10 @@ client.on('message', function (message) {
         client.channels.get("661946616382619648").send(questionlog)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- WARN ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
 
 client.on("message", function (message) {
     if (!message.guild) return
@@ -341,6 +417,10 @@ client.on("message", function (message) {
         client.channels.get("661948166442319894").send(warnlog)
     }
  
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- WARNINGS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
     if (args[0].toLowerCase() === prefix + "warnings") {
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
@@ -367,6 +447,10 @@ client.on("message", function (message) {
         client.channels.get("661948166442319894").send(warnslog)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- UNWARN ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
 
 client.on("message", function (message) {
     if (!message.guild) return
@@ -408,6 +492,10 @@ client.on("message", function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- KISS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -431,9 +519,13 @@ client.on("message", function (message) {
         .addField("**ID de l'utilisateur mentionné**", member.id, true)
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
-        client.channels.get("661946616382619648").send(kisslog)
+        client.channels.get("661948166442319894").send(kisslog)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- FIGHT ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
 
 client.on("message", function (message) {
     if (!message.guild) return
@@ -462,6 +554,10 @@ client.on("message", function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- HUGS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -488,6 +584,10 @@ client.on("message", function (message) {
         client.channels.get("661948166442319894").send(fightlog)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SLAP ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
 
 client.on("message", function (message) {
     if (!message.guild) return
@@ -516,6 +616,10 @@ client.on("message", function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- THINK ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -543,6 +647,10 @@ client.on("message", function (message) {
     }
 })
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- CMDS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -550,7 +658,41 @@ client.on("message", function (message) {
     if (args[0].toLowerCase() === prefix + "cmds") {
         var cmdsembed = new Discord.RichEmbed()
         .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
-        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.``")
+        .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.``")
+        .addField("**:gear: Gestion**")
         message.channel.send(cmdsembed)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SETNAME ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'setname') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+       if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send(notallowed)
+       let reason = args.slice(1).join(" ")
+       var setnamelog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "setname.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Modérateur**","<@" + message.author.id + ">", true)
+        .addField("**Channel**", message.channel.name, true)
+        .addField("**Nouveau nom**", reason, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du modérateur**", message.author.id, true)
+        .addField("**ID du channel*", message.channel.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661946883018719253").send(setnamelog)
+       var success = new Discord.RichEmbed()
+        .setTitle('"' + message.channel.name + '" renommé en "' + reason + '".')
+        .setTimestamp()
+        message.channel.setName(reason)
+       message.channel.send(success)
     }
 })
