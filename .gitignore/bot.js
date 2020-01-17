@@ -786,7 +786,7 @@ client.on('message', function (message) {
        var success = new Discord.RichEmbed()
         .setTitle("Le nom du serveur a été modifié en : " + reason)
         .setTimestamp()
-        message.channel.setTopic(reason)
+        message.guild.setName(reason)
        message.channel.send(success)
     }
 })
