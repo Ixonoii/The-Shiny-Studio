@@ -824,3 +824,37 @@ client.on('message', function (message) {
        message.channel.send(success)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SETSTATUS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'setstatus') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
+       if (!message.author.id === "434061967951659019") return message.channel.send(notallowed)
+       let reason = args.slice(1).join(" ")
+       if(!reason) return message.channel.send(noreason)
+       var setnamelog = new Discord.RichEmbed()
+        .setTitle("Un développeura utilisé la commande " + prefix + "setstatus.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Développeur**","<@" + message.author.id + ">", true)
+        .addField("**Channel**", message.channel.name, true)
+        .addField("**Nouveau status**", reason, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du développeur**", message.author.id, true)
+        .addField("**ID du channel**", message.channel.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("667776721201790987").send(setnamelog)
+       var success = new Discord.RichEmbed()
+        .setTitle("Le status du bot a été modifié en : " + reason)
+        .setTimestamp()
+        client.user.setActivity(reason, {type: "PLAYING"})
+       message.channel.send(success)
+    }
+})
