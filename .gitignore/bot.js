@@ -859,3 +859,40 @@ client.on('message', function (message) {
         message.channel.send(success)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SETAVATAR ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'setavatar') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        if (!message.guild.id === "659411353236275229") return message.channel.send(notallowed)
+        let reason = args.slice(1).join(" ")
+        if(!reason) return message.channel.send(noreason)
+        var setnamelog = new Discord.RichEmbed()
+        .setTitle("Un développeura utilisé la commande " + prefix + "setavatar.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Développeur**","<@" + message.author.id + ">", true)
+        .addField("**Channel**", message.channel.name, true)
+        .addField("**Nouvel avatar**", "Voir l'aperçu.", true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du développeur**", message.author.id, true)
+        .addField("**ID du channel**", message.channel.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setImage(reason)
+        .setTimestamp()
+        client.channels.get("667776721201790987").send(setnamelog)
+        var success = new Discord.RichEmbed()
+        .setTitle("L'avatar du bot a été modifié : " + reason)
+        .setFooter("Veuillez noter : La mise à jour de l'avatar du bot peut prendre quelques minutes en raison de la limitation de Discord.")
+        .setTimestamp()
+        client.user.setAvatar(reason)
+        message.channel.send(success)
+    }
+})
