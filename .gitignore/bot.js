@@ -35,6 +35,7 @@ client.on("message", function (message) {
  
     if (args[0].toLowerCase() === prefix + "cmds") {
         var cmdsembed = new Discord.RichEmbed()
+        .addField("**:link: Liens**","Envie d'inviter Arplex sur votre serveur ? ``;invite`` \n Envie de rejoindre notre serveur Discord ? ``;support``")
         .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
         .addField("**:hammer: Modération**", prefix + "mute ``Mute un utilisateur.`` \n" + prefix + "unmute ``Unmute un utilisateur.`` \n" + prefix + "ban ``Ban un utilisateur.`` \n" + prefix + "softban ``Softban un utilisateur.`` \n" + prefix + "kick ``Expulse un utilisateur.`` \n" + prefix + "warn ``Avertit un utilisateur.`` \n" + prefix + "warnings ``Affiche les avertissements d'un utilisateur.`` \n" + prefix + "unwarn ``Supprime le dernier avertissement d'un utilisateur.`` \n" + prefix + "supprime ``Supprime un grand nombre de messages.` \n" + prefix + "nickname ``Modifie le surnom d'un utilisateur.``")
         .addField("**:gear: Gestion**", prefix + "setname ``Renomme un channel.`` \n" + prefix + "settopic ``Modifie le sujet d'un channel.`` \n" + prefix + "setservername ``Modifie le nom du serveur.``")
@@ -1185,7 +1186,7 @@ client.on("message", function (message) {
  
     if (args[0].toLowerCase() === prefix + "invite") {
         var cmdsembed = new Discord.RichEmbed()
-        .setTitle("Envie d'ajouter Arplex sur un serveur ? Cliquez ici !")
+        .setTitle(":wave: Envie d'ajouter Arplex sur un serveur ? Cliquez ici !")
         .setURL(invitebotlink)
         message.channel.send(cmdsembed)
     }
@@ -1199,6 +1200,22 @@ client.on("message", function (message) {
         var cmdsembed = new Discord.RichEmbed()
         .setTitle("Commande : invite \n\n Description :  Envoie un message pour inviter le bot. \n Usage : " + prefix + "invite \n Exemple : " + prefix + "invite \n Permission nécessaire : Aucune.")
         .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SUPPORT ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "support") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Besoin d'aide ? Cliquez ici pour rejoindre notre serveur Discord !")
+        .setURL(supportlink)
         message.channel.send(cmdsembed)
     }
 })
