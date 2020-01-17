@@ -718,7 +718,7 @@ client.on("message", function (message) {
         if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send(cantname)
         if (!member.manageable) return message.channel.send(cantname)
         var success = new Discord.RichEmbed()
-        .setTitle(member.displayName + " a été renommé en : " + rea)
+        .setTitle(member.displayName + " a été renommé en : " + reason)
         message.channel.send(success)
         member.setNickname(reason)
         var nicknamelog = new Discord.RichEmbed()
