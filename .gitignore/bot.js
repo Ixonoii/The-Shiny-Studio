@@ -518,6 +518,7 @@ client.on("message", function (message) {
 
 client.on('message', message =>{
     if(message.content === "test")
+    if(!message.author.bot) return
     if(!message.channel.type === "news") return message.channel.send("Vous n'êtes pas dans un channel privé.")
     message.channel.send("Vous êtes dans un channel privé.")
 })
