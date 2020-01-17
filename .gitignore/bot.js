@@ -700,6 +700,10 @@ client.on('message', function (message) {
 // ----------------------------------------- NICKNAME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- NICKNAME ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -709,10 +713,14 @@ client.on("message", function (message) {
         .setTitle("Veuillez mentionner un utilisateur.")
         var noreason = new Discord.RichEmbed()
         .setTitle("Veuillez entrer un nom.")
+        var cantname = new Discord.RichEmbed()
+        .setTitle("Je ne peux pas renommé cet utilisateur.")
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
         if(!member) return message.channel.send(nomention)
         if(!reason) return message.channel.send(noreason)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send(cantname)
+        if (!member.manageable) return message.channel.send(cantname)
         var success = new Discord.RichEmbed()
         .setTitle(member.displayName + " a été renommé en : " + rea)
         message.channel.send(success)
