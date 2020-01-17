@@ -1223,3 +1223,38 @@ client.on("message", function (message) {
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- INVITES ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
+
+const invites = {};
+
+const wait = require('util').promisify(setTimeout);
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'load') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        if (!message.guild.id === "659411353236275229") return message.channel.send(notallowed)
+        client.guilds.forEach(g => {
+            g.fetchInvites().then(guildInvites => {
+                invites[g.id] = guildInvites
+                message.channel.send("**Invitation sauvegardées ! Utilisez ``;invitations`` pour les utilisées.**")
+            })
+        })
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "invitations") {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        if (!message.guild.id === "659411353236275229") return message.channel.send(notallowed)
+        message.channel.send(invites)
+    }
+})
