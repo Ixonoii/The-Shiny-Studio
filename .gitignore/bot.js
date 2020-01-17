@@ -11,6 +11,7 @@ var errorlogo = "659504785036148750";
 var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
+var invitebotlink = "https://discordapp.com/oauth2/authorize?client_id=665615222920183808&scope=bot&permissions=8"
 
 client.login(process.env.TOKENBOT)
 
@@ -89,6 +90,18 @@ client.on('message', function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info kick") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : kick \n\n Description :  Exclu un utilisateur du serveur. \n Usage : " + prefix + "kick [@utilisateur] [raison] \n Exemple : " + prefix + "kick @Arlenox Spam, insulte. \n Permission nécessaire : Expulser des membres.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- BAN ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -133,6 +146,18 @@ client.on('message', function (message) {
         .setTitle(member.displayName + " a été ban du serveur par " + message.author.username + " pour la raison suivante : " + reason)
         .setTimestamp()
        message.channel.send(success)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info ban") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : ban \n\n Description :  Ban un utilisateur du serveur. \n Usage : " + prefix + "ban [@utilisateur] [raison] \n Exemple : " + prefix + "ban @Arlenox Spam, insulte. \n Permission nécessaire : Bannir des membres.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -184,6 +209,18 @@ client.on('message', function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info softban") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : softban \n\n Description :  Ban puis unban un utilisateur du serveur afin de supprimer un grand nombre de messages. \n Usage : " + prefix + "softban [@utilisateur] [raison] \n Exemple : " + prefix + "softban @Arlenox Spam, insulte. \n Permission nécessaire : Bannir des membres.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- SUPPRIME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -219,6 +256,18 @@ client.on('message', function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661948166442319894").send(supprimelog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info supprime") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : supprime \n\n Description :  Supprime un grand nombre de messages. \n Usage : " + prefix + "supprime [nombre] \n Exemple : " + prefix + "supprime 10 \n Permission nécessaire : Gérer les messages.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -290,6 +339,18 @@ client.on('message', function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info mute") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : mute \n\n Description :  Mute un utilisateur. \n Usage : " + prefix + "mute [@utilisateur] \n Exemple : " + prefix + "mute @Arlenox \n Permission nécessaire : Gérer les messages.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- UNMUTE ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -358,6 +419,18 @@ client.on('message', function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info mute") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : unmute \n\n Description :  Unmute un utilisateur. \n Usage : " + prefix + "unmute [@utilisateur] \n Exemple : " + prefix + "unmute @Arlenox \n Permission nécessaire : Gérer les messages.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- 8BALL ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -385,6 +458,18 @@ client.on('message', function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661946616382619648").send(questionlog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info 8ball") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : 8ball \n\n Description :  Répond à une question. \n Usage : " + prefix + "8ball [question] \n Exemple : " + prefix + "8ball Êtes-vous gentil? \n Permission nécessaire : Aucune.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -462,6 +547,30 @@ client.on("message", function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info warn") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : warn \n\n Description :  Avertit un utilisateur. \n Usage : " + prefix + "warn [@utilisateur] [raison] \n Exemple : " + prefix + "warn @Arlenox Spam. \n Permission nécessaire : Gérer les messages.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info warnings") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : warnings \n\n Description :  Affiche les avertissements d'un utilisateur. \n Usage : " + prefix + "warnings [@utilisateur] \n Exemple : " + prefix + "warnings @Arlenox. \n Permission nécessaire : Gérer les messages.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- UNWARN ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -506,6 +615,18 @@ client.on("message", function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info unwarn") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : unwarn \n\n Description :  Supprime l'avertissement d'un utilisateur. \n Usage : " + prefix + "unwarn [@utilisateur] \n Exemple : " + prefix + "unwarn @Arlenox. \n Permission nécessaire : Gérer les messages.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- KISS ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -534,6 +655,18 @@ client.on("message", function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661948166442319894").send(kisslog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info kiss") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : kiss \n\n Description :  Embrasse quelqu'un. \n Usage : " + prefix + "kiss [@utilisateur] \n Exemple : " + prefix + "kiss @Arlenox. \n Permission nécessaire : Aucune.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -568,6 +701,18 @@ client.on("message", function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info fight") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : fight \n\n Description :  Combat un utilisateur. \n Usage : " + prefix + "fight [@utilisateur] \n Exemple : " + prefix + "fight @Arlenox. \n Permission nécessaire : Aucune.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- HUGS ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -596,6 +741,18 @@ client.on("message", function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661948166442319894").send(fightlog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info hugs") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : hugs \n\n Description :  Fait un calîn à un utilisateur. \n Usage : " + prefix + "hugs [@utilisateur] \n Exemple : " + prefix + "hugs @Arlenox. \n Permission nécessaire : Aucune.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -630,6 +787,18 @@ client.on("message", function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info slap") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : slap \n\n Description :  Giffle quelqu'un. \n Usage : " + prefix + "slap [@utilisateur] \n Exemple : " + prefix + "slap @Arlenox. \n Permission nécessaire : Aucune.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- THINK ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -658,6 +827,18 @@ client.on("message", function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661948166442319894").send(thinklog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info think") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : think \n\n Description :  Pense à quelqu'un. \n Usage : " + prefix + "think [@utilisateur] \n Exemple : " + prefix + "think @Arlenox. \n Permission nécessaire : Aucune.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -697,6 +878,18 @@ client.on('message', function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info setname") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : setname \n\n Description :  Modifie le nom d'un channel. \n Usage : " + prefix + "setname [nom] \n Exemple : " + prefix + "setname Général. \n Permission nécessaire : Gérer les salons.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- NICKNAME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -712,6 +905,7 @@ client.on("message", function (message) {
         .setTitle("Veuillez entrer un nom.")
         var cantname = new Discord.RichEmbed()
         .setTitle("Je ne peux pas renommé cet utilisateur.")
+        if(!message.member.hasPermission("MANAGE_NICKNAMES")) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
         if(!member) return message.channel.send(nomention)
@@ -734,6 +928,18 @@ client.on("message", function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661948166442319894").send(nicknamelog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info nickname") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : nickname \n\n Description :  Modifie le surnom d'un utilisateur. \n Usage : " + prefix + "nickname [@utilisateur] [nom] \n Exemple : " + prefix + "nickname @Arlenox Arlenox2. \n Permission nécessaire : Gérer les pseudos.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -773,6 +979,18 @@ client.on('message', function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info settopic") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : settopic \n\n Description :  Modifie le sujet d'un channel. \n Usage : " + prefix + "setname [sujet] \n Exemple : " + prefix + "settopic Ceci est le channel général. \n Permission nécessaire : Gérer les salons.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- SETSERVERNAME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
@@ -806,6 +1024,18 @@ client.on('message', function (message) {
         .setTimestamp()
         message.guild.setName(reason)
        message.channel.send(success)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info setservername") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : setservername \n\n Description :  Modifie le nom d'un serveur. \n Usage : " + prefix + "setservername [nom] \n Exemple : " + prefix + "setservername Nouveau serveur. \n Permission nécessaire : Administrateur.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
 
@@ -942,5 +1172,33 @@ client.on('message', function (message) {
         var success = new Discord.RichEmbed()
         .setTitle(`Voici les stats d'Arplex : \n\n Serveurs : ${client.guilds.size} \n Membres : ${client.users.size} \n Channels : ${client.channels.size} \n Emojis : ${client.emojis.size}`)
         message.channel.send(success)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- INVITE ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "invite") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Envie d'ajouter Arplex sur un serveur ? Cliquez ici !")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "info invite") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Commande : invite \n\n Description :  Envoie un message pour inviter le bot. \n Usage : " + prefix + "invite \n Exemple : " + prefix + "invite \n Permission nécessaire : Aucune.")
+        .setURL(invitebotlink)
+        message.channel.send(cmdsembed)
     }
 })
