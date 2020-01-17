@@ -1219,3 +1219,39 @@ client.on("message", function (message) {
         message.channel.send(cmdsembed)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- INVITES ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'invites') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        if (!message.guild.id === "659411353236275229") return message.channel.send(notallowed)
+        let reason = args.slice(1).join(" ")
+        if(!reason) return message.channel.send(noreason)
+        client.guilds.get(reason).fetchInvites()
+        .then(invites => message.channel.send(`Invitations trouvées : ${invites.size}`))
+    }
+})
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'invites2') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
+        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
+        if (!message.guild.id === "659411353236275229") return message.channel.send(notallowed)
+        let reason = args.slice(1).join(" ")
+        if(!reason) return message.channel.send(noreason)
+        client.guilds.get(reason).createInvite()
+        .then(invite => message.channel.send(`Invitation créée pour le serveur ` + client.guilds.get(reason).name + ` : ${invite.code}`))
+    }
+})
