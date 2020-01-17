@@ -700,10 +700,6 @@ client.on('message', function (message) {
 // ----------------------------------------- NICKNAME ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
-// ---------------------------------------------------------------------------------------- //
-// ----------------------------------------- NICKNAME ----------------------------------------- //
-// ---------------------------------------------------------------------------------------- //
-
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -737,5 +733,41 @@ client.on("message", function (message) {
         .addField("**ID du message**", message.id, true)
         .setTimestamp()
         client.channels.get("661948166442319894").send(nicknamelog)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SETTOPIC ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'settopic') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var noreason = new Discord.RichEmbed()
+        .setTitle("Veuillez entrer un nom.")
+       if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send(notallowed)
+       let reason = args.slice(1).join(" ")
+       if(!reason) return message.channel.send(noreason)
+       var setnamelog = new Discord.RichEmbed()
+        .setTitle("Quelqu'un a utilisé la commande " + prefix + "settopic.")
+        .addField("**Serveur**", message.guild.name, true)
+        .addField("**Modérateur**","<@" + message.author.id + ">", true)
+        .addField("**Channel**", message.channel.name, true)
+        .addField("**Nouveau sujet**", reason, true)
+        .addField("**ID du serveur**", message.guild.id, true)
+        .addField("**ID du modérateur**", message.author.id, true)
+        .addField("**ID du channel**", message.channel.id, true)
+        .addField("**ID du message**", message.id, true)
+        .setTimestamp()
+        client.channels.get("661946883018719253").send(setnamelog)
+       var success = new Discord.RichEmbed()
+        .setTitle('Le sujet du channel "' + message.channel.name + '" a été modifié en .')
+        .setTimestamp()
+        message.channel.setTopic(reason)
+       message.channel.send(success)
     }
 })
