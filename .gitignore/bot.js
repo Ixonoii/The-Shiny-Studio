@@ -1219,3 +1219,15 @@ client.on("message", function (message) {
         message.channel.send(cmdsembed)
     }
 })
+
+client.on('message', function(message) {
+    if(message.content === prefix + "check"){
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
+        var success = new Discord.RichEmbed()
+        .setTitle(`Voici les stats d'Arplex : \n\n Serveurs : ${client.guilds.size} \n Membres : ${client.users.size} \n Channels : ${client.channels.size} \n Emojis : ${client.emojis.size}`)
+        if(message.author.id === "434061967951659019") return message.channel.send(success)
+    } else {
+        return message.channel.send(notallowed)
+    }
+});
