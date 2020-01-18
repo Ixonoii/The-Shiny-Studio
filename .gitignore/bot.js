@@ -1233,3 +1233,24 @@ client.on("message", function (message) {
         message.channel.send(cmdsembed)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- SUGGESTION ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'suggestion') {
+        var noreason = new Discord.RichEmbed()
+        .setTitle("No reason entered!")
+        let reason = args.slice(1).join(" ")
+        if(!reason) return message.channel.send(noreason)
+        client.guilds.get(ArplexServer).createChannel(message.author.id).then(channel => {
+            channel.setName(message.author.id)
+            channel.setTopic(reason)
+            channel.send("<@434061967951659019> Someone used ;suggestion!")
+        })
+    }
+})
