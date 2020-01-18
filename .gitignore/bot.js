@@ -1205,3 +1205,21 @@ client.on("message", function (message) {
         message.channel.send(cmdsembed)
     }
 })
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- TEST ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+const blacklistedservers = "665908873689038879"
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "test") {
+        var blacklisted = new Discord.RichEmbed()
+        .setTitle(":x: Ce serveur est sur liste noire et vous ne pouvez donc utiliser aucune commande!")
+        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
+        message.channel.send("This server isn't blacklisted!")
+    }
+})
