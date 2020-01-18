@@ -12,10 +12,7 @@ var successlogo = "659504835535831060";
 var notallowedmessage = "Vous ne disposez pas des autorisations nécessaires pour utiliser cette commande.";
 var supportlink = "https://discord.gg/qn9WzNk"
 var invitebotlink = "https://discordapp.com/oauth2/authorize?client_id=665615222920183808&scope=bot&permissions=8"
-var blacklisted = new Discord.RichEmbed()
-    .setTitle("Impossible d'utiliser cette commande: Le serveur " + message.guild.name + " est sur la liste noire et vous ne pouvez donc utiliser aucune commande. Pour plus d'informations, merci de rejoindre notre serveur Discord (;support).")
 
-const blacklistedservers = "665908873689038879"
 client.login(process.env.TOKENBOT)
 
 const warns = JSON.parse(fs.readFileSync('./warns.json'))
@@ -37,7 +34,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "cmds") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var cmdsembed = new Discord.RichEmbed()
         .addField("**:link: Liens**","Envie d'inviter Arplex sur votre serveur ? ``;invite`` \n Envie de rejoindre notre serveur Discord ? ``;support``")
         .addField("**:smile: Fun**", prefix + "kiss ``Embrasse quelqu'un.`` \n" + prefix + "slap ``Giffle quelqu'un.`` \n" + prefix + "fight ``Combat quelqu'un.`` \n" + prefix + "hugs ``Fait un calîn à quelqu'un.`` \n" + prefix + "think ``Pense à quelqu'un.`` \n" + prefix + "8ball ``Pose une question.``")
@@ -57,7 +53,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'kick') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -117,7 +112,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'ban') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -177,7 +171,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'softban') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -238,7 +231,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "supprime") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nonumber = new Discord.RichEmbed()
@@ -289,7 +281,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "mute") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -370,7 +361,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "unmute") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -451,7 +441,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "8ball") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var noquestion = new Discord.RichEmbed()
         .setTitle("Vous devez poser une question.")
         if (!args[1]) return message.channel.send(noquestion)
@@ -494,7 +483,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "warn") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -534,7 +522,6 @@ client.on("message", function (message) {
     }
 
     if (args[0].toLowerCase() === prefix + "warnings") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -594,7 +581,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "unwarn") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var nomention = new Discord.RichEmbed()
@@ -651,7 +637,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "kiss") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         let member = message.mentions.members.first()
@@ -695,7 +680,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "fight") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         let member = message.mentions.members.first()
@@ -739,7 +723,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "hugs") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         let member = message.mentions.members.first()
@@ -783,7 +766,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "slap") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         let member = message.mentions.members.first()
@@ -827,7 +809,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "think") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         let member = message.mentions.members.first()
@@ -871,7 +852,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'setname') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var noreason = new Discord.RichEmbed()
@@ -920,7 +900,6 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "nickname") {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var nomention = new Discord.RichEmbed()
         .setTitle("Veuillez mentionner un utilisateur.")
         var noreason = new Discord.RichEmbed()
@@ -974,7 +953,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'settopic') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var noreason = new Discord.RichEmbed()
@@ -1023,7 +1001,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'setservername') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle(notallowedmessage)
         var noreason = new Discord.RichEmbed()
@@ -1072,7 +1049,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'setstatus') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
         if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
@@ -1108,7 +1084,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'setavatar') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
         if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
@@ -1136,6 +1111,20 @@ client.on('message', function (message) {
         message.channel.send(success)
     }
 })
+
+client.on('message', function(message) {
+    if(message.content === prefix + "stats"){
+        var notallowed = new Discord.RichEmbed()
+        .setTitle("Seul le propriétaire du bot peut utiliser cette commande.")
+        var success = new Discord.RichEmbed()
+        .setTitle("L'avatar du bot a été modifié : " + reason)
+        .setFooter("Veuillez noter : La mise à jour de l'avatar du bot peut prendre quelques minutes en raison de la limitation de Discord.")
+        .setTimestamp()
+        if(message.author.id === "434061967951659019") return message.channel.send(success)
+    } else {
+        return message.channel.send(notallowed)
+    }
+});
 
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- BOT AJOUTE ----------------------------------------- //
@@ -1180,7 +1169,6 @@ client.on('message', function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'stats') {
-        if(message.guild.id === blacklistedservers) return message.channel.send(blacklisted)
         var notallowed = new Discord.RichEmbed()
         .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
         if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
