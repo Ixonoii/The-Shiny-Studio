@@ -1150,31 +1150,17 @@ client.on("guildDelete", guild =>{
 // ----------------------------------------- STATS ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + 'stats') {
+client.on('message', function(message) {
+    if(message.content === prefix + "stats"){
         var notallowed = new Discord.RichEmbed()
-        .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
-        if(!message.member.roles.some(r=>["Développeur"].includes(r.name)) ) return message.channel.send(notallowed)
-        if (!message.guild.id === "659411353236275229") return message.channel.send(notallowed)
-        var setnamelog = new Discord.RichEmbed()
-        .setTitle("Un développeur a utilisé la commande " + prefix + "stats.")
-        .addField("**Serveur**", message.guild.name, true)
-        .addField("**Développeur**","<@" + message.author.id + ">", true)
-        .addField("**Channel**", message.channel.name, true)
-        .addField("**ID du serveur**", message.guild.id, true)
-        .addField("**ID du développeur**", message.author.id, true)
-        .addField("**ID du channel**", message.channel.id, true)
-        .addField("**ID du message**", message.id, true)
-        .setTimestamp()
-        client.channels.get("667776721201790987").send(setnamelog)
+        .setTitle("Seul le propriétaire du bot peut utiliser cette commande.")
         var success = new Discord.RichEmbed()
         .setTitle(`Voici les stats d'Arplex : \n\n Serveurs : ${client.guilds.size} \n Membres : ${client.users.size} \n Channels : ${client.channels.size} \n Emojis : ${client.emojis.size}`)
-        message.channel.send(success)
+        if(message.author.id === "434061967951659019") return message.channel.send(success)
+    } else {
+        return message.channel.send(notallowed)
     }
-})
+});
 
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- INVITE ----------------------------------------- //
@@ -1219,15 +1205,3 @@ client.on("message", function (message) {
         message.channel.send(cmdsembed)
     }
 })
-
-client.on('message', function(message) {
-    if(message.content === "--check"){
-        var notallowed = new Discord.RichEmbed()
-        .setTitle("Seul le propriétaire du bot peut utiliser cette commande.")
-        var success = new Discord.RichEmbed()
-        .setTitle(`Voici les stats d'Arplex : \n\n Serveurs : ${client.guilds.size} \n Membres : ${client.users.size} \n Channels : ${client.channels.size} \n Emojis : ${client.emojis.size}`)
-        if(message.author.id === "665615222920183808") return message.channel.send(success)
-    } else {
-        return message.channel.send(notallowed)
-    }
-});
