@@ -1226,7 +1226,7 @@ client.on('message', function(message) {
         .setTitle("Cette commande est réservée aux développeurs d'Arplex uniquement.")
         var success = new Discord.RichEmbed()
         .setTitle(`Voici les stats d'Arplex : \n\n Serveurs : ${client.guilds.size} \n Membres : ${client.users.size} \n Channels : ${client.channels.size} \n Emojis : ${client.emojis.size}`)
-        if(message.author.id === "434061967951659019") return message.channel.send(success)
+        if(message.author.id === "416358583220043796") return message.channel.send(success)
     } else {
         return message.channel.send(notallowed)
     }
