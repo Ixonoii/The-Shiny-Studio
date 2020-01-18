@@ -1243,7 +1243,7 @@ client.on('message', (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + 'suggestion') {
-        const noreason = new Discord.RichEmbed()
+        var noreason = new Discord.RichEmbed()
         .setTitle("No reason entered!")
         
         let reason = args.slice(1).join(" ")
