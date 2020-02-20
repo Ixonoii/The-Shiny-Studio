@@ -18,5 +18,5 @@ client.on("message", message => {
     .setAuthor(message.author.displayAvatarURL, message.author.tag)
     .setColor(Color)
     .setTitle("Testing the color!")
+    message.channel.send(GroupEmbed)
 })
-=
