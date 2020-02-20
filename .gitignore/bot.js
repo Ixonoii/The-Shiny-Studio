@@ -14,5 +14,9 @@ client.login(process.env.TOKENBOT)
 
 client.on("message", message => {
     if(message.content === "nub")
-    message.channel.send(":D (testing)")
+    var GroupEmbed = new Discord.RichEmbed()
+    .setAuthor(message.author.displayAvatarURL, message.author.tag)
+    .setColor(Color)
+    .setTitle("Testing the color!")
 })
+=
