@@ -6,7 +6,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
 var prefix = "-";
-var Color = "0x3182F0"
+var Color = "#3182F0";
 client.login(process.env.TOKENBOT)
 
 // ---------------------------------------------------------------------------------------- //
