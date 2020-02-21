@@ -67,7 +67,7 @@ client.on('message', function (message) {
         .setTitle(":warning: You can't kick this user.")
         var nokickable = new Discord.RichEmbed()
         .setTitle(":warning: This member is kickable, but I do not have the permissions required to perform this action.")
-        if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send(notallowed)
+        if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send(NotAllowedMessage)
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
         if (!member) return message.channel.send(nomention)
