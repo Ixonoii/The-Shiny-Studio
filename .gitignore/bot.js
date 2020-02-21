@@ -119,7 +119,7 @@ client.on('message', function (message) {
         .addField("**Raison**", "``" + reason + "``", true)
         .setTimestamp()
         client.channels.get(LogChannel).send(kicklog)
-        member.kick(reason)
+        member.ban({days: 7})
         message.delete()
         var success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: " + member.displayName + " has been banned: ``" + reason + "``")
