@@ -127,3 +127,32 @@ client.on('message', function (message) {
         message.channel.send(success)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "purge") {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        var nonumber = new Discord.RichEmbed()
+        .setTitle(":warning: Enter a number of messages to purge.")
+        var incorrectnumber = new Discord.RichEmbed()
+        .setTitle(":warning: Enter a number of messages to purge.")
+        var toohigh = new Discord.RichEmbed()
+        .setTitle(":warning: Enter a number of messages to purge (1 to 100")
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
+        let count = parseInt(args[1])
+        if (!count) return message.channel.send(nonumber)
+        if (isNaN(count)) return message.channel.send(incorrectnumber)
+        if (count < 1 || count > 100) return message.channel.send(toohigh)
+        message.channel.bulkDelete(count + 1, true)
+        supprimelog = new Discord.RichEmbed()
+        .setTitle("A channel has been purged!")
+        .addField("**Moderator**","``" + message.author.tag + "``", true)
+        .addField("**Channel**","``" + message.channel.name + "``", true)
+        .addField("**Number**", "``" + count + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(supprimelog)
+    }
+})
