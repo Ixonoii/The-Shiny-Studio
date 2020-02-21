@@ -89,3 +89,41 @@ client.on('message', function (message) {
         message.channel.send(success)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'ban') {
+        var NotAllowedMessage = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter a reason.")
+        var cantkickowner = new Discord.RichEmbed()
+        .setTitle(":warning: You can't ban this user.")
+        var nokickable = new Discord.RichEmbed()
+        .setTitle(":warning: This member is bannable, but I do not have the permissions required to perform this action.")
+        if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send(NotAllowedMessage)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if (!member) return message.channel.send(nomention)
+        if (!reason) return message.channel.send(noreason)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send(cantkickowner)
+        if (!member.bannable) return message.channel.send(nokickable)
+        var kicklog = new Discord.RichEmbed()
+        .setTitle("A user has been banned!")
+        .addField("**Moderator**","``" + message.author.tag + "``", true)
+        .addField("**User**","``" + member.displayName + "``", true)
+        .addField("**Raison**", "``" + reason + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(kicklog)
+        member.kick(reason)
+        message.delete()
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: " + member.displayName + " has been banned.")
+        .setTimestamp()
+        message.channel.send(success)
+    }
+})
