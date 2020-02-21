@@ -58,7 +58,7 @@ client.on('message', function (message) {
  
     if (args[0].toLowerCase() === prefix + 'kick') {
         var NotAllowedMessage = new Discord.RichEmbed()
-        .setTitle(NotAllowedMessage)
+        .setTitle(NotAllowed)
         var nomention = new Discord.RichEmbed()
         .setTitle(":warning: Please mention a user.")
         var noreason = new Discord.RichEmbed()
@@ -67,7 +67,7 @@ client.on('message', function (message) {
         .setTitle(":warning: You can't kick this user.")
         var nokickable = new Discord.RichEmbed()
         .setTitle(":warning: This member is kickable, but I do not have the permissions required to perform this action.")
-        if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send(NotAllowed)
+        if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send(NotAllowedMessage)
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
         if (!member) return message.channel.send(nomention)
