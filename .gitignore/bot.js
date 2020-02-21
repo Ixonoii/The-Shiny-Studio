@@ -186,7 +186,9 @@ client.on('message', function (message) {
     if (args[0].toLowerCase() === prefix + "suggest") {
         var success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: Your suggestion has been sent.")
-        if (!args[1]) return message.channel.send(noquestion)
+        var nosuggestion = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter a suggestion.")
+        if (!args[1]) return message.channel.send(nosuggestion)
         let suggestion = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
         .setTitle(":pushpin: Suggestion.")
