@@ -18,12 +18,12 @@ client.on("message", function (message) {
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "group") {
-        var GroupEmbed = new Discord.RichEmbed()
+        const GroupEmbed = new Discord.RichEmbed()
         .setTitle("The Shiny Studio")
         .setDescription("Our Roblox group is a vital part of the game. Our group is the way you get access to the discord and much more. There will be possible perks if you are in the group coming soon.")
-        .setThumbnail("https://cdn.discordapp.com/attachments/434065197427064863/680390239025365083/De.png")
         .setURL("https://www.roblox.com/groups/5063409/The-Shiny-Studio#!/about")
-        .setFooter(message.author.displayAvatarURL, message.author.tag)
+        .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
         message.channel.send(GroupEmbed)
     }
 })
