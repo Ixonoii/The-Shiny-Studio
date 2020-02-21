@@ -13,8 +13,9 @@ client.login(process.env.TOKENBOT)
 // ----------------------------------------- GROUP ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
 
-client.on('message', function (message) {
-    if (message.content === "Testing.") {
-        message.channel.send(':white_check_mark: Test done.')
-    }
+client.on("message", function (message) {
+    let GroupEmbed = new Discord.RichEmbed()
+    .setAuthor(message.author.displayAvatarURL, message.author.tag)
+    .setTitle(':white_check_mark: Test done.')
+    message.channel.send(GroupEmbed)
 })
