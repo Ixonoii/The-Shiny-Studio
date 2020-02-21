@@ -163,12 +163,12 @@ client.on('message', function (message) {
  
     if (args[0].toLowerCase() === prefix + "8ball") {
         var noquestion = new Discord.RichEmbed()
-        .setTitle("What's your question?")
+        .setTitle(":thinking: What's your question?")
         if (!args[1]) return message.channel.send(noquestion)
         let answers = ["No.", "Yes.", "Maybe.", "Never.", "Of course..","Never."]
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
-        .setTitle(answers[Math.floor(Math.random() * answers.length)])
+        .setTitle(":star: " + answers[Math.floor(Math.random() * answers.length)])
         message.channel.send(embed)
         var questionlog = new Discord.RichEmbed()
         .setTitle("A question has been asked!")
