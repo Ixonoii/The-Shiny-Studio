@@ -14,9 +14,12 @@ client.login(process.env.TOKENBOT)
 // ---------------------------------------------------------------------------------------- //
 
 client.on("message", function (message) {
-    if (message.content === "Testing.")
-    let GroupEmbed = new Discord.RichEmbed()
-    .setAuthor(message.author.displayAvatarURL, message.author.tag)
-    .setTitle(':white_check_mark: Test done.')
-    message.channel.send(GroupEmbed)
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "test") {
+        var cmdsembed = new Discord.RichEmbed()
+        .setTitle("Arlenox is a noob.")
+        message.channel.send(cmdsembed)
+    }
 })
