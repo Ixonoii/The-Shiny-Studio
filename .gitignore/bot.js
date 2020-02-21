@@ -14,6 +14,7 @@ client.login(process.env.TOKENBOT)
 // ---------------------------------------------------------------------------------------- //
 
 client.on("message", function (message) {
+    if (message.content === "Testing.")
     let GroupEmbed = new Discord.RichEmbed()
     .setAuthor(message.author.displayAvatarURL, message.author.tag)
     .setTitle(':white_check_mark: Test done.')
