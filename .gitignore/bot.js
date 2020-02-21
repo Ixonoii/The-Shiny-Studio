@@ -12,6 +12,8 @@ var GroupDescription = "Our Roblox group is a vital part of the game. Our group 
 var GameDescription = "Our game is one of the best games with state of the art security. We have invisible walls stopping exploiters, active staff to correctly punish people disobeying rules.";
 var LogChannel = "680455637687205895";
 var NotAllowed = ":warning: You don't have the necessary permissions to use this command.";
+var Trello = require("trello");
+var trello = new Trello("aff42b030b2c9e009b9fa35dd171faf8", "75d6dccd0e0d0030488dc2d61001544d011c08dce726b97f94445e167eaf4117");
 client.login(process.env.TOKENBOT)
 
 client.on('ready', function(){
@@ -84,7 +86,7 @@ client.on('message', function (message) {
         member.kick(reason)
         message.delete()
         var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: " + member.displayName + " has been kicked.")
+        .setTitle(":white_check_mark: " + member.displayName + " has been kicked: ``" + reason + "``")
         .setTimestamp()
         message.channel.send(success)
     }
@@ -122,7 +124,7 @@ client.on('message', function (message) {
         member.kick(reason)
         message.delete()
         var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: " + member.displayName + " has been banned.")
+        .setTitle(":white_check_mark: " + member.displayName + " has been banned: ``" + reason + "``")
         .setTimestamp()
         message.channel.send(success)
     }
