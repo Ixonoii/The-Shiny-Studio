@@ -26,63 +26,6 @@ client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
-    if (args[0].toLowerCase() === prefix + "setlogchannel") {
-        var NotAllowedMessage = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(NotAllowedMessage)
-        let IdEntered = args.slice(1).join(" ")
-        if(!IdEntered) return message.channel.send(":warning: Please enter a channel ID.")
-        const GroupEmbed = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Log channel set to ``" + IdEntered + "``.")
-        .setTimestamp()
-        .setFooter("Requested by " + message.author.tag)
-        message.channel.send(GroupEmbed)
-        LogChannel = IdEntered
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "setgamedesc") {
-        var NotAllowedMessage = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(NotAllowedMessage)
-        let DescriptionEntered = args.slice(1).join(" ")
-        if(!DescriptionEntered) return message.channel.send(":warning: Please enter a new description.")
-        const GroupEmbed = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Game description set to ``" + IdEntered + "``.")
-        .setTimestamp()
-        .setFooter("Requested by " + message.author.tag)
-        message.channel.send(GroupEmbed)
-        GameDescription = DescriptionEntered
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "setgamename") {
-        var NotAllowedMessage = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(NotAllowedMessage)
-        let DescriptionEntered = args.slice(1).join(" ")
-        if(!DescriptionEntered) return message.channel.send(":warning: Please enter a new name.")
-        const GroupEmbed = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Game name set to ``" + IdEntered + "``.")
-        .setTimestamp()
-        .setFooter("Requested by " + message.author.tag)
-        message.channel.send(GroupEmbed)
-        GameDescription = DescriptionEntered
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
     if (args[0].toLowerCase() === prefix + "group") {
         const GroupEmbed = new Discord.RichEmbed()
         .setTitle("The Shiny Studio")
