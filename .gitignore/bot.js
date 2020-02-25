@@ -178,31 +178,3 @@ client.on('message', function (message) {
         client.channels.get(LogChannel).send(questionlog)
     }
 })
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "suggest") {
-        var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Your suggestion has been sent.")
-        var nosuggestion = new Discord.RichEmbed()
-        .setTitle(":warning: Please enter a suggestion.")
-        if (!args[1]) return message.channel.send(nosuggestion)
-        let suggestion = args.slice(1).join(" ")
-        var embed = new Discord.RichEmbed()
-        .setTitle(":pushpin: Suggestion.")
-        .setDescription(suggestion)
-        .setTimestamp()
-        .setFooter("Suggested by " + message.author.tag)
-        message.channel.send(success)
-        message.delete()
-        var suggestionlog = new Discord.RichEmbed()
-        .setTitle("A suggestion has been asked!")
-        .addField("**User**","``" + message.author.tag + "``", true)
-        .addField("**Suggestion**","``" + suggestion + "``", true)
-        .setTimestamp()
-        client.channels.get(SuggestionChannel).send(embed)
-        client.channels.get(LogChannel).send(suggestionlog)
-    }
-})
