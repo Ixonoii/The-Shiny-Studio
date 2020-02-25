@@ -190,10 +190,12 @@ client.on("message", function (message) {
         .setTitle(":warning: Please mention a user.")
         var noreason = new Discord.RichEmbed()
         .setTitle(":warning: Please enter a reason.")
+        var toohigh = new Discord.RichEmbed()
+        .setTitle(":warning: You can't warn this user.")
         if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(NotAllowedMessage)
         let member = message.mentions.members.first()
         if (!member) return message.channel.send(nomention)
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("Vous ne pouvez pas warn ce membre")
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send(toohigh)
         let reason = args.slice(2).join(' ')
         if (!reason) return message.channel.send(noreason)
         if (!warns[member.id]) {
@@ -219,7 +221,7 @@ client.on("message", function (message) {
 
     if (args[0].toLowerCase() === prefix + "warnings") {
         var notallowed = new Discord.RichEmbed()
-        .setTitle(notallowedmessage)
+        .setTitle(NotAllowed)
         var nomention = new Discord.RichEmbed()
         .setTitle(":warning: Please mention a user.")
         if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
