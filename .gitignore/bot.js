@@ -178,3 +178,63 @@ client.on('message', function (message) {
         client.channels.get(LogChannel).send(questionlog)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "warn") {
+        var NotAllowedMessage = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter a reason.")
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(NotAllowedMessage)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send("Vous ne pouvez pas warn ce membre")
+        let reason = args.slice(2).join(' ')
+        if (!reason) return message.channel.send(noreason)
+        if (!warns[member.id]) {
+            warns[member.id] = []
+        }
+        warns[member.id].unshift({
+            reason: reason,
+            date: Date.now(),
+            mod: message.author.id
+        })
+        fs.writeFileSync('./warns.json', JSON.stringify(warns))
+        var success = new Discord.RichEmbed()
+        .setTitle(member.displayName + " has been warned: ``" + reason + "``")
+        message.channel.send(success)
+        var kicklog = new Discord.RichEmbed()
+        .setTitle("A user has been warned!")
+        .addField("**Moderator**","``" + message.author.tag + "``", true)
+        .addField("**User**","``" + member.displayName + "``", true)
+        .addField("**Raison**", "``" + reason + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(kicklog)
+    }
+
+    if (args[0].toLowerCase() === prefix + "warnings") {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowedmessage)
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        if (!member) return message.channel.send(nomention)
+        let embed = new Discord.RichEmbed()
+            .setAuthor(member.user.username, member.user.displayAvatarURL)
+            .addField('Warnings:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No warning found."))
+            .setTimestamp()
+        message.channel.send(embed)
+        var kicklog = new Discord.RichEmbed()
+        .setTitle("A moderator checked the warnings of a user!")
+        .addField("**Moderator**","``" + message.author.tag + "``", true)
+        .addField("**User**","``" + member.displayName + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(kicklog)
+    }
+})
