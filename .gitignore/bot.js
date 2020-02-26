@@ -199,3 +199,32 @@ client.on('message', function (message) {
         message.channel.send(success)
     }
 })
+
+client.on('message', function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + 'setavatar') {
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(notallowed)
+        var noreason = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter the URL of the new avatar.")
+        if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(notallowed)
+        let reason = args.slice(1).join(" ")
+        if(!reason) return message.channel.send(noreason)
+        var setnamelog = new Discord.RichEmbed()
+        .setTitle("A moderator changed the avatar of the bot.")
+        .addField("**Moderator**","``" + message.author.tag + "``", true)
+        .addField("**Avatar**","``" + reason + "``", true)
+        .setThumbnail(reason)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(setnamelog)
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Avatar set to: ``" + reason + "``")
+        .setFooter("Please note: Updating the bot avatar may take a few minutes due to the Discord limitation.")
+        .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
+        client.user.setAvatar(reason)
+        message.channel.send(success)
+    }
+})
