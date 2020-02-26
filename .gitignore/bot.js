@@ -189,7 +189,7 @@ client.on('message', function (message) {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(notallowed)
         var setnamelog = new Discord.RichEmbed()
         .setTitle("A moderator checked the stats of the bot!")
-        .addField("**Moderator**", + "``"  + message.author.name + "``", true)
+        .addField("**Moderator**","``" + message.author.tag + "``", true)
         .setTimestamp()
         client.channels.get(LogChannel).send(setnamelog)
         var success = new Discord.RichEmbed()
