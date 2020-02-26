@@ -252,7 +252,7 @@ client.on('message', function (message) {
         .setTitle(":white_check_mark: Status set to: ``" + reason + "``")
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
-        client.user.setAvatar(reason)
+        client.user.setStatus(reason)
         message.channel.send(success)
     }
 })
