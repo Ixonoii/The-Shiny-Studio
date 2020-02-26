@@ -7,16 +7,12 @@ const client = new Discord.Client;
 const fs = require('fs');
 var prefix = "-";
 var GameName = "[⭐EVENT] Cookie Simulator 2!";
-var status = GameName;
 var GroupDescription = "Our Roblox group is a vital part of the game. Our group is the way you get access to the discord and much more. There will be possible perks if you are in the group coming soon.";
 var GameDescription = "Our game is one of the best games with state of the art security. We have invisible walls stopping exploiters, active staff to correctly punish people disobeying rules.";
 var LogChannel = "680455637687205895";
+var SuggestionChannel = "638831121496276994";
 var NotAllowed = ":warning: You don't have the necessary permissions to use this command.";
 client.login(process.env.TOKENBOT)
-
-client.on('ready', function(){
-    client.user.setActivity(status, {type: "PLAYING"})
-})
 
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- GROUP ----------------------------------------- //
@@ -75,7 +71,7 @@ client.on('message', function (message) {
         if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send(cantkickowner)
         if (!member.kickable) return message.channel.send(nokickable)
         var kicklog = new Discord.RichEmbed()
-        .setTitle("A user has been kicked!")
+        .setTitle("A user has been kicked.")
         .addField("**Moderator**","``" + message.author.tag + "``", true)
         .addField("**User**","``" + member.displayName + "``", true)
         .addField("**Raison**", "``" + reason + "``", true)
@@ -113,7 +109,7 @@ client.on('message', function (message) {
         if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send(cantkickowner)
         if (!member.bannable) return message.channel.send(nokickable)
         var kicklog = new Discord.RichEmbed()
-        .setTitle("A user has been banned!")
+        .setTitle("A user has been banned.")
         .addField("**Moderator**","``" + message.author.tag + "``", true)
         .addField("**User**","``" + member.displayName + "``", true)
         .addField("**Raison**", "``" + reason + "``", true)
@@ -148,7 +144,7 @@ client.on('message', function (message) {
         if (count < 1 || count > 100) return message.channel.send(toohigh)
         message.channel.bulkDelete(count + 1, true)
         supprimelog = new Discord.RichEmbed()
-        .setTitle("A channel has been purged!")
+        .setTitle("A channel has been purged.")
         .addField("**Moderator**","``" + message.author.tag + "``", true)
         .addField("**Channel**","``" + message.channel.name + "``", true)
         .addField("**Number**", "``" + count + "``", true)
@@ -171,7 +167,7 @@ client.on('message', function (message) {
         .setTitle(":star: " + answers[Math.floor(Math.random() * answers.length)])
         message.channel.send(embed)
         var questionlog = new Discord.RichEmbed()
-        .setTitle("A question has been asked!")
+        .setTitle("A question has been asked.")
         .addField("**User**","``" + message.author.tag + "``", true)
         .addField("**Question**","``" + question + "``", true)
         .setTimestamp()
@@ -188,12 +184,12 @@ client.on('message', function (message) {
         .setTitle(NotAllowed)
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(notallowed)
         var setnamelog = new Discord.RichEmbed()
-        .setTitle("A moderator checked the stats of the bot!")
+        .setTitle("A moderator checked the stats of the bot.")
         .addField("**Moderator**","``" + message.author.tag + "``", true)
         .setTimestamp()
         client.channels.get(LogChannel).send(setnamelog)
         var success = new Discord.RichEmbed()
-        .setTitle(`Server: ${message.guild.name} \nMembers: ${client.users.size} \nChannels: ${client.channels.size} \nEmojis: ${client.emojis.size}`)
+        .setTitle(`Server: ${message.guild.name} \nMembers : ${client.users.size} \nChannels: ${client.channels.size} \nEmojis: ${client.emojis.size}`)
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
         message.channel.send(success)
