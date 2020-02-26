@@ -193,7 +193,7 @@ client.on('message', function (message) {
         .setTimestamp()
         client.channels.get(LogChannel).send(setnamelog)
         var success = new Discord.RichEmbed()
-        .setTitle(`Server: ${message.guild.name} \nMembers : ${client.users.size} \nChannels: ${client.channels.size} \nEmojis: ${client.emojis.size}`)
+        .setTitle(`Server: ${message.guild.name} \nMembers: ${client.users.size} \nChannels: ${client.channels.size} \nEmojis: ${client.emojis.size}`)
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
         message.channel.send(success)
