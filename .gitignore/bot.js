@@ -274,3 +274,25 @@ client.on("message", function (message) {
         client.channels.get(LogChannel).send(kisslog)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "hugs") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        let member = message.mentions.members.first()
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setTitle(":blush: " + message.author.username + " hugs " + member.displayName + ".")
+        .setImage("https://i.pinimg.com/originals/ab/58/a8/ab58a8f3ad91fd62911f84bf3d54127c.gif")
+        message.channel.send(success)
+        var kisslog = new Discord.RichEmbed()
+        .setTitle("Someone hugged someone.")
+        .addField("**User**","``" + message.author.tag + "``", true)
+        .addField("**User mentioned**","``" + member.displayName + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(kisslog)
+    }
+})
