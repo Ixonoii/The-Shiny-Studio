@@ -252,3 +252,25 @@ client.on('message', function (message) {
         message.channel.send(success)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "kiss") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        let member = message.mentions.members.first()
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setTitle(":heart: " + message.author.username + " kissed " + member.displayName + ".")
+        .setImage("https://media0.giphy.com/media/FmB6UTdCj3G12/source.gif")
+        message.channel.send(success)
+        var kisslog = new Discord.RichEmbed()
+        .setTitle("Someone kissed someone.")
+        .addField("**User**","``" + message.author.tag + "``", true)
+        .addField("**User mentioned**","``" + member.displayName + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(kisslog)
+    }
+})
