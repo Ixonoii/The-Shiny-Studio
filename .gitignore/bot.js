@@ -425,7 +425,7 @@ client.on("message", function (message) {
         var notallowed = new Discord.RichEmbed()
         .setTitle(NotAllowed)
         if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(notallowed)
-        let custommessage = args.slice(2).join(" ")
+        let custommessage = args.slice(1).join(" ")
         if(!custommessage) return message.channel.send(nomention)
         var success = new Discord.RichEmbed()
         .setTitle(message.author.tag + ": ``" + custommessage + "``")
