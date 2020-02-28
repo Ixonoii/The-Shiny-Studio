@@ -409,9 +409,10 @@ client.on("message", function (message) {
         let reason = args.slice(2).join(" ")
         if(!member) return message.channel.send(nomention)
         var success = new Discord.RichEmbed()
-        .setTitle("All messages will now be sent to the following user: ``" + member.displayName + "``")
+        .setTitle(":white_check_mark: All messages will now be sent to the following user: ``" + member.displayName + "``")
         message.channel.setTopic(member.id)
         message.channel.send(success)
+        message.delete()
     }
 })
 
@@ -430,10 +431,11 @@ client.on("message", function (message) {
         var success = new Discord.RichEmbed()
         .setTitle(message.author.tag + ": ``" + custommessage + "``")
         var CustomMessageEmbed = new Discord.RichEmbed()
-        .setTitle("Message from " + message.author.tag)
+        .setTitle(":white_check_mark: Message from " + message.author.tag)
         .setDescription(custommessage)
         .setTimestamp()
         client.users.get(message.channel.topic).send(CustomMessageEmbed)
         message.channel.send(success)
+        message.delete()
     }
 })
