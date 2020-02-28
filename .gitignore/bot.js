@@ -340,3 +340,57 @@ client.on("message", function (message) {
         client.channels.get(LogChannel).send(kisslog)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "nick") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter a new nickname.")
+        var cantname = new Discord.RichEmbed()
+        .setTitle(":warning: This user is manageable, but I do not have the permissions required to perform this action.")
+        if(!message.member.hasPermission("MANAGE_NICKNAMES")) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        if(!reason) return message.channel.send(noreason)
+        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.ownerID) return message.channel.send(cantname)
+        if (!member.manageable) return message.channel.send(cantname)
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: " + member.displayName + "'s nickname has been set to: ``" + reason + "``")
+        message.channel.send(success)
+        member.setNickname(reason)
+        var nicknamelog = new Discord.RichEmbed()
+        .setTitle("Someone changed the username of a user.")
+        .addField("**Moderator**","``" + message.author.tag + "``", true)
+        .addField("**User**","``" + member.displayName + "``", true)
+        .addField("**Nickname**","``" + reason + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(nicknamelog)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "gaykiss") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        let member = message.mentions.members.first()
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setTitle(":blush: " + message.author.username + " hugs " + member.displayName + ".")
+        .setImage("https://tenor.com/yjbA.gif")
+        message.channel.send(success)
+        var kisslog = new Discord.RichEmbed()
+        .setTitle("Someone kissed someone.")
+        .addField("**User**","``" + message.author.tag + "``", true)
+        .addField("**User mentioned**","``" + member.displayName + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(kisslog)
+    }
+})
