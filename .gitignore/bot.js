@@ -433,7 +433,7 @@ client.on("message", function (message) {
         .setTitle("Message from " + message.author.tag)
         .setDescription(custommessage)
         .setTimestamp()
-        client.users.get(message.channel.id).send(CustomMessageEmbed)
+        client.users.get(message.channel.topic).send(CustomMessageEmbed)
         message.channel.send(success)
     }
 })
