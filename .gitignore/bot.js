@@ -394,3 +394,46 @@ client.on("message", function (message) {
         client.channels.get(LogChannel).send(kisslog)
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "redirect") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setTitle("All messages will now be sent to the following user: ``" + member.displayName + "``")
+        message.channel.setTopic(member.id)
+        message.channel.send(success)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "send") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Before using this command, make sure to use ``-redirect (user)``. | Please enter a message.")
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(notallowed)
+        let custommessage = args.slice(2).join(" ")
+        if(!custommessage) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setTitle(message.author.tag + ": ``" + custommessage + "``")
+        var CustomMessageEmbed = new Discord.RichEmbed()
+        .setTitle("Message from " + message.author.tag)
+        .setDescription(custommessage)
+        .setTimestamp()
+        client.users.get(message.channel.id).send(CustomMessageEmbed)
+        message.channel.send(success)
+    }
+})
