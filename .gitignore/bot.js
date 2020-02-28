@@ -384,7 +384,7 @@ client.on("message", function (message) {
         if(!member) return message.channel.send(nomention)
         var success = new Discord.RichEmbed()
         .setTitle(":blush: " + message.author.username + " hugs " + member.displayName + ".")
-        .setImage("https://tenor.com/yjbA.gif")
+        .setImage("https://tenor.com/w0Ia.gif")
         message.channel.send(success)
         var kisslog = new Discord.RichEmbed()
         .setTitle("Someone kissed someone.")
