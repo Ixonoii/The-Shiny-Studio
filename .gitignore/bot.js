@@ -587,5 +587,6 @@ client.on("message", function (message) {
 })
 
 client.on('message', message => {
+    if (message.author.bot) return
     if (message.channel.type !== 'text') return message.channel.send("This is a test!")
 })
