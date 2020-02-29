@@ -540,18 +540,48 @@ client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
-    if (args[0].toLowerCase() === prefix + "warns") {
+    if (args[0].toLowerCase() === prefix + "clearwarns") {
         var nomention = new Discord.RichEmbed()
         .setTitle(":warning: Please mention a user.")
         .setTitle(NotAllowed)
+        var nowarn = new Discord.RichEmbed()
+        .setTitle(":warning: Impossible to clear the warnings of this user: No warning found.")
         if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
         if(!member) return message.channel.send(nomention)
+        if(!warns[member.id] || !warns[member.id].length) return message.channel.send(nowarn)
+        warns[member.id].shift()
+        fs.writeFileSync('./warns.json', JSON.stringify(warns))
         var success = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.displayAvatarURL)
-        .addField('Warnings:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No warning found."))
+        .setTitle(":white_check_mark: Cleared warnings.")
         .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
+        message.channel.send(success)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "clearstrikes") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        .setTitle(NotAllowed)
+        var nowarn = new Discord.RichEmbed()
+        .setTitle(":warning: Impossible to clear the strikes of this user: No strike found.")
+        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        if(!strikes[member.id] || !strikes[member.id].length) return message.channel.send(nowarn)
+        strikes[member.id].shift()
+        fs.writeFileSync('./strikes.json', JSON.stringify(strikes))
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Cleared strikes.")
+        .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
         message.channel.send(success)
     }
 })
