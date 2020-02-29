@@ -279,7 +279,7 @@ client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
-    if (args[0].toLowerCase() === prefix + "hugs") {
+    if (args[0].toLowerCase() === prefix + "hug") {
         var nomention = new Discord.RichEmbed()
         .setTitle(":warning: Please mention a user.")
         let member = message.mentions.members.first()
@@ -383,7 +383,7 @@ client.on("message", function (message) {
         let member = message.mentions.members.first()
         if(!member) return message.channel.send(nomention)
         var success = new Discord.RichEmbed()
-        .setTitle(":blush: " + message.author.username + " hugs " + member.displayName + ".")
+        .setTitle(":blush: " + message.author.username + " kiss " + member.displayName + ".")
         .setImage("https://tenor.com/w0Ia.gif")
         message.channel.send(success)
         var kisslog = new Discord.RichEmbed()
@@ -437,5 +437,59 @@ client.on("message", function (message) {
         client.users.get(message.channel.topic).send(CustomMessageEmbed)
         message.channel.send(success)
         message.delete()
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "strike") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter a reason.")
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        if(!reason) return message.channel.send(noreason)
+        var CustomMessageEmbed = new Discord.RichEmbed()
+        .setTitle("You've been striked in The Shiny Studio.")
+        .setDescription("Reason: " + reason)
+        .setTimestamp()
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: " + member.displayName + " successfully striked.")
+        message.channel.setTopic(member.id)
+        message.channel.send(success)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "warn") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        var noreason = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter a reason.")
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        if(!reason) return message.channel.send(noreason)
+        var CustomMessageEmbed = new Discord.RichEmbed()
+        .setTitle("You've been warned in The Shiny Studio.")
+        .setDescription("Reason: " + reason)
+        .setTimestamp()
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: " + member.displayName + " successfully warned.")
+        message.channel.setTopic(member.id)
+        message.channel.send(success)
     }
 })
