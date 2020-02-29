@@ -462,8 +462,8 @@ client.on("message", function (message) {
         .setTimestamp()
         var success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: " + member.displayName + " successfully striked.")
-        message.channel.setTopic(member.id)
         message.channel.send(success)
+        member.send(CustomMessageEmbed)
     }
 })
 
@@ -489,7 +489,7 @@ client.on("message", function (message) {
         .setTimestamp()
         var success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: " + member.displayName + " successfully warned.")
-        message.channel.setTopic(member.id)
         message.channel.send(success)
+        member.send(CustomMessageEmbed)
     }
 })
