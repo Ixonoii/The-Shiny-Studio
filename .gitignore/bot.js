@@ -440,6 +440,8 @@ client.on("message", function (message) {
     }
 })
 
+const strikes = JSON.parse(fs.readFileSync('./strikes.json'))
+
 client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
@@ -457,15 +459,46 @@ client.on("message", function (message) {
         if(!member) return message.channel.send(nomention)
         if(!reason) return message.channel.send(noreason)
         var CustomMessageEmbed = new Discord.RichEmbed()
-        .setTitle("You've been striked in The Shiny Studio.")
+        .setTitle(":warning: You've been striked in The Shiny Studio.")
         .setDescription("Reason: " + reason)
         .setTimestamp()
         var success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: " + member.displayName + " successfully striked.")
         message.channel.send(success)
         member.send(CustomMessageEmbed)
+        if (!strikes[member.id]) {
+            strikes[member.id] = []
+        }
+        strikes[member.id].unshift({
+            reason: reason,
+            date: Date.now(),
+            mod: message.author.id
+        })
+        fs.writeFileSync('./strikes.json', JSON.stringify(strikes))
     }
 })
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "strikes") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        .setTitle(NotAllowed)
+        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setAuthor(member.user.username, member.user.displayAvatarURL)
+        .addField('Strikes:', ((strikes[member.id] && strikes[member.id].length) ? strikes[member.id].slice(0, 10).map(e => e.reason) : "No strike found."))
+        .setTimestamp()
+        message.channel.send(success)
+    }
+})
+
+const warns = JSON.parse(fs.readFileSync('./warns.json'))
 
 client.on("message", function (message) {
     if (!message.guild) return
@@ -484,12 +517,41 @@ client.on("message", function (message) {
         if(!member) return message.channel.send(nomention)
         if(!reason) return message.channel.send(noreason)
         var CustomMessageEmbed = new Discord.RichEmbed()
-        .setTitle("You've been warned in The Shiny Studio.")
+        .setTitle(":warning: You've been warned in The Shiny Studio.")
         .setDescription("Reason: " + reason)
         .setTimestamp()
         var success = new Discord.RichEmbed()
         .setTitle(":white_check_mark: " + member.displayName + " successfully warned.")
         message.channel.send(success)
         member.send(CustomMessageEmbed)
+        if (!warns[member.id]) {
+            warns[member.id] = []
+        }
+        warns[member.id].unshift({
+            reason: reason,
+            date: Date.now(),
+            mod: message.author.id
+        })
+        fs.writeFileSync('./warns.json', JSON.stringify(warns))
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "warns") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        .setTitle(NotAllowed)
+        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        if(!member) return message.channel.send(nomention)
+        var success = new Discord.RichEmbed()
+        .setAuthor(member.user.username, member.user.displayAvatarURL)
+        .addField('Warnings:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No warning found."))
+        .setTimestamp()
+        message.channel.send(success)
     }
 })
