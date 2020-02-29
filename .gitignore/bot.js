@@ -585,3 +585,7 @@ client.on("message", function (message) {
         message.channel.send(success)
     }
 })
+
+client.on('message', message => {
+    if (message.channel.type !== 'text') return message.channel.send("This is a test!")
+})
