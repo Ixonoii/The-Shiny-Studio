@@ -585,12 +585,3 @@ client.on("message", function (message) {
         message.channel.send(success)
     }
 })
-
-client.on('message', message => {
-    if (message.author.bot) return
-    if (message.channel.type !== 'text') return message.channel.send("This is a test!")
-    let Destination = client.guilds.get(GuildId).channels.find(channels => channel.name === "ticket " + message.author.id)
-    if(!Destination) return client.guilds.get(GuildId).createChannel("ticket " + message.author.id, { type: 'text' })
-    .then(Destination.send(message.content))
-    message.react("✅")
-})
