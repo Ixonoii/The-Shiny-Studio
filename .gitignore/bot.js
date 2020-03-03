@@ -27,7 +27,7 @@ client.on("message", function (message) {
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         const GroupEmbed = new Discord.RichEmbed()
         .setTitle("Basic Commands")
-        .setDescription(prefix + "cmds ``Displays all the commands you can use.`` \n" + prefix + "group ``Displays a link to join our ROBLOX group.`` \n" + prefix + "game ``Displays a link to join our ROBLOX game.`` \n" + prefix + "me ``Displays some information about you.")
+        .setDescription(prefix + "cmds ``Displays all the commands you can use.`` \n" + prefix + "group ``Displays a link to join our ROBLOX group.`` \n" + prefix + "game ``Displays a link to join our ROBLOX game.`` \n" + prefix + "me ``Displays some information about you.``")
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
         message.channel.send(GroupEmbed)
@@ -46,6 +46,28 @@ client.on("message", function (message) {
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
         message.channel.send(GroupEmbed)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "suggest") {
+        var SuggestionEmbed = new Discord.RichEmbed
+        .setTitle(":warning: Please enter a suggestion.")
+        let reason = args.slice(1).join(" ")
+        if(!reason) return message.channel.send(SuggestionEmbed)
+        var CustomMessageEmbed = new Discord.RichEmbed()
+        .setTitle(":pushpin: Suggestion.")
+        .setDescription(reason)
+        .setTimestamp()
+        .setFooter("Suggested by " + message.author.tag)
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Your suggestion has been sent.")
+        message.channel.send(success)
+        message.delete()
+        client.channels.get("638831121496276994").send(CustomMessageEmbed)
     }
 })
 
