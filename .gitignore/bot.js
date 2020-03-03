@@ -49,25 +49,31 @@ client.on("message", function (message) {
     }
 })
 
-client.on("message", function (message) {
+client.on('message', function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
     if (args[0].toLowerCase() === prefix + "suggest") {
-        var SuggestionEmbed = new Discord.RichEmbed
-        .setTitle(":warning: Please enter a suggestion.")
-        let reason = args.slice(1).join(" ")
-        if(!reason) return message.channel.send(SuggestionEmbed)
-        var CustomMessageEmbed = new Discord.RichEmbed()
-        .setTitle(":pushpin: Suggestion.")
-        .setDescription(reason)
+        var noquestion = new Discord.RichEmbed()
+        .setTitle(":warning: Please enter a suggestion")
+        if (!args[1]) return message.channel.send(noquestion)
+        let question = args.slice(1).join(" ")
+        let embed = new Discord.RichEmbed()
+        .setTitle(":pushpin: New suggestion.")
+        .setDescription(question)
         .setTimestamp()
         .setFooter("Suggested by " + message.author.tag)
-        var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Your suggestion has been sent.")
-        message.channel.send(success)
-        message.delete()
-        client.channels.get("638831121496276994").send(CustomMessageEmbed)
+        let ErrorFound = new Discord.RichEmbed()
+        .setTitle(":x: An error occurred: I can't found the suggestion channel.")
+        let cChannel = message.guild.channels.find(c => c.name === "🤔-game-suggestions")
+        if(!cChannel) return message.channel.send(ErrorFound)
+        cChannel.send(embed)
+        var questionlog = new Discord.RichEmbed()
+        .setTitle("A suggestion has been sent.")
+        .addField("**User**","``" + message.author.tag + "``", true)
+        .addField("**Question**","``" + question + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(questionlog)
     }
 })
 
