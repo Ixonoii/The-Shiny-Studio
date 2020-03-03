@@ -56,6 +56,8 @@ client.on('message', function (message) {
     if (args[0].toLowerCase() === prefix + "suggest") {
         var noquestion = new Discord.RichEmbed()
         .setTitle(":warning: Please enter a suggestion")
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Your suggestion has been sent.")
         if (!args[1]) return message.channel.send(noquestion)
         let question = args.slice(1).join(" ")
         let embed = new Discord.RichEmbed()
@@ -73,6 +75,8 @@ client.on('message', function (message) {
         .addField("**User**","``" + message.author.tag + "``", true)
         .addField("**Question**","``" + question + "``", true)
         .setTimestamp()
+        message.delete()
+        message.channel.send(success)
         client.channels.get(LogChannel).send(questionlog)
     }
 })
