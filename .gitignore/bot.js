@@ -93,7 +93,6 @@ client.on("message", function (message) {
         .addField("Username", message.author.username)
         .addField("Discriminator", message.author.discriminator)
         .addField("ID", message.author.id)
-        .addField("Presence", message.author.presence)
         .addField("Discord Join Date", message.author.createdAt)
         .setThumbnail(message.author.avatarURL)
         message.channel.send(nomention)
