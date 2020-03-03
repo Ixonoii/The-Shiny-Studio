@@ -5,7 +5,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client;
 const fs = require('fs');
-var GuildId = "637704259105980416",
+var GuildId = "637704259105980416";
 var prefix = "-";
 var GameName = "[⭐EVENT] Cookie Simulator 2!";
 var GroupDescription = "Our Roblox group is a vital part of the game. Our group is the way you get access to the discord and much more. There will be possible perks if you are in the group coming soon.";
