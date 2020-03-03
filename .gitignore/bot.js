@@ -23,6 +23,40 @@ client.on("message", function (message) {
     if (!message.guild) return
     let args = message.content.trim().split(/ +/g)
  
+    if (args[0].toLowerCase() === prefix + "cmds") {
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        const GroupEmbed = new Discord.RichEmbed()
+        .setTitle("Basic Commands")
+        .setDescription(prefix + "cmds ``Displays all the commands you can use.`` \n" + prefix + "group ``Displays a link to join our ROBLOX group.`` \n" + prefix + "game ``Displays a link to join our ROBLOX game.`` \n" + prefix + "me ``Displays some information about you.")
+        .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
+        message.channel.send(GroupEmbed)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "cmds") {
+        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
+        const GroupEmbed = new Discord.RichEmbed()
+        .setTitle("Fun Commands")
+        .setDescription(prefix + "kiss ``Kiss someone.`` \n" + prefix + "slap ``Slap someone`` \n" + prefix + "hug ``Hugs someone.``\n" + prefix + "fight ``Fight with someone.``")
+        .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
+        message.channel.send(GroupEmbed)
+    }
+})
+
+// ---------------------------------------------------------------------------------------- //
+// ----------------------------------------- BASIC COMMANDS ----------------------------------------- //
+// ---------------------------------------------------------------------------------------- //
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
     if (args[0].toLowerCase() === prefix + "group") {
         const GroupEmbed = new Discord.RichEmbed()
         .setTitle("The Shiny Studio")
@@ -46,6 +80,28 @@ client.on("message", function (message) {
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
         message.channel.send(GroupEmbed)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "me") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle("Here is some information about you.")
+        .addField("Username", message.author.username)
+        .addField("Discriminator", message.author.discriminator)
+        .addField("ID", message.author.id)
+        .addField("Presence", message.author.presence)
+        .addField("Discord Join Date", message.author.createdAt)
+        .setThumbnail(message.author.avatarURL)
+        message.channel.send(sucnomentioncess)
+        var kisslog = new Discord.RichEmbed()
+        .setTitle("Someone looked for some information.")
+        .addField("**User**","``" + message.author.tag + "``", true)
+        .setTimestamp()
+        client.channels.get(LogChannel).send(kisslog)
     }
 })
 
@@ -166,44 +222,6 @@ client.on('message', function (message) {
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- DISCORD MODERATION COMMANDS ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
-
-client.on('message', function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + 'kick') {
-        var NotAllowedMessage = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        var nomention = new Discord.RichEmbed()
-        .setTitle(":warning: Please mention a user.")
-        var noreason = new Discord.RichEmbed()
-        .setTitle(":warning: Please enter a reason.")
-        var cantkickowner = new Discord.RichEmbed()
-        .setTitle(":warning: You can't kick this user.")
-        var nokickable = new Discord.RichEmbed()
-        .setTitle(":warning: This member is kickable, but I do not have the permissions required to perform this action.")
-        if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send(NotAllowedMessage)
-        let member = message.mentions.members.first()
-        let reason = args.slice(2).join(" ")
-        if (!member) return message.channel.send(nomention)
-        if (!reason) return message.channel.send(noreason)
-        if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition && message.author.id !== message.guild.owner.id) return message.channel.send(cantkickowner)
-        if (!member.kickable) return message.channel.send(nokickable)
-        var kicklog = new Discord.RichEmbed()
-        .setTitle("A user has been kicked.")
-        .addField("**Moderator**","``" + message.author.tag + "``", true)
-        .addField("**User**","``" + member.displayName + "``", true)
-        .addField("**Raison**", "``" + reason + "``", true)
-        .setTimestamp()
-        client.channels.get(LogChannel).send(kicklog)
-        member.kick(reason)
-        message.delete()
-        var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: " + member.displayName + " has been kicked: ``" + reason + "``")
-        .setTimestamp()
-        message.channel.send(success)
-    }
-})
 
 client.on('message', function (message) {
     if (!message.guild) return
