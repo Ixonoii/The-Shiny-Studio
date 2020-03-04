@@ -540,6 +540,37 @@ client.on("message", function (message) {
     }
 })
 
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "approve") {
+        var nomention = new Discord.RichEmbed()
+        .setTitle(":warning: Please mention a user.")
+        var noselfmention = new Discord.RichEmbed()
+        .setTitle(":x: You can't approve yourself.")
+        var notallowed = new Discord.RichEmbed()
+        .setTitle(NotAllowed)
+        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
+        let member = message.mentions.members.first()
+        let reason = args.slice(2).join(" ")
+        let cRole = message.guild.roles.find(c => c.name === "Approved Inactivity")
+        if(!member) return message.channel.send(nomention)
+        if(member === message.author) return message.channel.send(noselfmention)
+        var success = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Your inactivity notice has been accepted.")
+        .addField("**By: **" + message.author.tag)
+        .addField("Note: " + reason)
+        .setTimestamp()
+        .setFooter("The Shiny Studio")
+        var success2 = new Discord.RichEmbed()
+        .setTitle(":white_check_mark: Inactivity notice accepted.")
+        member.send(success)
+        member.addRole(cRole)
+        message.channel.send(success2)
+    }
+})
+
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- DEVELOPER COMMANDS ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
