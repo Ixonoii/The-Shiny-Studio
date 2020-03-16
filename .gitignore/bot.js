@@ -31,20 +31,26 @@ var Red = "#ff0000";
 var Orange = "#ff7700";
 var Yellow = "#fff700";
 
-// VARIABLES 74
+// VARIABLES 4
 
 var NotAllowedMessage = "You're not allowed to use this command.";
+
 var NoReasonMessage = "Please enter a reason.";
+
 var NoMentionMessage = "Please mention someone.";
+
 function emoji (id) {
     return client.emojis.get(id).toString();
 }
+
 var NotAllowedEmbed = new Discord.RichEmbed()
 .setTitle(emoji(ErrorEmoji) + " " + NotAllowedMessage)
 .setColor(Red)
+
 var NoReasonEmbed = new Discord.RichEmbed()
 .setTitle(emoji(ErrorEmoji) + " " + NoReasonMessage)
 .setColor(Red)
+
 var NoMentionEmbed = new Discord.RichEmbed()
 .setTitle(emoji(ErrorEmoji) + " " + NoMentionMessage)
 .setColor(Red)
@@ -66,22 +72,6 @@ client.on("message", function (message) {
         .setDescription(":wave: Miscellaneous Commands")
         .setTimestamp()
         .setFooter("Need more info about a command? Use " + Prefix + "info [command]")
-        message.channel.send(GroupEmbed)
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === Prefix + "info cmds") {
-        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
-        const GroupEmbed = new Discord.RichEmbed()
-        .setTitle("Command: cmds")
-        .addField("**__Command description__:**", "Displays all the commands that you can use.")
-        .addField("**__Permissions required:__**", "None.")
-        .addField("**__Role needed:__**","Verified.")
-        .setTimestamp()
         message.channel.send(GroupEmbed)
     }
 })
