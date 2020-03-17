@@ -58,20 +58,3 @@ var NoMentionEmbed = new Discord.RichEmbed()
 // RUNNER
 
 client.login(process.env.TOKENBOT)
-
-// COMMAND TELLER
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === Prefix + "cmds") {
-        if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
-        const GroupEmbed = new Discord.RichEmbed()
-        .setTitle("Basic Commands")
-        .setDescription(":wave: Miscellaneous Commands")
-        .setTimestamp()
-        .setFooter("Need more info about a command? Use " + Prefix + "info [command]")
-        message.channel.send(GroupEmbed)
-    }
-})
