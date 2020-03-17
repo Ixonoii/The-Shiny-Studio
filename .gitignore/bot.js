@@ -26,8 +26,8 @@ client.on("message", function (message) {
     if (args[0].toLowerCase() === prefix + "cmds") {
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         const GroupEmbed = new Discord.RichEmbed()
-        .setTitle("Basic Commands")
-        .setDescription(prefix + "cmds ``Displays all the commands you can use.`` \n" + prefix + "group ``Displays a link to join our ROBLOX group.`` \n" + prefix + "game ``Displays a link to join our ROBLOX game.`` \n" + prefix + "me ``Displays some information about you.")
+        .setTitle(":wink: Basic Commands")
+        .setDescription(prefix + "cmds ``Displays all the commands you can use.`` \n" + prefix + "group ``Displays a link to join our ROBLOX group.`` \n" + prefix + "game ``Displays a link to join our ROBLOX game.`` \n" + prefix + "me ``Displays some information about you.``")
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
         message.channel.send(GroupEmbed)
@@ -41,8 +41,38 @@ client.on("message", function (message) {
     if (args[0].toLowerCase() === prefix + "cmds") {
         if(!message.member.roles.some(r=>["Verified"].includes(r.name)) ) return
         const GroupEmbed = new Discord.RichEmbed()
-        .setTitle("Fun Commands")
-        .setDescription(prefix + "kiss ``Kiss someone.`` \n" + prefix + "slap ``Slap someone`` \n" + prefix + "hug ``Hugs someone.``\n" + prefix + "fight ``Fight with someone.``")
+        .setTitle(":joy: Fun Commands")
+        .setDescription(prefix + "kiss ``Kiss someone.`` \n" + prefix + "slap ``Slap someone.`` \n" + prefix + "hug ``Hugs someone.``\n" + prefix + "fight ``Fight with someone.``")
+        .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
+        message.channel.send(GroupEmbed)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "cmds") {
+        if(!message.member.roles.some(r=>["🔑"].includes(r.name)) ) return
+        const GroupEmbed = new Discord.RichEmbed()
+        .setTitle(":tools: Moderation Commands")
+        .setDescription(prefix + "ban ``Ban someone from the server.`` \n" + prefix + "Kick ``Kick someone from the server.`` \n" + prefix + "purge ``Purge a number of messages.``\n" + prefix + "nick ``Set someone's nickname.``" + prefix + "warn ``Warn someone. [BROKEN]``" + prefix + "warnings ``Displays the warnings of a user. [BROKEN]``")
+        .setTimestamp()
+        .setFooter("Requested by " + message.author.tag)
+        message.channel.send(GroupEmbed)
+    }
+})
+
+client.on("message", function (message) {
+    if (!message.guild) return
+    let args = message.content.trim().split(/ +/g)
+ 
+    if (args[0].toLowerCase() === prefix + "cmds") {
+        if(!message.member.roles.some(r=>["🔑"].includes(r.name)) ) return
+        const GroupEmbed = new Discord.RichEmbed()
+        .setTitle(":police_officer: Head Commands")
+        .setDescription(prefix + "staffwarn ``Warn a staff member.`` \n" + prefix + "strike ``Strike a staff member. [BROKEN]`` \n" + prefix + "strikes ``Displays the strikes of a staff member. [BROKEN]``\n" + prefix + "approve ``Approve a inactivity notice. [BROKEN]``" + prefix + "decline ``Decline a inactivity notice. [BROKEN]``")
         .setTimestamp()
         .setFooter("Requested by " + message.author.tag)
         message.channel.send(GroupEmbed)
@@ -331,7 +361,7 @@ client.on("message", function (message) {
         var noreason = new Discord.RichEmbed()
         .setTitle(":warning: Please enter a new nickname.")
         var cantname = new Discord.RichEmbed()
-        .setTitle(":warning: This user is manageable, but I do not have the permissions required to perform this action.")
+        .setTitle(":warning: This user in't manageable.")
         if(!message.member.hasPermission("MANAGE_NICKNAMES")) return message.channel.send(notallowed)
         let member = message.mentions.members.first()
         let reason = args.slice(2).join(" ")
@@ -356,170 +386,6 @@ client.on("message", function (message) {
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- HR COMMANDS ----------------------------------------- //
 // ---------------------------------------------------------------------------------------- //
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "strike") {
-        var nomention = new Discord.RichEmbed()
-        .setTitle(":warning: Please mention a user.")
-        var noreason = new Discord.RichEmbed()
-        .setTitle(":warning: Please enter a reason.")
-        var notallowed = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
-        let member = message.mentions.members.first()
-        let reason = args.slice(2).join(" ")
-        if(!member) return message.channel.send(nomention)
-        if(!reason) return message.channel.send(noreason)
-        var CustomMessageEmbed = new Discord.RichEmbed()
-        .setTitle(":warning: You've been striked in The Shiny Studio.")
-        .setDescription("Reason: " + reason)
-        .setTimestamp()
-        var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: " + member.displayName + " successfully striked.")
-        message.channel.send(success)
-        member.send(CustomMessageEmbed)
-        if (!strikes[member.id]) {
-            strikes[member.id] = []
-        }
-        strikes[member.id].unshift({
-            reason: reason,
-            date: Date.now(),
-            mod: message.author.id
-        })
-        fs.writeFileSync('./strikes.json', JSON.stringify(strikes))
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "strikes") {
-        var nomention = new Discord.RichEmbed()
-        .setTitle(":warning: Please mention a user.")
-        var notallowed = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
-        let member = message.mentions.members.first()
-        if(!member) return message.channel.send(nomention)
-        var success = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.displayAvatarURL)
-        .addField('Strikes:', ((strikes[member.id] && strikes[member.id].length) ? strikes[member.id].slice(0, 10).map(e => e.reason) : "No strike found."))
-        .setTimestamp()
-        message.channel.send(success)
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "warnings") {
-        var nomention = new Discord.RichEmbed()
-        .setTitle(":warning: Please mention a user.")
-        var notallowed = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
-        let member = message.mentions.members.first()
-        if(!member) return message.channel.send(nomention)
-        var success = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.displayAvatarURL)
-        .addField('Strikes:', ((warns[member.id] && warns[member.id].length) ? warns[member.id].slice(0, 10).map(e => e.reason) : "No warning found."))
-        .setTimestamp()
-        message.channel.send(success)
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "warn") {
-        var nomention = new Discord.RichEmbed()
-        .setTitle(":warning: Please mention a user.")
-        var noreason = new Discord.RichEmbed()
-        .setTitle(":warning: Please enter a reason.")
-        var notallowed = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
-        let member = message.mentions.members.first()
-        let reason = args.slice(2).join(" ")
-        if(!member) return message.channel.send(nomention)
-        if(!reason) return message.channel.send(noreason)
-        var CustomMessageEmbed = new Discord.RichEmbed()
-        .setTitle(":warning: You've been warned in The Shiny Studio.")
-        .setDescription("Reason: " + reason)
-        .setTimestamp()
-        var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: " + member.displayName + " successfully warned.")
-        message.channel.send(success)
-        member.send(CustomMessageEmbed)
-        if (!warns[member.id]) {
-            warns[member.id] = []
-        }
-        warns[member.id].unshift({
-            reason: reason,
-            date: Date.now(),
-            mod: message.author.id
-        })
-        fs.writeFileSync('./warns.json', JSON.stringify(warns))
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "clearwarns") {
-        var nomention = new Discord.RichEmbed()
-        .setTitle(":warning: Please mention a user.")
-        .setTitle(NotAllowed)
-        var nowarn = new Discord.RichEmbed()
-        .setTitle(":warning: Impossible to clear the warnings of this user: No warning found.")
-        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
-        let member = message.mentions.members.first()
-        let reason = args.slice(2).join(" ")
-        if(!member) return message.channel.send(nomention)
-        if(!warns[member.id] || !warns[member.id].length) return message.channel.send(nowarn)
-        warns[member.id].shift()
-        fs.writeFileSync('./warns.json', JSON.stringify(warns))
-        var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Cleared warnings.")
-        .setTimestamp()
-        .setFooter("Requested by " + message.author.tag)
-        message.channel.send(success)
-    }
-})
-
-client.on("message", function (message) {
-    if (!message.guild) return
-    let args = message.content.trim().split(/ +/g)
- 
-    if (args[0].toLowerCase() === prefix + "clearstrikes") {
-        var nomention = new Discord.RichEmbed()
-        .setTitle(":warning: Please mention a user.")
-        .setTitle(NotAllowed)
-        var nowarn = new Discord.RichEmbed()
-        .setTitle(":warning: Impossible to clear the strikes of this user: No strike found.")
-        var notallowed = new Discord.RichEmbed()
-        .setTitle(NotAllowed)
-        if(!message.member.roles.some(r=>["💳","🌟 Head Administrator","🗨 Head Discord Mod"].includes(r.name)) ) return message.channel.send(notallowed)
-        let member = message.mentions.members.first()
-        let reason = args.slice(2).join(" ")
-        if(!member) return message.channel.send(nomention)
-        if(!strikes[member.id] || !strikes[member.id].length) return message.channel.send(nowarn)
-        strikes[member.id].shift()
-        fs.writeFileSync('./strikes.json', JSON.stringify(strikes))
-        var success = new Discord.RichEmbed()
-        .setTitle(":white_check_mark: Cleared strikes.")
-        .setTimestamp()
-        .setFooter("Requested by " + message.author.tag)
-        message.channel.send(success)
-    }
-})
 
 // ---------------------------------------------------------------------------------------- //
 // ----------------------------------------- DEVELOPER COMMANDS ----------------------------------------- //
